@@ -1,11 +1,16 @@
 .nav {
     color : red;
     text-decoration: none;
+    font-size: 80px;
+}
+ a {
+    color : red;
+    text-decoration: none;
     
 }
 
-.nav > a {
-    color : red;
-    text-decoration: none;
+body { 
+
+    background-color: red ;
     
 }
