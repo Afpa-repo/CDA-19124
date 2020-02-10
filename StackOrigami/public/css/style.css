@@ -1,0 +1,11 @@
+.nav {
+    color : red;
+    text-decoration: none;
+    
+}
+
+.nav > a {
+    color : red;
+    text-decoration: none;
+    
+}
