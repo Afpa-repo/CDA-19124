@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b3fa9209-8d4b-4c38-a2d4-9197b5492036" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="SCHEME" value="Project" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1XfDHnRp5aFEl5TtLXH2gAPWWuT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.XML" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b3fa9209-8d4b-4c38-a2d4-9197b5492036" name="Default Changelist" comment="" />
+      <created>1581428170175</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581428170175</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2412" y="154" key="#Custom_Plugin_Repositories" timestamp="1581429080658">
+      <screen x="1920" y="30" width="1920" height="1050" />
+    </state>
+    <state x="2412" y="154" key="#Custom_Plugin_Repositories/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581429080658" />
+    <state x="517" y="238" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581428539691">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="517" y="238" key="#com.intellij.fileTypes.FileTypeChooser/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581428539691" />
+    <state x="2545" y="149" key="SettingsEditor" timestamp="1581430014470">
+      <screen x="1920" y="30" width="1920" height="1050" />
+    </state>
+    <state x="277" y="91" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581428514042" />
+    <state x="2545" y="149" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581430014470" />
+    <state x="470" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1581428609808">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="470" y="273" key="com.intellij.ide.util.TipDialog/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581428609808" />
+    <state x="2262" y="131" key="new project wizard" timestamp="1581428679837">
+      <screen x="1920" y="30" width="1920" height="1050" />
+    </state>
+    <state x="2262" y="131" key="new project wizard/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581428679837" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="StackOrigami" type="b2602c69:ProjectViewProjectNode" />
+        <item name="StackOrigami" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
+  </component>
+</project>

@@ -4,44 +4,155 @@
 
 {% block body %}
     <div class="container">
-    <h1>Product index</h1>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Libelle</th>
-                    <th>Description</th>
-                    <th>Color</th>
-                    <th>Picture</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                    <tr>
-                        <td>{{ product.id }}</td>
-                        <td>{{ product.libelle }}</td>
-                        <td>{{ product.description }}</td>
-                        <td>{{ product.color }}</td>
-                        <td>{{ product.picture }}</td>
-                        <td>{{ product.price }}</td>
-                        <td>{{ product.stock }}</td>
-                        <td>
-                            <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                            <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="8">no records found</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <a href="{{ path('product_new') }}">Create new</a>
-    </div> 
-{% endblock %}
+        <h1>Catalogue</h1>
+        <div class="top_filter">
+            <div class="row">
+                <div class="col-sm-12 col-lg-3">
+
+                    <h3>Rechercher</h3>
+                    <form>
+                        <input type="email" name="email" class="input_footer" placeholder="Adresse email">
+                        <input type="submit" name="send" class="btn-footer " value="Recherche produit">
+                    </form>
+                </div>
+                <div class="col-sm-12 col-lg-9">
+
+                    <ol class="breadcrumb_stack">
+                        <li><a href="index.php" title="Accueil">Accueil ></a></li>
+                        <li><a href="formations.php" title="formations">Formations ></a></li>
+                        <li class="active">Bootstrap</li>
+                    </ol>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-sm-12 col-lg-3">
+
+                    <h3>Filtrer par prix </h3>
+                    <div class="form-group">
+                        <input type="range" class="form-control-range" id="formControlRange">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-9">
+
+                    <h1 class="font-weight-normal">Nos origami</h1>
+                    <p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue justo a purus iaculis vestibulum.
+                        Aenean eleifend porttitor lorem, ut venenatis nisl ultricies ac. Pellentesque dolor turpis, maximus id ult
+                        rices imperdiet, sagittis ut est. Aliquam nisi diam, semper quis sem in, porta hendrerit nunc. Vivamus imp
+                        erdiet mattis dui, at scelerisque ipsum cursus sit amet. Phasellus iaculis egestas eros. Phasellus mattis ma
+                        ssa molestie tincidunt hendrerit. Vestibulum pulvinar vel odio vitae accumsan. Nulla non pel
+                        lentesque dolor. Sed quis commodo magna.
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12 col-lg-3">
+                    <h3>Filtrer par catégorie</h3>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">Origami papier</a>
+                        <a href="#" class="list-group-item list-group-item-action">Origami serviette</a>
+                        <a href="#" class="list-group-item list-group-item-action">Origami résine</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="top_filter mt-3 text-center">
+
+            <div class="row">
+                <div class="col-7">
+                    <p>Affichage de 1–24 sur 982 résultats</p>
+
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Tri du plus récent au plus ancien</option>
+                            <option>Tri par popularité</option>
+                            <option>Tri prix croissant</option>
+                            <option>Tri prix décroissant</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="products col-12">
+
+                <div class="card-columns">
+                    <a href="">
+                        <div class="card card-product">                                   
+
+                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">PandaStack</h5>
+                                <p class="card-text">25€</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="card card-product">                                   
+
+                            <img class="card-img-top" src="{{ asset('images/hqdefault-removebg-preview.svg') }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">PandaStack</h5>
+                                <p class="card-text">25€</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="card card-product">                                   
+
+                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">PandaStack</h5>
+                                <p class="card-text">25€</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="card card-product">                                   
+
+                            <img class="card-img-top" src="{{ asset('images/hqdefault-removebg-preview.svg') }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">PandaStack</h5>
+                                <p class="card-text">25€</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="card card-product">                                   
+
+                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">PandaStack</h5>
+                                <p class="card-text">25€</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="card card-product">                                   
+
+                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">PandaStack</h5>
+                                <p class="card-text">25€</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+            </div> 
+        </div>
+    {% endblock %}
