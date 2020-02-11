@@ -21,13 +21,13 @@
                 <a id="logo_text" href="#">StackOrigami</a>
                 <ul class="lg-pl-5 navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item  ">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ path('home') }}">Accueil</a> <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="lg-pl-5 nav-item  ">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="lg-pl-5 nav-item  ">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <form class="lg-pl-5 form-inline my-2 my-lg-0">
@@ -70,16 +70,17 @@
                 </div>
             </div>
             <div class="row">
-                <div id="register_newletters pl-0" class="col-8">
-                    <p>Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
+                <div id="register_newletters pl-0" class="col-6">
+                    <p class="font-weight-bold">Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
                     <form action="" method="">
-                        <input type="email" name="email" class="input_footer" placeholder="Adresse email">
+                        <input type="email" name="email" class="input_footer col-3" placeholder="Adresse email">
                         <input type="submit" name="send" class="btn-footer" value="Inscription">
                     </form>
                 </div>
                 <div id="follow_us" class="col-4">
-                    <p>Suivez nous</p
-                    <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
+                    <p class="font-weight-bold">Suivez nous</p
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
                         <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M34.316,19.688l1.815-6.334H24.783V9.243c0-1.733,1.585-3.422,6.668-3.422h5.159V.428S31.928,0,27.452,0C18.106,0,12,3.034,12,8.526v4.828H1.609v6.334H12V35H24.783V19.688Z" transform="translate(-1.609)"/>
                         </svg>
                     </a>
@@ -95,9 +96,9 @@
                     </a>
                 </div>
             </div>
-            <div class="paiement_methods">
+            <div class="paiement_methods ">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-6">
                         <p>Moyens de paiements acceptés : 
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30.849 13.197">
                             <path id="Icon_payment-cb" data-name="Icon payment-cb" d="M10.572,24.06h8.166a6.175,6.175,0,0,1-1.98,5.031q-1.98,1.568-6.1,1.567-4.289,0-6.186-1.567a6.308,6.308,0,0,1-1.9-5.031q0-3.3,1.485-4.7,1.98-1.9,6.6-1.9,4.288,0,6.351,1.732a5.322,5.322,0,0,1,1.65,4.289H10.572v.577Zm20.043-.578H19.232V17.708H30.368A2.959,2.959,0,0,1,33.255,20.6a2.853,2.853,0,0,1-.742,1.98,2.71,2.71,0,0,1-1.9.908Zm-.082.578a3.028,3.028,0,0,1,2.021.99,3.106,3.106,0,0,1,.866,2.227,2.864,2.864,0,0,1-.866,2.1,3.1,3.1,0,0,1-2.021.949h-11.3V24.06h11.3Z" transform="translate(-2.571 -17.461)"/>
@@ -119,31 +120,31 @@
                 <div class="row">
                     <div class="col-4 padding-left-0">
                         <ul>
-                            <li>Mentions légales</li>
-                            <li>Contact</li>
-                            <li>CGU / CGV</li>
-                            <li>Plan du site</li>
+                            <li><a href="">Mentions légales</a></li>
+                            <li><a href="">Contact</a></li>
+                            <li><a href="">CGU / CGV</a></li>
+                            <li><a href="">Plan du site</a></li>
                         </ul>
                     </div>
                     <div class="col-4">
                         <ul>
-                            <li>Recrutement</li>
-                            <li>Nos boutiques</li>
+                            <li><a href="">Recrutement</a></li>
+                            <li><a href="">Nos boutiques</a></li>
 
                         </ul>
                     </div>
                     <div class="col-4">
                         <ul>
-                            <li>Qui sommes-nous ?</li>
-                            <li>FAQ</li>
-                            <li>Le blog de StackOrigami</li>
+                            <li><a href="">Qui sommes-nous ?</a></li>
+                            <li><a href="">FAQ</a></li>
+                            <li><a href="">Le blog de StackOrigami</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="copyrights">
-                <p>StackOrigami est une entreprise 100% made in France.</p>
-                <p>Copyright 2020 StockOrigami tous droits réservés.</p>
+                <p id="stack">StackOrigami est une entreprise 100% made in France.</p>
+                <p class="font-weight-bold">Copyright 2020 StockOrigami tous droits réservés.</p>
             </div>
         </div>
             
