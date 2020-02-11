@@ -34,9 +34,38 @@ body {
 }
 
 
+.input_footer {
+    background: #292727;
+    border: 3px solid #fff;
+    height : 30px;
+    width: 280px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    margin-right: 0px;
+    text-indent: 8px;
+    margin-bottom : 15px;
+}
 
+.btn-footer {
+    border : none;
+    height : 30px;
+    margin-left: 0px;
+    background: #fff;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+
+}
 .footer {
     background-color : #6B6B5B;
+}
+
+.footer a {
+    color : black;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.footer a:hover {
+    color : WHITE;
+    text-decoration: underline;
 }
 
 .hr_footer {
@@ -44,10 +73,22 @@ body {
 
 }
 
+#stack {
+    color : white !important;
+    font-size: 1.2em;
+}
+
 ul {
     list-style:none;
     margin-left:0;
     padding-left:0;
+}
+
+.saler {
+    background-color : white;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 
 
