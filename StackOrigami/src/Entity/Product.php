@@ -46,6 +46,8 @@ class Product
      */
     private $stock;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,4 +124,6 @@ class Product
 
         return $this;
     }
+
+
 }

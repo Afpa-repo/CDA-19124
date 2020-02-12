@@ -28,7 +28,7 @@ class BoutiqueController extends AbstractController {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         return $this->render('boutique/contact.html.twig', [
-                    'form' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
 
@@ -44,8 +44,14 @@ class BoutiqueController extends AbstractController {
      */
     public function catalog(ProductRepository $productRepository) {
         return $this->render('product/index.html.twig', [
-                    'products' => $productRepository->findAll(),
+            'products' => $productRepository->findAll(),
         ]);
     }
 
+    /**
+     * @Route("/profil", name="profil")
+     */
+    public function profil() {
+        return $this->render('boutique/profil.html.twig');
+    }
 }

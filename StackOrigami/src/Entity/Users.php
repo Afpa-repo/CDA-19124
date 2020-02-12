@@ -3,11 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity(
+ *     fields={"mail"},
+ *     message= "L'email que vous avez rentré est déjà utilisé"
+ * )
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -18,11 +25,13 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Veuillez rentrer au moins 8 caractères" )
      */
     private $password;
 
@@ -122,4 +131,40 @@ class Users
 
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+
+        return ['ROLE_USER'];
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
 }

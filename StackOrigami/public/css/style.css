@@ -33,7 +33,7 @@ body {
     width: 30vw;
 }
 
-
+/* start footer */
 .input_footer {
     background: #292727;
     border: 3px solid #fff;
@@ -75,6 +75,8 @@ a:hover {
     color :red;
 
 }
+/* end footer */
+
 
 #stack {
     color : white !important;
@@ -220,6 +222,9 @@ ul {
     border: 1px solid rgba(0,0,0,.125);
 }
 
+
+/* page show product */
+
 .back {
     border-radius: 10px;
     background: #fff;
@@ -228,3 +233,10 @@ ul {
 .link_show_product {
     font-size: 2em;
 }
+
+.informations_ship {
+    background-color: #6B6B5B;
+    padding-top : 25px;
+    padding-bottom : 25px;
+}
+/* end show product */

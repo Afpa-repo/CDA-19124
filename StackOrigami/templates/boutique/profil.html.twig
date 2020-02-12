@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if not app.user %}
+        <div class="alert alert-warning" role="alert">
+            Veuillez vous connecter pour accéder à cette page !
+        </div>
+    {% else %}
+        <p>Vous êtes identifié</p>
+        {{ app.user.id }}
+        {{ app.user.surname }}
+        {{ app.user.firstName }}
+        {{ app.user.phoneNumber }}
+        {{ app.user.password }}
+
+
+        <h3>Vous pouvez vous déconnecter ici :</h3>
+        <li class="lg-pl-5 nav-item  ">
+            <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion <span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
+
+{% endblock %}
