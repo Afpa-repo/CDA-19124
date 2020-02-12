@@ -51,9 +51,14 @@ class Users implements UserInterface
     private $phone_number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Address", inversedBy="users")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address_ship;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $address_fact;
 
     public function getId(): ?int
     {
@@ -120,18 +125,6 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getAddressShip(): ?Address
-    {
-        return $this->address_ship;
-    }
-
-    public function setAddressShip(?Address $address_ship): self
-    {
-        $this->address_ship = $address_ship;
-
-        return $this;
-    }
-
     /**
      * @inheritDoc
      */
@@ -164,6 +157,30 @@ class Users implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getAddressShip(): ?string
+    {
+        return $this->address_ship;
+    }
+
+    public function setAddressShip(?string $address_ship): self
+    {
+        $this->address_ship = $address_ship;
+
+        return $this;
+    }
+
+    public function getAddressFact(): ?string
+    {
+        return $this->address_fact;
+    }
+
+    public function setAddressFact(?string $address_fact): self
+    {
+        $this->address_fact = $address_fact;
+
+        return $this;
     }
 
 
