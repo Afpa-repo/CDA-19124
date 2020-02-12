@@ -15,7 +15,7 @@ class Contact1Type extends AbstractType
             ->add('mail')
             ->add('subject')
             ->add('message')
-            ->add('date_send')
+            
         ;
     }
 

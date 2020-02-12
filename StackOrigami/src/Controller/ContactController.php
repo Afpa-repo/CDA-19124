@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/contact")
  */
+ /* Date init in localtime */
+ 
 class ContactController extends AbstractController
 {
     /**
@@ -35,8 +37,10 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+			/* Add the date of the day*/
+			$contact->setDateSend(new \DateTime);		
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contact);
+            $entityManager->persist($contact);	
             $entityManager->flush();
 
             return $this->redirectToRoute('contact_new');
