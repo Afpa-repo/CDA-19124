@@ -16,11 +16,9 @@
                     </form>
                 </div>
                 <div class="col-sm-12 col-lg-9">
-
                     <ol class="breadcrumb_stack">
                         <li><a href="index.php" title="Accueil">Accueil ></a></li>
-                        <li><a href="formations.php" title="formations">Formations ></a></li>
-                        <li class="active">Bootstrap</li>
+                        <li><a href="formations.php" title="formations">Catalogue</a></li>
                     </ol>
 
                 </div>
@@ -41,10 +39,14 @@
                 <div class="col-sm-12 col-lg-9">
 
                     <h1 class="font-weight-normal">Nos origami</h1>
-                    <p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue justo a purus iaculis vestibulum.
-                        Aenean eleifend porttitor lorem, ut venenatis nisl ultricies ac. Pellentesque dolor turpis, maximus id ult
-                        rices imperdiet, sagittis ut est. Aliquam nisi diam, semper quis sem in, porta hendrerit nunc. Vivamus imp
-                        erdiet mattis dui, at scelerisque ipsum cursus sit amet. Phasellus iaculis egestas eros. Phasellus mattis ma
+                    <p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+                        congue justo a purus iaculis vestibulum.
+                        Aenean eleifend porttitor lorem, ut venenatis nisl ultricies ac. Pellentesque dolor turpis,
+                        maximus id ult
+                        rices imperdiet, sagittis ut est. Aliquam nisi diam, semper quis sem in, porta hendrerit nunc.
+                        Vivamus imp
+                        erdiet mattis dui, at scelerisque ipsum cursus sit amet. Phasellus iaculis egestas eros.
+                        Phasellus mattis ma
                         ssa molestie tincidunt hendrerit. Vestibulum pulvinar vel odio vitae accumsan. Nulla non pel
                         lentesque dolor. Sed quis commodo magna.
                     </p>
@@ -64,11 +66,7 @@
             </div>
         </div>
 
-
-
-
         <div class="top_filter mt-3 text-center">
-
             <div class="row">
                 <div class="col-7">
                     <p>Affichage de 1–24 sur 982 résultats</p>
@@ -90,70 +88,23 @@
             <div class="products col-12">
 
                 <div class="card-columns">
-                    <a href="">
-                        <div class="card card-product">                                   
+                    {% for product in products %}
+                        <a href="{{ path('product_show', {'id': product.id}) }}">
+                            <div class="card card-product">
 
-                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">PandaStack</h5>
-                                <p class="card-text">25€</p>
+                                <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.libelle }}</h5>
+                                    <p class="card-text">{{ product.price }}€</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="card card-product">                                   
-
-                            <img class="card-img-top" src="{{ asset('images/hqdefault-removebg-preview.svg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">PandaStack</h5>
-                                <p class="card-text">25€</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="card card-product">                                   
-
-                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">PandaStack</h5>
-                                <p class="card-text">25€</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="card card-product">                                   
-
-                            <img class="card-img-top" src="{{ asset('images/hqdefault-removebg-preview.svg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">PandaStack</h5>
-                                <p class="card-text">25€</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="card card-product">                                   
-
-                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">PandaStack</h5>
-                                <p class="card-text">25€</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="card card-product">                                   
-
-                            <img class="card-img-top" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">PandaStack</h5>
-                                <p class="card-text">25€</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    {% endfor %}
                 </div>
 
 
-            </div> 
-        </div>        </div>
+            </div>
+        </div>
+    </div>
 
-    {% endblock %}
+{% endblock %}
