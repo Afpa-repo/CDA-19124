@@ -16,6 +16,7 @@ class CartController extends AbstractController
      */
     public function index(SessionInterface $session, ProductRepository $productRepository)
     {
+      $count =0;
       $panier=$session->get('panier',[]);
       $panierWithData= [];
       foreach ($panier as $id => $quantity) {
@@ -28,13 +29,16 @@ class CartController extends AbstractController
 
       $total = 0;
       foreach ($panierWithData as $item) {
+          
           $totalItem = $item['product']->getPrice()*$item['quantity'];
           $total += $totalItem;// code...
+          $count += $item['quantity']; 
       }
 
         return $this->render('cart/index.html.twig', [
           'items' => $panierWithData,
-          'total' => $total
+          'total' => $total,
+          'Cquantity' => $count
         ]);
     }
     /**
