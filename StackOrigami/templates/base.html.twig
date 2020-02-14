@@ -33,6 +33,7 @@
                         <a class="nav-link" href="{{ path('contact_new') }}">Contact <span class="sr-only">(current)</span></a>
                     </li>
                     <li>
+                        <!-- MODAL -->
                         <div class="col-2">
                             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -42,13 +43,17 @@
                                             <h5 class="modal-title" id="exampleModalLabel">Votre compte</h5>
                                         </div>
                                         <form name="form" action="{{ path('security_login') }}" method="post">
+                                            <!-- Message d'erreur (TO DO) -->
                                             <span name="form_error"></span>
+                                            <!-- login -->
                                             <div class="form-group">
                                                 <input class="form-control" require name="_username" id="login" type="text" placeholder="Email" >
                                             </div>
+                                            <!-- Mot de passe -->
                                             <div class="form-group">
                                                 <input class="form-control" require name="_password" id="password" type="password" placeholder="Mot de passe">
                                             </div>
+                                            <!-- Bouton connexion -->
                                             <div class="form-group">
                                                 <button type="submit" name="submit" id="submit" class="btn btn-success">Connexion</button>
                                             </div>
@@ -65,6 +70,7 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Condition d'affichage connexion/déconnexion -->
                     {% if not app.user %}
                         <li class="lg-pl-5 nav-item  ">
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#modal">Connexion <span class="sr-only">(current)</span></a>
@@ -75,6 +81,7 @@
                         </li>
                     {% endif %}
                 </ul>
+                <!-- Logo recherche -->
                 <form class="lg-pl-5 form-inline my-2 my-lg-0">
                     <a href="" class="mr-1">
                         <svg id="Composant_2_3" data-name="Composant 2 – 3" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
@@ -82,18 +89,23 @@
                         <path id="Icon_awesome-search" data-name="Icon awesome-search" d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z" transform="translate(7 7)"/>
                         </svg>
                     </a>
+                    <!-- Condition d'apparition logo profil -->
                     {% if not app.user %}
-
                     {% else %}
                         <a href="{{ path('profil') }}" class="mr-1">
-
+                            <!-- Logo profil -->
                             <svg id="Composant_2_2" data-name="Composant 2 – 2" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
                             <circle id="Ellipse_3" data-name="Ellipse 3" cx="25" cy="25" r="25" fill="#bfbfbf"/>
                             <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M18,20.25A10.125,10.125,0,1,0,7.875,10.125,10.128,10.128,0,0,0,18,20.25Zm9,2.25H23.126a12.24,12.24,0,0,1-10.252,0H9a9,9,0,0,0-9,9v1.125A3.376,3.376,0,0,0,3.375,36h29.25A3.376,3.376,0,0,0,36,32.625V31.5A9,9,0,0,0,27,22.5Z" transform="translate(7 4)"/>
                             </svg>
                         </a>
                     {% endif %}
+
                     <a href="{{ path ('cart_index') }}" class="mr-1">
+
+                    <!-- Logo panier -->
+                    <a href="" class="mr-1">
+
                         <svg id="Composant_2_1" data-name="Composant 2 – 1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
                         <circle id="Ellipse_3" data-name="Ellipse 3" cx="25" cy="25" r="25" fill="#bfbfbf"/>
                         <path id="Icon_awesome-shopping-basket" data-name="Icon awesome-shopping-basket" d="M40.5,15.188v1.125A1.687,1.687,0,0,1,38.813,18H38.25L36.414,30.852a3.375,3.375,0,0,1-3.341,2.9H7.427a3.375,3.375,0,0,1-3.341-2.9L2.25,18H1.688A1.687,1.687,0,0,1,0,16.313V15.188A1.687,1.687,0,0,1,1.688,13.5H6.422L13.93,3.177A2.25,2.25,0,1,1,17.57,5.823L11.987,13.5H28.513L22.93,5.823A2.25,2.25,0,0,1,26.57,3.177L34.078,13.5h4.735A1.687,1.687,0,0,1,40.5,15.188ZM21.938,27.563V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm7.875,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm-15.75,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Z" transform="translate(5 6.75)"/>
@@ -118,6 +130,7 @@
                 <h3>Origami, simplement étonnant.</h3>
             </div>
         </div>
+        <!-- Inscription a la newsletter -->
         <div class="row">
             <div id="register_newletters pl-0" class="col-6">
                 <p class="font-weight-bold">Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
@@ -126,18 +139,22 @@
                     <input type="submit" name="send" class="btn-footer" value="Inscription">
                 </form>
             </div>
+            <!-- Logos réseaux sociaux -->
             <div id="follow_us" class="col-4">
                 <p class="font-weight-bold">Suivez nous</p
+                <!-- Logo facebook -->
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
                     <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M34.316,19.688l1.815-6.334H24.783V9.243c0-1.733,1.585-3.422,6.668-3.422h5.159V.428S31.928,0,27.452,0C18.106,0,12,3.034,12,8.526v4.828H1.609v6.334H12V35H24.783V19.688Z" transform="translate(-1.609)"/>
                     </svg>
                 </a>
+                <!-- Logo twitter -->
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
                     <path id="Icon_awesome-twitter" data-name="Icon awesome-twitter" d="M31.4,12.1c.022.383.022.766.022,1.148,0,11.676-7.218,25.129-20.409,25.129A17.625,17.625,0,0,1,0,34.416a12.082,12.082,0,0,0,1.732.109,12.766,12.766,0,0,0,8.905-3.773c-3.154-.082-5.8-2.625-6.707-6.125a7.39,7.39,0,0,0,1.355.137,6.253,6.253,0,0,0,1.888-.3c-3.287-.82-5.752-4.375-5.752-8.668v-.109a6.239,6.239,0,0,0,3.242,1.121,9.5,9.5,0,0,1-3.2-7.355,10.358,10.358,0,0,1,.977-4.457c3.531,5.359,8.839,8.859,14.791,9.242a12.193,12.193,0,0,1-.178-2.023c0-4.867,3.2-8.832,7.173-8.832A6.615,6.615,0,0,1,29.47,6.17a12.643,12.643,0,0,0,4.553-2.133A8.719,8.719,0,0,1,30.869,8.9,12.323,12.323,0,0,0,35,7.537,17.824,17.824,0,0,1,31.4,12.1Z" transform="translate(0 -3.381)"/>
                     </svg>
                 </a>
+                <!-- Logo instagram -->
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
                     <path id="Icon_awesome-instagram" data-name="Icon awesome-instagram" d="M17.5,10.764a8.974,8.974,0,1,0,8.972,8.974A8.958,8.958,0,0,0,17.5,10.764Zm0,14.808a5.834,5.834,0,1,1,5.833-5.834A5.844,5.844,0,0,1,17.5,25.572ZM28.93,10.4A2.093,2.093,0,1,1,26.837,8.3,2.088,2.088,0,0,1,28.93,10.4Zm5.942,2.124c-.133-2.8-.773-5.287-2.827-7.333S27.516,2.5,24.713,2.361c-2.889-.164-11.548-.164-14.437,0C7.481,2.493,5,3.134,2.944,5.18S.258,9.71.118,12.514c-.164,2.89-.164,11.551,0,14.44.133,2.8.773,5.287,2.827,7.333s4.529,2.687,7.332,2.827c2.889.164,11.548.164,14.437,0,2.8-.133,5.286-.773,7.332-2.827s2.686-4.53,2.827-7.333c.164-2.89.164-11.543,0-14.433ZM31.139,30.055a5.906,5.906,0,0,1-3.326,3.327c-2.3.914-7.769.7-10.315.7s-8.019.2-10.315-.7a5.906,5.906,0,0,1-3.326-3.327c-.914-2.3-.7-7.771-.7-10.317s-.2-8.021.7-10.317A5.906,5.906,0,0,1,7.184,6.094c2.3-.914,7.769-.7,10.315-.7s8.019-.2,10.315.7a5.906,5.906,0,0,1,3.326,3.327c.914,2.3.7,7.771.7,10.317S32.053,27.758,31.139,30.055Z" transform="translate(0.005 -2.238)"/>
@@ -145,6 +162,7 @@
                 </a>
             </div>
         </div>
+        <!-- Moyens de paiement -->
         <div class="paiement_methods ">
             <div class="row">
                 <div class="col-6">
@@ -165,6 +183,7 @@
                 </div>
             </div>
         </div>
+        <!-- Liens footer -->
         <div class="links_footer">
             <div class="row">
                 <div class="col-4 padding-left-0">
@@ -196,7 +215,6 @@
             <p class="font-weight-bold">Copyright 2020 StockOrigami tous droits réservés.</p>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
@@ -209,22 +227,8 @@
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
     <!-- Swiper JS -->
     <script src="../package/js/swiper.min.js"></script>
-
     <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper(".swiper-container", {
-            speed: 600,
-            parallax: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            }
-        });
-    </script>
+    <script src="../public/js/swiperScript.js"></script>
 {% endblock %}
 
 </body>
