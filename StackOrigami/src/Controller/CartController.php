@@ -34,7 +34,10 @@ class CartController extends AbstractController
           $total += $totalItem;// code...
           $count += $item['quantity']; 
       }
-
+                
+      $this->render('base.html.twig',[
+          'Cquantity' => $count
+      ]);
         return $this->render('cart/index.html.twig', [
           'items' => $panierWithData,
           'total' => $total,
