@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
+{# héritage du fichier de base twig header et footer #}
 
 {% block title %}Catalogue{% endblock %}
+{# balise title #}
+
 
 {% block body %}
     <div class="container">
@@ -8,19 +11,19 @@
         <div class="top_filter">
             <div class="row">
                 <div class="col-sm-12 col-lg-3">
-
+                    {# barre de recherche produit #}
                     <h3>Rechercher</h3>
                     <form>
-                        <input type="email" name="email" class="input_footer" placeholder="Adresse email">
+                        <input type="email" name="email" class="input_footer" placeholder="Produit">
                         <input type="submit" name="send" class="btn-footer " value="Recherche produit">
                     </form>
                 </div>
                 <div class="col-sm-12 col-lg-9">
+                    {# breadcrumb #}
                     <ol class="breadcrumb_stack">
                         <li><a href="index.php" title="Accueil">Accueil ></a></li>
                         <li><a href="formations.php" title="formations">Catalogue</a></li>
                     </ol>
-
                 </div>
 
             </div>
@@ -29,7 +32,7 @@
 
 
                 <div class="col-sm-12 col-lg-3">
-
+                    {# Filtrer par prix #}
                     <h3>Filtrer par prix </h3>
                     <div class="form-group">
                         <input type="range" class="form-control-range" id="formControlRange">
@@ -37,7 +40,7 @@
                 </div>
 
                 <div class="col-sm-12 col-lg-9">
-
+                    {# Présentation rapide nos origami #}
                     <h1 class="font-weight-normal">Nos origami</h1>
                     <p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
                         congue justo a purus iaculis vestibulum.
@@ -56,6 +59,7 @@
             <div class="row">
 
                 <div class="col-sm-12 col-lg-3">
+                    {# Filtrer par catégorie #}
                     <h3>Filtrer par catégorie</h3>
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action">Origami papier</a>
@@ -69,6 +73,8 @@
         <div class="top_filter mt-3 text-center">
             <div class="row">
                 <div class="col-7">
+                    {# Affichage et tri des produits #}
+
                     <p>Affichage de 1–24 sur 982 résultats</p>
 
                 </div>
@@ -89,6 +95,7 @@
 
                 <div class="card-columns">
                     {% for product in products %}
+                        {# boucle pour afficher les articles #}
                         <a href="{{ path('product_show', {'id': product.id}) }}">
                             <div class="card card-product">
 

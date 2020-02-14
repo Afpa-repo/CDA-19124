@@ -151,11 +151,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../symfony/web/my_project_name" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -170,6 +170,7 @@
       <workItem from="1581494528974" duration="234000" />
       <workItem from="1581494799280" duration="1927000" />
       <workItem from="1581498013142" duration="18791000" />
+      <workItem from="1581670318529" duration="2709000" />
     </task>
     <servers />
   </component>
@@ -189,23 +190,25 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="549" y="203" key="FileChooserDialogImpl/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581500367936" />
-    <state x="44" y="106" key="SettingsEditor" timestamp="1581504418071">
-      <screen x="0" y="30" width="1536" height="834" />
+    <state x="2545" y="149" key="SettingsEditor" timestamp="1581671229960">
+      <screen x="1920" y="30" width="1920" height="1050" />
     </state>
     <state x="44" y="106" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581504418071" />
-    <state x="2545" y="149" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581430014470" />
-    <state x="470" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1581498018457">
+    <state x="2545" y="149" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581671229960" />
+    <state x="470" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1581670366299">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="470" y="273" key="com.intellij.ide.util.TipDialog/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581498018457" />
+    <state x="470" y="273" key="com.intellij.ide.util.TipDialog/0.30.1536.834@0.30.1536.834" timestamp="1581670366299" />
     <state x="2262" y="131" key="new project wizard" timestamp="1581428679837">
       <screen x="1920" y="30" width="1920" height="1050" />
     </state>
     <state x="2262" y="131" key="new project wizard/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581428679837" />
-    <state x="425" y="204" key="run.anything.popup" timestamp="1581502164136">
-      <screen x="0" y="30" width="1536" height="834" />
+    <state x="2451" y="249" key="run.anything.popup" timestamp="1581670954816">
+      <screen x="1920" y="30" width="1920" height="1050" />
     </state>
     <state x="425" y="204" key="run.anything.popup/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581502164136" />
+    <state x="2451" y="249" key="run.anything.popup/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581670954816" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

@@ -12,7 +12,7 @@ use App\Repository\ProductRepository;
 class CartController extends AbstractController
 {
     /**
-     * @Route("/panier", name="cart_index")
+     * @Route("/cart", name="cart_index")
      */
     public function index(SessionInterface $session, ProductRepository $productRepository)
     {
@@ -38,7 +38,7 @@ class CartController extends AbstractController
         ]);
     }
     /**
-    * @Route("/panier/add/{id}" , name="cart_add")
+    * @Route("/cart/add/{id}" , name="cart_add")
     */
     public function add($id, SessionInterface $session)
     {
