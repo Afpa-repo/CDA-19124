@@ -3,11 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity(
+ *     fields={"mail"},
+ *     message= "L'email que vous avez rentré est déjà utilisé"
+ * )
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -18,11 +25,13 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Veuillez rentrer au moins 8 caractères" )
      */
     private $password;
 
@@ -42,9 +51,14 @@ class Users
     private $phone_number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Address", inversedBy="users")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address_ship;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $address_fact;
 
     public function getId(): ?int
     {
@@ -111,15 +125,63 @@ class Users
         return $this;
     }
 
-    public function getAddressShip(): ?Address
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+
+        return ['ROLE_USER'];
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getAddressShip(): ?string
     {
         return $this->address_ship;
     }
 
-    public function setAddressShip(?Address $address_ship): self
+    public function setAddressShip(?string $address_ship): self
     {
         $this->address_ship = $address_ship;
 
         return $this;
     }
+
+    public function getAddressFact(): ?string
+    {
+        return $this->address_fact;
+    }
+
+    public function setAddressFact(?string $address_fact): self
+    {
+        $this->address_fact = $address_fact;
+
+        return $this;
+    }
+
+
 }

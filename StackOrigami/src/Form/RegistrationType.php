@@ -2,30 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\Product;
+use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductType extends AbstractType
+class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
-            ->add('description')
-            ->add('color')
-            ->add('picture')
-            ->add('price')
-            ->add('stock')
-
+            ->add('mail')
+            ->add('password', PasswordType::class)
+            ->add('surname')
+            ->add('first_name')
+            ->add('phone_number')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => Users::class,
         ]);
     }
 }

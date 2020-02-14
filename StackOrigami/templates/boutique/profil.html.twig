@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if not app.user %}
+        <div class="alert alert-warning" role="alert">
+            Veuillez vous connecter pour accéder à cette page !
+        </div>
+    {% else %}
+
+
+
+        <div class="container text-center">
+            <div class="row mt-5">
+                <div class="col-5">
+                    <div class="back_my_detail">
+                        <h2>Mes informations</h2>
+                        <p>{{ app.user.surname }} {{ app.user.firstName }}</p>
+                        <p class="font-weight-bold">Adresse</p>
+                        <p>{{ app.user.addressShip }}</p>
+                        <p class="font-weight-bold">Numéro de téléphone</p>
+                        <p>{{ app.user.phoneNumber }}</p>
+                        <p class="font-weight-bold">Adresse email</p>
+                        <p>{{ app.user.mail }}</p>
+                        <a href="{{ path('users_edit', {'id': app.user.id}) }}" class="myButton">Modifier le profil</a>
+
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="back_my_detail text-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <a class="link_show_product" href="">Mes commandes</a>
+                                <a class="link_show_product" href="">Mes factures</a>
+                                <a class="link_show_product" href="">Mes tickets</a>
+                            </div>
+                        </div>
+                        <div class="card-columns">
+
+                            <a href="">
+                                <div class="card card-product">
+
+                                    <img class="card-img-top" src="/images/51IE-V8GE4L-removebg-preview.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">€</p>
+                                    </div>
+                                </div>
+                            </a> <a href="">
+                                <div class="card card-product">
+
+                                    <img class="card-img-top" src="/images/51IE-V8GE4L-removebg-preview.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">€</p>
+                                    </div>
+                                </div>
+                            </a> <a href="">
+                                <div class="card card-product">
+
+                                    <img class="card-img-top" src="/images/51IE-V8GE4L-removebg-preview.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">€</p>
+                                    </div>
+                                </div>
+                            </a> <a href="">
+                                <div class="card card-product">
+
+                                    <img class="card-img-top" src="/images/51IE-V8GE4L-removebg-preview.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">€</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="card card-product">
+
+                                    <img class="card-img-top" src="/images/51IE-V8GE4L-removebg-preview.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">€</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
