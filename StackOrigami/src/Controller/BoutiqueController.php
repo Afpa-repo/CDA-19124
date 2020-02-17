@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
+use App\Entity\Partner;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
-use App\Form\ProductCategoryType;
 use App\Repository\ProductCategoryRepository;
+use App\Repository\PartnerRepository;
+use App\Form\ProductCategoryType;
 use App\Controller\CartController;
 
 class BoutiqueController extends AbstractController {
@@ -20,10 +22,11 @@ class BoutiqueController extends AbstractController {
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-    public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository): Response {
+    public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository): Response {
         return $this->render('boutique/home.html.twig', [
                     'products' => $productRepository->findAll(),
                     'product_categories' => $productCategoryRepository->findAll(),
+                    'partners' => $partnerRepository->findAll()
         ]);
     }
 
