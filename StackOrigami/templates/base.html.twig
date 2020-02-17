@@ -8,7 +8,6 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-
         {% endblock %}
     </head>
 
@@ -37,12 +36,20 @@
                         <div class="">
                             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
+<<<<<<< HEAD
                                     <div class="modal-content">
                                         <!-- Titre de la modale -->
+=======
+                                    <div class="modal_login">
+                                        <!-- Titre du modal -->
+>>>>>>> 7201427ce554892f45d3cf37e02b96cebb194d7d
                                         <div class="modal-header login">
                                             <h5 class="modal-title" id="exampleModalLabel">Votre compte</h5>
                                         </div>
+
                                         <form name="form" action="{{ path('security_login') }}" method="post">
+                                            <div class="container">
+
                                             <!-- Message d'erreur (TO DO) -->
                                             <span name="form_error"></span>
                                             <!-- login -->
@@ -65,6 +72,7 @@
                                             </div>
                                             <div class="col col-1"></div>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -103,8 +111,14 @@
 
                     <a href="{{ path ('cart_index') }}" class="mr-1">
 
+<<<<<<< HEAD
                         <!-- Logo panier -->
                         <a href="{{ path('cart_index') }}" class="mr-1">
+=======
+                    <!-- Logo panier -->
+                    <a href="{{ path('cart_index') }}" class="mr-1">
+                        {{app.session.get('cquantity')}}
+>>>>>>> 7201427ce554892f45d3cf37e02b96cebb194d7d
 
                             <svg id="Composant_2_1" data-name="Composant 2 – 1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
                             <circle id="Ellipse_3" data-name="Ellipse 3" cx="25" cy="25" r="25" fill="#bfbfbf"/>

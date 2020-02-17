@@ -23,7 +23,7 @@
                         <p class="font-weight-bold">Adresse email</p>
                         <p>{{ app.user.mail }}</p>
                         <a href="{{ path('users_edit', {'id': app.user.id}) }}" class="myButton">Modifier le profil</a>
-
+                        <a href="{{ path('security_logout')}}" class="myButton">Déconnexion</a>
                     </div>
                 </div>
                 <div class="col-7">

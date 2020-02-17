@@ -181,7 +181,7 @@ ul {
 
 .top_filter {
     background-color : white;
-    border-radius: 5px;
+    border-radius: 1px;
     padding : 5px;
 }
 
@@ -215,6 +215,32 @@ ul {
     border-radius: .25rem;
 }
 
+.badge_product_new {
+    color: #fff;
+    background-color: #6B6B5B;
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.pagination_product {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
 .list-group-item_show {
     position: relative;
     display: block;
@@ -226,7 +252,7 @@ ul {
 /* page show product */
 
 .back {
-    border-radius: 10px;
+    border-radius: 1px;
     background: #fff;
 }
 
@@ -242,7 +268,22 @@ ul {
 /* end show product */
 
 .back_my_detail {
-    border-radius: 10px;
+    border-radius: 1px;
     background: #fff;
 
+}
+
+.modal_login {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #6B6B5B;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
 }

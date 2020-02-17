@@ -34,6 +34,8 @@ class CartController extends AbstractController
           $total += $totalItem;// code...
           $count += $item['quantity']; 
       }
+                
+$_SESSION['cquantity'] = $count;
 
         return $this->render('cart/index.html.twig', [
           'items' => $panierWithData,
