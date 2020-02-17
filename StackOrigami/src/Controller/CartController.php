@@ -56,6 +56,10 @@ class CartController extends AbstractController
       }
 
       $session->set('panier',$panier);
+
+        $this->addFlash('add_product', 'Produit ajouté au panier');
+
+
         return $this->redirectToRoute("catalog");
     }
     /**
@@ -67,6 +71,9 @@ class CartController extends AbstractController
         unset($panier[$id]);
       }
       $session->set('panier',$panier);
-      return $this->redirectToRoute("cart_index");
+        $this->addFlash('delete_product', 'Produit retiré du panier');
+
+
+        return $this->redirectToRoute("cart_index");
     }
 }

@@ -6,6 +6,11 @@
 {% block body %}
     <div class="container">
         <h1>Catalogue</h1>
+        {% for message in app.flashes('add_product') %}
+            <div class="alert alert-success">
+                {{ message }} <a class="link_notif" href="{{  path('cart_index') }}">Voir mon panier</a>
+            </div>
+        {% endfor %}
         <div class="top_filter">
             <div class="row">
                 <div class="col-sm-12 col-lg-3">

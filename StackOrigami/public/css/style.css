@@ -57,6 +57,12 @@ footer  p {
     color : #E9E9E9;
 }
 
+.link_notif {
+    color : #6B6B5B;
+}
+.link_notif:hover {
+    color : white;
+}
 .btn-footer {
     border : none;
     height : 30px;
