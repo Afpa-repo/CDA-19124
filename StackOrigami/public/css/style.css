@@ -1,6 +1,10 @@
 /*
 Start header
 */
+
+::selection {
+    background-color: #6B6B5B ;
+}
 #logo_text {
     color : #D3BE00;
     font-size: 15px;
