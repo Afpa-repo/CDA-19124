@@ -28,6 +28,8 @@ class BoutiqueController extends AbstractController {
                     'product_categories' => $productCategoryRepository->findAll(),
                     'partners' => $partnerRepository->findAll()
         ]);
+
+
     }
 
     /**

@@ -26,7 +26,7 @@ class NewlettersController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="newletters_new", methods={"GET","POST"})
+     * @Route("/", name="newletters_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
