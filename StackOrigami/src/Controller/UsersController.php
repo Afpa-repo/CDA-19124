@@ -72,7 +72,7 @@ class UsersController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('users_index');
+            return $this->redirectToRoute('profil');
         }
 
         return $this->render('users/edit.html.twig', [

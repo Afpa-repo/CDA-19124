@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Edit Users{% endblock %}
+{% block title %}Modification du profil{% endblock %}
 
 {% block body %}
-    <h1>Edit Users</h1>
+    <div class="container text-center">
+        <h1>Modification du profil</h1>
 
-    {{ include('users/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('users/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('users_index') }}">back to list</a>
+        <a href="{{ path('profil') }}">Retour</a>
 
-    {{ include('users/_delete_form.html.twig') }}
+        {{ include('users/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
