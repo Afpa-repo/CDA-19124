@@ -8,19 +8,22 @@ use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Product;
+use App\Entity\ProductCategory;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Form\ProductCategoryType;
+use App\Repository\ProductCategoryRepository;
 use App\Controller\CartController;
-
 
 class BoutiqueController extends AbstractController {
 
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-    public function home(ProductRepository $productRepository): Response {
+    public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository): Response {
         return $this->render('boutique/home.html.twig', [
                     'products' => $productRepository->findAll(),
+                    'product_categories' => $productCategoryRepository->findAll(),
         ]);
     }
 
@@ -31,7 +34,7 @@ class BoutiqueController extends AbstractController {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         return $this->render('boutique/contact.html.twig', [
-            'form' => $form->createView()
+                    'form' => $form->createView()
         ]);
     }
 
@@ -47,7 +50,7 @@ class BoutiqueController extends AbstractController {
      */
     public function catalog(ProductRepository $productRepository) {
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+                    'products' => $productRepository->findAll(),
         ]);
     }
 
@@ -57,4 +60,5 @@ class BoutiqueController extends AbstractController {
     public function profil() {
         return $this->render('boutique/profil.html.twig');
     }
+
 }

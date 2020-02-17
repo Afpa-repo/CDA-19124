@@ -19,7 +19,7 @@
                         <!-- Logo panier -->
                         <div class="parallax-bg" data-swiper-parallax="-23%"></div>
                         <div class="swiper-wrapper">
-                            
+
                             {% for product in products %}
                                 <div class="swiper-slide">
                                     <img src="{{ product.picture }}">
@@ -54,32 +54,20 @@
                     <div class="category text-center col-12">
 
                         <h2>Nos catégories</h2>
-
                         <div class="row">
-                            <div class="col-sm-12 col-lg-4 text-center  ">
-                                <a href="">
-                                    <img class="saler" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}">
 
-                                    <p>Origami en résine</p>
-                                </a>
-                            </div>
-                            <div class="col-sm-12 col-lg-4">
-                                <a href="">
-                                    <img class="saler" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}">
+                            {% for product_category in product_categories %}
+                                <div class="col-sm-12 col-lg-4 text-center">
+                                    <a href="">
+                                        <img class="saler" height="200" width="250" src="{{ product_category.Picture }}">
 
-                                    <p>Origami en papier</p>
-                                </a>
-                            </div>
-                            <div class="col-sm-12 col-lg-4">
-                                <a href="">
-                                    <img class="saler" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}">
+                                        <p>{{ product_category.name }}</p>
+                                    </a></div>
 
-                                    <p>Origami en serviette</p>
-                                </a>
-                            </div>
+                            {% endfor %}
+
                         </div>
                     </div>
-
                     <div class="most_sale text-center col-12 mt-5">
                         <div class="row">
                             <h2 class="col-6" >Nos meilleures ventes</h2>

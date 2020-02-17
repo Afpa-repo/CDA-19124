@@ -28,6 +28,11 @@ class ProductCategory
      */
     private $sub_category;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Picture;
+
     public function __construct()
     {
         $this->sub_category = new ArrayCollection();
@@ -72,6 +77,18 @@ class ProductCategory
         if ($this->sub_category->contains($subCategory)) {
             $this->sub_category->removeElement($subCategory);
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->Picture;
+    }
+
+    public function setPicture(string $Picture): self
+    {
+        $this->Picture = $Picture;
 
         return $this;
     }
