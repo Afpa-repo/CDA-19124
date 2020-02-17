@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 
@@ -34,8 +35,6 @@ class CartController extends AbstractController
           $total += $totalItem;// code...
           $count += $item['quantity']; 
       }
-                
-$_SESSION['cquantity'] = $count;
 
         return $this->render('cart/index.html.twig', [
           'items' => $panierWithData,
@@ -57,7 +56,7 @@ $_SESSION['cquantity'] = $count;
       }
 
       $session->set('panier',$panier);
-      return $this->redirectToRoute("catalog");
+        return $this->redirectToRoute("catalog");
     }
     /**
     * @Route("/panier/remove/{id}", name="cart_remove")
