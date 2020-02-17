@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}StackOrigami{% endblock %}</title>
@@ -59,6 +60,57 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
                         <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M18,20.25A10.125,10.125,0,1,0,7.875,10.125,10.128,10.128,0,0,0,18,20.25Zm9,2.25H23.126a12.24,12.24,0,0,1-10.252,0H9a9,9,0,0,0-9,9v1.125A3.376,3.376,0,0,0,3.375,36h29.25A3.376,3.376,0,0,0,36,32.625V31.5A9,9,0,0,0,27,22.5Z" fill="#e9e9e9"/>
                     </svg>
+=======
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}StackOrigami{% endblock %}</title>
+        {% block stylesheets %}
+            <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+        {% endblock %}
+    </head>
+
+    <body>
+        <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a id="logo_text" href="{{ path('home') }}">StackOrigami</a>
+                <ul class="lg-pl-5 navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item  ">
+                        <a class="nav-link" href="{{ path('home') }}">Accueil</a> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a class="nav-link" href="{{ path('catalog') }}">Catalogue</a> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="lg-pl-5 nav-item  ">
+                        <a class="nav-link" href="{{ path('about_us') }}">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="lg-pl-5 nav-item  ">
+                        <a class="nav-link" href="{{ path('contact_new') }}">Contact <span class="sr-only">(current)</span></a>
+                    </li>                    
+                    
+                    <!-- Condition d'affichage connexion/déconnexion -->
+                    {% if not app.user %}
+                    <li class="lg-pl-5 nav-item  ">
+                        <a class="nav-link" href="{{ path('security_login') }}">Connexion <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% else %}
+                        <li class="lg-pl-5 nav-item  ">
+                            <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion <span class="sr-only">(current)</span></a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <!-- Logo recherche -->
+                <form class="lg-pl-5 form-inline my-2 my-lg-0">
+                    <a href="" class="mr-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35.997" height="36.004" viewBox="0 0 35.997 36.004">
+                            <path id="Icon_awesome-search" data-name="Icon awesome-search" d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z" fill="#e9e9e9"/>
+                        </svg>
+>>>>>>> f4129b4d77a41cfce01eb4686637dd3ecfbb0db8
 
                 </a>
             {% endif %}
