@@ -30,56 +30,13 @@
                     </li>
                     <li class="lg-pl-5 nav-item  ">
                         <a class="nav-link" href="{{ path('contact_new') }}">Contact <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="lg-pl-5 nav-item  ">
-                        <!-- MODALE -->
-                        <div class="">
-                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <!-- Titre de la modale -->
-                                    <div class="modal_login">
-                                        <!-- Titre du modal -->
-                                        <div class="modal-header login">
-                                            <h5 class="modal-title" id="exampleModalLabel">Votre compte</h5>
-                                        </div>
-
-                                        <form name="form" action="{{ path('security_login') }}" method="post">
-                                            <div class="container">
-
-                                            <!-- Message d'erreur (TO DO) -->
-                                            <span name="form_error"></span>
-                                            <!-- login -->
-                                            <div class="form-group">
-                                                <input class="form-control" require name="_username" id="login" type="text" placeholder="Email" >
-                                            </div>
-                                            <!-- Mot de passe -->
-                                            <div class="form-group">
-                                                <input class="form-control" require name="_password" id="password" type="password" placeholder="Mot de passe">
-                                            </div>
-                                            <!-- Bouton connexion -->
-                                            <div class="form-group">
-                                                <button type="submit" name="submit" id="submit" class="btn btn-success">Connexion</button>
-                                            </div>
-                                        </form>
-                                        <!-- lien d'inscription -->
-                                        <div class="row">
-                                            <div class="col col-11 small text-right">
-                                                <p> Pas de compte ? <a href="{{ path('security_registration') }}">Inscrivez-vous</p>
-                                            </div>
-                                            <div class="col col-1"></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    </li>                    
+                    
                     <!-- Condition d'affichage connexion/déconnexion -->
                     {% if not app.user %}
-                        <li class="lg-pl-5 nav-item  ">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal">Connexion <span class="sr-only">(current)</span></a>
-                        </li>
+                    <li class="lg-pl-5 nav-item  ">
+                        <a class="nav-link" href="{{ path('security_login') }}">Connexion <span class="sr-only">(current)</span></a>
+                    </li>
                     {% else %}
                         <li class="lg-pl-5 nav-item  ">
                             <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion <span class="sr-only">(current)</span></a>
