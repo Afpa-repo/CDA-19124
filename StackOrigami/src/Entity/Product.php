@@ -46,6 +46,11 @@ class Product
      */
     private $stock;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stars;
+
 
 
     public function getId(): ?int
@@ -121,6 +126,18 @@ class Product
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getStars(): ?string
+    {
+        return $this->stars;
+    }
+
+    public function setStars(?string $stars): self
+    {
+        $this->stars = $stars;
 
         return $this;
     }
