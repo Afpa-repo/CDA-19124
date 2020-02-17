@@ -1,10 +1,11 @@
+{# héritage du fichier de base twig header et footer #}
 {% extends 'base.html.twig' %}
-
+{# balise title #}
 {% block title %}Contact{% endblock %}
-
+{# balise body #}
 {% block body %}
     <h1>Contact</h1>
-
+    {# Tableau contact #}
     <table class="table">
         <tbody>
             <tr>
@@ -29,9 +30,9 @@
             </tr>
         </tbody>
     </table>
-
+    {# lien retour #}
     <a href="{{ path('contact_index') }}">back to list</a>
-
+    {# lien edit #}
     <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
 
     {{ include('contact/_delete_form.html.twig') }}
