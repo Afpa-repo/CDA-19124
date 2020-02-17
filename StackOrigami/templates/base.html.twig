@@ -89,20 +89,20 @@
                 <!-- Logo recherche -->
                 <form class="lg-pl-5 form-inline my-2 my-lg-0">
                     <a href="" class="mr-1">
-                        <svg id="Composant_2_3" data-name="Composant 2 – 3" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
-                        <circle id="Ellipse_3" data-name="Ellipse 3" cx="25" cy="25" r="25" fill="transparent"/>
-                        <path id="Icon_awesome-search" data-name="Icon awesome-search" d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z" transform="translate(7 7)"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35.997" height="36.004" viewBox="0 0 35.997 36.004">
+                            <path id="Icon_awesome-search" data-name="Icon awesome-search" d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z" fill="#e9e9e9"/>
                         </svg>
+
                     </a>
                     <!-- Condition d'apparition logo profil -->
                     {% if not app.user %}
                     {% else %}
                         <a href="{{ path('profil') }}" class="mr-1">
                             <!-- Logo profil -->
-                            <svg id="Composant_2_2" data-name="Composant 2 – 2" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
-                            <circle id="Ellipse_3" data-name="Ellipse 3" cx="25" cy="25" r="25" fill="transparent"/>
-                            <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M18,20.25A10.125,10.125,0,1,0,7.875,10.125,10.128,10.128,0,0,0,18,20.25Zm9,2.25H23.126a12.24,12.24,0,0,1-10.252,0H9a9,9,0,0,0-9,9v1.125A3.376,3.376,0,0,0,3.375,36h29.25A3.376,3.376,0,0,0,36,32.625V31.5A9,9,0,0,0,27,22.5Z" transform="translate(7 4)"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+                                <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M18,20.25A10.125,10.125,0,1,0,7.875,10.125,10.128,10.128,0,0,0,18,20.25Zm9,2.25H23.126a12.24,12.24,0,0,1-10.252,0H9a9,9,0,0,0-9,9v1.125A3.376,3.376,0,0,0,3.375,36h29.25A3.376,3.376,0,0,0,36,32.625V31.5A9,9,0,0,0,27,22.5Z" fill="#e9e9e9"/>
                             </svg>
+                            
                         </a>
                     {% endif %}
 
@@ -115,10 +115,10 @@
                     <a href="{{ path('cart_index') }}" class="mr-1">
                         {{app.session.get('cquantity')}}
 
-                        <svg id="Composant_2_1" data-name="Composant 2 – 1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
-                        <circle id="Ellipse_3" data-name="Ellipse 3" cx="25" cy="25" r="25" fill="transparent"/>
-                        <path id="Icon_awesome-shopping-basket" data-name="Icon awesome-shopping-basket" d="M40.5,15.188v1.125A1.687,1.687,0,0,1,38.813,18H38.25L36.414,30.852a3.375,3.375,0,0,1-3.341,2.9H7.427a3.375,3.375,0,0,1-3.341-2.9L2.25,18H1.688A1.687,1.687,0,0,1,0,16.313V15.188A1.687,1.687,0,0,1,1.688,13.5H6.422L13.93,3.177A2.25,2.25,0,1,1,17.57,5.823L11.987,13.5H28.513L22.93,5.823A2.25,2.25,0,0,1,26.57,3.177L34.078,13.5h4.735A1.687,1.687,0,0,1,40.5,15.188ZM21.938,27.563V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm7.875,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm-15.75,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Z" transform="translate(5 6.75)"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40.5" height="31.5" viewBox="0 0 40.5 31.5">
+                            <path id="Icon_awesome-shopping-basket" data-name="Icon awesome-shopping-basket" d="M40.5,15.188v1.125A1.687,1.687,0,0,1,38.813,18H38.25L36.414,30.852a3.375,3.375,0,0,1-3.341,2.9H7.427a3.375,3.375,0,0,1-3.341-2.9L2.25,18H1.688A1.687,1.687,0,0,1,0,16.313V15.188A1.687,1.687,0,0,1,1.688,13.5H6.422L13.93,3.177A2.25,2.25,0,1,1,17.57,5.823L11.987,13.5H28.513L22.93,5.823A2.25,2.25,0,0,1,26.57,3.177L34.078,13.5h4.735A1.687,1.687,0,0,1,40.5,15.188ZM21.938,27.563V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm7.875,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm-15.75,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Z" transform="translate(0 -2.25)" fill="#e9e9e9"/>
                         </svg>
+
                     </a>
                 </form>
             </div>
@@ -136,13 +136,13 @@
     <div class="footer text-center col-12">
         <div class="row">
             <div class="col-12">
-                <h3>Origami, simplement étonnant.</h3>
+                <h3 class="link_footer">Origami, simplement étonnant.</h3>
             </div>
         </div>
         <!-- Inscription a la newsletter -->
         <div class="row">
             <div id="register_newletters pl-0" class="col-6">
-                <p class="font-weight-bold">Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
+                <p class="link_footer font-weight-bold">Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
                 <form action="" method="">
                     <input type="email" name="email" class="input_footer col-3" placeholder="Adresse email">
                     <input type="submit" name="send" class="btn-footer" value="Inscription">
@@ -150,7 +150,7 @@
             </div>
             <!-- Logos réseaux sociaux -->
             <div id="follow_us" class="col-4">
-                <p class="font-weight-bold">Suivez nous</p
+                <p class="link_footer font-weight-bold">Suivez nous</p
                 <!-- Logo facebook -->
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
@@ -175,7 +175,7 @@
         <div class="paiement_methods ">
             <div class="row">
                 <div class="col-6">
-                    <p>Moyens de paiements acceptés :
+                    <p class="link_footer" >Moyens de paiements acceptés :
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30.849 13.197">
                         <path id="Icon_payment-cb" data-name="Icon payment-cb" d="M10.572,24.06h8.166a6.175,6.175,0,0,1-1.98,5.031q-1.98,1.568-6.1,1.567-4.289,0-6.186-1.567a6.308,6.308,0,0,1-1.9-5.031q0-3.3,1.485-4.7,1.98-1.9,6.6-1.9,4.288,0,6.351,1.732a5.322,5.322,0,0,1,1.65,4.289H10.572v.577Zm20.043-.578H19.232V17.708H30.368A2.959,2.959,0,0,1,33.255,20.6a2.853,2.853,0,0,1-.742,1.98,2.71,2.71,0,0,1-1.9.908Zm-.082.578a3.028,3.028,0,0,1,2.021.99,3.106,3.106,0,0,1,.866,2.227,2.864,2.864,0,0,1-.866,2.1,3.1,3.1,0,0,1-2.021.949h-11.3V24.06h11.3Z" transform="translate(-2.571 -17.461)"/>
                         </svg>
@@ -197,24 +197,24 @@
             <div class="row">
                 <div class="col-4 padding-left-0">
                     <ul>
-                        <li><a href="">Mentions légales</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="">CGU / CGV</a></li>
-                        <li><a href="">Plan du site</a></li>
+                        <li><a class="link_footer" href="">Mentions légales</a></li>
+                        <li><a class="link_footer" href="">Contact</a></li>
+                        <li><a  class="link_footer" href="">CGU / CGV</a></li>
+                        <li><a  class="link_footer" href="">Plan du site</a></li>
                     </ul>
                 </div>
                 <div class="col-4">
                     <ul>
-                        <li><a href="">Recrutement</a></li>
-                        <li><a href="">Nos boutiques</a></li>
+                        <li><a  class="link_footer" href="">Recrutement</a></li>
+                        <li><a class="link_footer" href="">Nos boutiques</a></li>
 
                     </ul>
                 </div>
                 <div class="col-4">
                     <ul>
-                        <li><a href="">Qui sommes-nous ?</a></li>
-                        <li><a href="">FAQ</a></li>
-                        <li><a href="">Le blog de StackOrigami</a></li>
+                        <li><a class="link_footer" href="">Qui sommes-nous ?</a></li>
+                        <li><a class="link_footer" href="">FAQ</a></li>
+                        <li><a class="link_footer" href="">Le blog de StackOrigami</a></li>
                     </ul>
                 </div>
             </div>

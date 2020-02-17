@@ -15,6 +15,10 @@ Start header
     color : #6B6B5B;
 }
 
+.nav-link {
+    color : #E9E9E9 !important;
+}
+
 body { 
 
     background-color: #E9E9E9 ;
@@ -34,6 +38,10 @@ body {
 }
 
 /* start footer */
+
+footer  p {
+    color : white !important;
+}
 .input_footer {
     background: #292727;
     border: 3px solid #fff;
@@ -43,6 +51,10 @@ body {
     margin-right: 0px;
     text-indent: 8px;
     margin-bottom : 15px;
+}
+
+.link_footer{
+    color : #E9E9E9;
 }
 
 .btn-footer {
