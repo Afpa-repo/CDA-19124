@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Controller\CartController;
 
 
 class BoutiqueController extends AbstractController {
