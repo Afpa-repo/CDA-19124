@@ -151,7 +151,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../symfony/web/my_project_name" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -171,7 +171,7 @@
       <workItem from="1581494799280" duration="1927000" />
       <workItem from="1581498013142" duration="18791000" />
       <workItem from="1581670318529" duration="4871000" />
-      <workItem from="1581675865013" duration="19217000" />
+      <workItem from="1581675865013" duration="22890000" />
     </task>
     <servers />
   </component>
@@ -187,10 +187,11 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="517" y="238" key="#com.intellij.fileTypes.FileTypeChooser/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581428539691" />
-    <state x="549" y="203" key="FileChooserDialogImpl" timestamp="1581500367936">
-      <screen x="0" y="30" width="1536" height="834" />
+    <state x="2606" y="248" key="FileChooserDialogImpl" timestamp="1581950755650">
+      <screen x="1920" y="30" width="1920" height="1050" />
     </state>
     <state x="549" y="203" key="FileChooserDialogImpl/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581500367936" />
+    <state x="2606" y="248" key="FileChooserDialogImpl/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581950755650" />
     <state x="604" y="368" key="NewPhpFileDialog" timestamp="1581935168042">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
