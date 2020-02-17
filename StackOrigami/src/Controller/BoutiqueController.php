@@ -16,10 +16,12 @@ use App\Controller\CartController;
 class BoutiqueController extends AbstractController {
 
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", methods={"GET"})
      */
-    public function home() {
-        return $this->render('boutique/home.html.twig');
+    public function home(ProductRepository $productRepository): Response {
+        return $this->render('boutique/home.html.twig', [
+                    'products' => $productRepository->findAll(),
+        ]);
     }
 
     /**
