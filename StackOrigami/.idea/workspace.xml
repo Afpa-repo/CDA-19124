@@ -171,7 +171,7 @@
       <workItem from="1581494799280" duration="1927000" />
       <workItem from="1581498013142" duration="18791000" />
       <workItem from="1581670318529" duration="4871000" />
-      <workItem from="1581675865013" duration="9638000" />
+      <workItem from="1581675865013" duration="19217000" />
     </task>
     <servers />
   </component>
@@ -191,6 +191,10 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="549" y="203" key="FileChooserDialogImpl/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581500367936" />
+    <state x="604" y="368" key="NewPhpFileDialog" timestamp="1581935168042">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="604" y="368" key="NewPhpFileDialog/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581935168042" />
     <state x="245" y="101" key="SettingsEditor" timestamp="1581929998475">
       <screen x="0" y="30" width="1536" height="834" />
     </state>

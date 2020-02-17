@@ -5,6 +5,12 @@
 {% block body %}
     <h1>Users index</h1>
 
+    <div>
+        {% for message in app.flashes('add_user') %}
+            {{ message }}
+        {% endfor %}
+    </div>
+
     <table class="table">
         <thead>
             <tr>
