@@ -171,7 +171,7 @@
       <workItem from="1581494799280" duration="1927000" />
       <workItem from="1581498013142" duration="18791000" />
       <workItem from="1581670318529" duration="4871000" />
-      <workItem from="1581675865013" duration="5632000" />
+      <workItem from="1581675865013" duration="8323000" />
     </task>
     <servers />
   </component>
@@ -191,11 +191,12 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="549" y="203" key="FileChooserDialogImpl/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581500367936" />
-    <state x="2545" y="149" key="SettingsEditor" timestamp="1581671229960">
-      <screen x="1920" y="30" width="1920" height="1050" />
+    <state x="245" y="101" key="SettingsEditor" timestamp="1581929998475">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="44" y="106" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581504418071" />
     <state x="2545" y="149" key="SettingsEditor/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581671229960" />
+    <state x="245" y="101" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1581929998475" />
     <state x="2508" y="336" key="com.intellij.ide.util.TipDialog" timestamp="1581675865732">
       <screen x="1920" y="30" width="1920" height="1050" />
     </state>
@@ -206,11 +207,12 @@
       <screen x="1920" y="30" width="1920" height="1050" />
     </state>
     <state x="2262" y="131" key="new project wizard/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581428679837" />
-    <state x="2451" y="249" key="run.anything.popup" timestamp="1581670954816">
-      <screen x="1920" y="30" width="1920" height="1050" />
+    <state x="425" y="204" key="run.anything.popup" timestamp="1581929976505">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="425" y="204" key="run.anything.popup/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1581502164136" />
     <state x="2451" y="249" key="run.anything.popup/0.30.1536.834/1920.30.1920.1050@1920.30.1920.1050" timestamp="1581670954816" />
+    <state x="425" y="204" key="run.anything.popup/0.30.1536.834@0.30.1536.834" timestamp="1581929976505" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
