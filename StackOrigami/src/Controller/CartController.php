@@ -57,6 +57,7 @@ class CartController extends AbstractController
 
       $session->set('panier',$panier);
 
+      // Flash affiche une notification sur la vue catalog
         $this->addFlash('add_product', 'Produit ajouté au panier');
 
 
@@ -71,6 +72,8 @@ class CartController extends AbstractController
         unset($panier[$id]);
       }
       $session->set('panier',$panier);
+
+        // Flash affiche une notification sur la vue cart
         $this->addFlash('delete_product', 'Produit retiré du panier');
 
 

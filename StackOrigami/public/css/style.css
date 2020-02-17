@@ -63,6 +63,9 @@ footer  p {
 .link_notif:hover {
     color : white;
 }
+.lien_card:hover{
+    zoom: 90%;
+}
 .btn-footer {
     border : none;
     height : 30px;
