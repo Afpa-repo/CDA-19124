@@ -56,7 +56,7 @@ class CartController extends AbstractController
         $count ++;
       }else{
         $panier[$id] =1;
-        $count=1;
+        $count ++;
       }
       
       $session->set('panier',$panier);
