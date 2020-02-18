@@ -16,7 +16,7 @@ class PropertySearchType extends AbstractType
             ->add('maxPrice', IntegerType::class, [
                 'required' => false,
                 'label' => false,
-                'attr' => ['placeholder' => 'Budget max']
+                'attr' => ['placeholder' => 'Prix max']
             ]);
     }
 
