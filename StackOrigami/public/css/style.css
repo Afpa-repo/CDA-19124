@@ -221,8 +221,7 @@ ul {
     text-decoration: none;
 }
 .btn-profil:active {
-    position:relative;
-    top:1px;
+
     color : #D3BE00;
 }
 
@@ -337,4 +336,10 @@ ul {
 
 .jumbotron {
     background-color: transparent !important;
+}
+
+.basket {
+    color : #F5871F;
+    font-weight: bold;
+    font-size: large;
 }
