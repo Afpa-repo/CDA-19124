@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -45,6 +46,12 @@ class Product
      * @ORM\Column(type="integer")
      */
     private $stock;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProductCategory", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $productCategory;
 
 
 
@@ -121,6 +128,18 @@ class Product
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getProductCategory(): ?ProductCategory
+    {
+        return $this->productCategory;
+    }
+
+    public function setProductCategory(?ProductCategory $productCategory): self
+    {
+        $this->productCategory = $productCategory;
 
         return $this;
     }

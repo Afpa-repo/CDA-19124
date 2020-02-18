@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
@@ -10,22 +14,31 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\ProductCategoryRepository;
 use App\Controller\CartController;
 
 
-class BoutiqueController extends AbstractController {
+class BoutiqueController extends AbstractController
+{
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
 
     /**
      * @Route("/", name="home")
      */
-    public function home() {
+    public function home()
+    {
         return $this->render('boutique/home.html.twig');
     }
 
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request) {
+    public function contact(Request $request)
+    {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         return $this->render('boutique/contact.html.twig', [
@@ -36,23 +49,32 @@ class BoutiqueController extends AbstractController {
     /**
      * @Route("/about", name="about_us")
      */
-    public function about() {
+    public function about()
+    {
         return $this->render('boutique/about_us.html.twig');
     }
 
     /**
      * @Route("/catalog", name="catalog")
      */
-    public function catalog(ProductRepository $productRepository) {
+    public function catalog(ProductRepository $productRepository, Request $request)
+    {
+
+        $search = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
+
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $productRepository->findAllVisible($search),
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/profil", name="profil")
      */
-    public function profil() {
+    public function profil()
+    {
         return $this->render('boutique/profil.html.twig');
     }
 }

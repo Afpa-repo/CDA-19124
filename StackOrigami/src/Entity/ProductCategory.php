@@ -28,9 +28,15 @@ class ProductCategory
      */
     private $sub_category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="productCategory")
+     */
+    private $products;
+
     public function __construct()
     {
         $this->sub_category = new ArrayCollection();
+        $this->products = $this->getName();
     }
 
     public function getId(): ?int
@@ -71,6 +77,37 @@ class ProductCategory
     {
         if ($this->sub_category->contains($subCategory)) {
             $this->sub_category->removeElement($subCategory);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setProductCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+            // set the owning side to null (unless already changed)
+            if ($product->getProductCategory() === $this) {
+                $product->setProductCategory(null);
+            }
         }
 
         return $this;
