@@ -8,7 +8,7 @@
         <h1>Catalogue</h1>
         {% for message in app.flashes('add_product') %}
             <div class="alert alert-success">
-                {{ message }} <a class="link_notif" href="{{  path('cart_index') }}">Voir mon panier</a>
+                {{ message }} <a class="link_notif" href="{{ path('cart_index') }}">Voir mon panier</a>
             </div>
         {% endfor %}
         <div class="top_filter">
@@ -37,8 +37,19 @@
                 <div class="col-sm-12 col-lg-3">
                     {# Filtrer par prix #}
                     <h3>Filtrer par prix </h3>
-                    <div class="form-group">
-                        <input type="range" class="form-control-range" id="formControlRange">
+                    <div class="jumbotron">
+                        <div class="container">
+                            {{ form_start(form) }}
+                            <div class="form-row">
+                                <div class="col">
+                                    {{ form_widget(form.maxPrice) }}
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">OK</button>
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
                     </div>
                 </div>
 
@@ -96,41 +107,41 @@
                 <div class="card-columns">
                     {# boucle pour afficher les articles #}
                     {% for product in products %}
-                        <a class="lien_card" href="{{ path('product_show', {'id': product.id}) }}">
-                            <div class="card card-product">
-                                <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-title">{{ product.libelle }}</p>
-                                    <p class="card-title">{{ product.stars }}</p>
-                                    <p class="card-text">{{ product.price }}€</p>
+                            <a class="lien_card" href="{{ path('product_show', {'id': product.id}) }}">
+                                <div class="card card-product">
+                                    <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-title">{{ product.libelle }}</p>
+                                        <p class="card-text">{{ product.productCategory.name }}</p>
+                                        <p class="card-text">{{ product.price }}€</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
                     {% endfor %}
                 </div>
-                
+
                 <div class="row">
-                <div class="col-6 text-center">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                    <div class="col-6 text-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
