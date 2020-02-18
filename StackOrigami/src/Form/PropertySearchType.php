@@ -2,9 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\ProductCategory;
 use App\Entity\PropertySearch;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,8 +20,18 @@ class PropertySearchType extends AbstractType
             ->add('maxPrice', IntegerType::class, [
                 'required' => false,
                 'label' => false,
-                'attr' => ['placeholder' => 'Prix max']
-            ]);
+                'attr' => ['placeholder' => 'Budget max']])
+            ->add('selectedCategory', EntityType::class, [
+                'class' => ProductCategory::class,
+                'choice_label' => 'name',
+                'required' => false,
+                'label' => false])
+            ->add('searchbar',SearchType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => ['placeholder' => 'Recherche..']
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
