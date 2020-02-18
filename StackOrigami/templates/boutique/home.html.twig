@@ -28,9 +28,6 @@
                                         <div class="title" data-swiper-parallax="-300">
                                             <h2>{{ product.libelle }}</h2>
                                         </div>
-                                        <div class="subtitle" data-swiper-parallax="-200">
-                                            <h3>{{ product.libelle }}</h3>
-                                        </div>
                                         <div class="text" data-swiper-parallax="-100">
                                             <p>
                                                 {{ product.description }}
@@ -59,13 +56,12 @@
                             {% for product_category in product_categories %}
                                 <div class="col-sm-12 col-lg-4 text-center">
                                     <a href="">
-                                        <img class="saler" height="200" width="250" src="{{ product_category.Picture }}">
+                                        <img class="saler lien_card" height="200" width="250" src="{{ product_category.picture }}">
 
                                         <p>{{ product_category.name }}</p>
-                                    </a></div>
-
+                                    </a>
+                                </div>
                             {% endfor %}
-
                         </div>
                     </div>
                     <div class="most_sale text-center col-12 mt-5">
@@ -73,36 +69,29 @@
                             <h2 class="col-6" >Nos meilleures ventes</h2>
                             <h2 class="col-6">Nos partenaires</h2>
                         </div>
-
                         <div class="row">
                             <div class="col-sm-12 col-lg-3">
                                 <a href="">
-                                    <img class="saler" src="{{ asset('images/51IE-V8GE4L-removebg-preview.svg') }}">
+                                    <img class="saler lien_card" src="images/51IE-V8GE4L-removebg-preview.svg')">
                                 </a>
                                 <p>PandaStock</p>
                                 <p class="font-weight-bold">25€</p>
                             </div>
                             <div class="col-sm-12 col-lg-3">
                                 <a href="">
-                                    <img class="saler" src="{{ asset('images/hqdefault-removebg-preview.svg') }}">
+                                    <img class="saler lien_card" src="{{ asset('images/hqdefault-removebg-preview.svg') }}">
                                 </a>
                                 <p>OiseauStock</p>
                                 <p class="font-weight-bold">25€</p>
                             </div>
+                            {% for partner in partners %}
+                                <div class="col-sm-12 col-lg-2">
+                                    <a href="">
+                                        <img class="saler lien_card" height="200" width="200" src="{{ partner.picture }}">
 
-                            <div class="col-sm-12 col-lg-4">
-                                <a href="">
-                                    <img class="saler" src="{{ asset('images/Fnac_Logo.svg') }}">
-                                </a>
-                                <p class="font-weight-bold">Fnac</p>
-                            </div>
-                            <div class="col-sm-12 col-lg-1">
-                                <a href="">
-                                    <img class="saler" src="{{ asset('images/1200px-Darty.svg.svg') }}">
-                                </a>
-                                <p class="font-weight-bold">Darty</p>
-                            </div>
-
+                                    <p class="font-weight-bold">Fnac</p>   </a>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     </div>

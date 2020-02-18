@@ -8,9 +8,9 @@
         <div class="col-sm-12 col-lg-9">
             {# breadcrumb #}
             <ol class="breadcrumb_stack">
-                <li><a href="index.php" title="Accueil">Accueil ></a></li>
-                <li><a href="formations.php" title="formations">Catalogue ></a></li>
-                <li><a href="formations.php" title="formations">{{ product.libelle }}</a></li>
+                <li><a href="{{path('home')}}" title="Accueil">Accueil ></a></li>
+                <li><a href="{{path('catalog')}}" title="formations">Catalogue ></a></li>
+                <li><a href="{{ path('product_show', {'id': product.id}) }}" title="formations">{{ product.libelle }}</a></li>
             </ol>
 
         </div>
