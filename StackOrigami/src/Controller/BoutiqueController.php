@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+/* Appel  */
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
@@ -22,10 +24,14 @@ class BoutiqueController extends AbstractController {
     /**
      * @Route("/", name="home", methods={"GET"})
      */
+    /* Fonction qui appelle dans la page home tous les produits, tous les catégories et tous les partenaires de la BDD */
     public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository): Response {
         return $this->render('boutique/home.html.twig', [
+                    /* Retrouve toutes les valeurs dans l'entité products */
                     'products' => $productRepository->findAll(),
+                    /* Retrouve toutes les valeurs dans l'entité product_categories */
                     'product_categories' => $productCategoryRepository->findAll(),
+                    /* Retrouve toutes les valeurs das l'entité partners */
                     'partners' => $partnerRepository->findAll()
         ]);
     }
@@ -33,9 +39,13 @@ class BoutiqueController extends AbstractController {
     /**
      * @Route("/contact", name="contact")
      */
+    /* Fonction qui créer un formulairevérifie la requete */
     public function contact(Request $request) {
+        /* Création du formulaire ContactType */
         $form = $this->createForm(ContactType::class);
+        /* Saisie de la requete */
         $form->handleRequest($request);
+                /* renvoie un formulaire */
         return $this->render('boutique/contact.html.twig', [
                     'form' => $form->createView()
         ]);
