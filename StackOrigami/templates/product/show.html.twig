@@ -21,7 +21,14 @@
 
             <div class="card_show">
                 <div class="col-12 text-center">
-                    <h1><span class="badge_product_new">New</span></h1>
+                    {% if product.id >= 10 %}
+                        <h1><span class="badge_product_new">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="31.395" viewBox="0 0 33 31.395">
+                                <path id="Icon_material-new-releases" data-name="Icon material-new-releases" d="M34.5,18l-3.66-4.17.51-5.52L25.935,7.08,23.1,2.31,18,4.5,12.9,2.31,10.065,7.08,4.65,8.3l.51,5.52L1.5,18l3.66,4.17L4.65,27.7l5.415,1.23L12.9,33.7,18,31.5l5.1,2.19,2.835-4.77,5.415-1.23-.51-5.52Zm-15,7.5h-3v-3h3Zm0-6h-3v-9h3Z" transform="translate(-1.5 -2.31)" fill="#fff"/>
+                            </svg>
+
+                            Nouveau produit </span></h1>
+                    {% endif %}
                 </div>
 
                 <p><img src="{{ product.picture }}"></p>
