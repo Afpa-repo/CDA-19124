@@ -69,7 +69,6 @@ public function home(ProductRepository $productRepository, ProductCategoryReposi
 
             'products' => $productRepository->findAllVisible($search),
             'form' => $form->createView(),
-                    'products' => $productRepository->findAll(),
         ]);
     }
 
