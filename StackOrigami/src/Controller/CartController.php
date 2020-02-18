@@ -50,7 +50,7 @@ class CartController extends AbstractController
     public function add($id, SessionInterface $session)
     {
       $panier = $session->get('panier',[]);
-      $count = $session->get('Fcount',[]);
+      $count = $session->get('Fcount',0);
       if(!empty($panier[$id])){
         $panier[$id]++;
         $count ++;
