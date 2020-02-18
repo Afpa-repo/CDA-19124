@@ -45,8 +45,18 @@
                             </svg>
                             Adresse email</p>
                         <p class="mb-5">{{ app.user.mail }}</p>
-                        <a href="{{ path('users_edit', {'id': app.user.id}) }}" class=" btn-profil">Modifier le profil</a>
-                        <a href="{{ path('security_logout')}}" class=" btn-profil">Déconnexion</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 mb-10">
+                                <a href="{{ path('users_edit', {'id': app.user.id}) }}" class=" btn-profil">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
+                                        <path id="Icon_feather-edit-2" data-name="Icon feather-edit-2" d="M21.912,4.3a3.566,3.566,0,0,1,5.043,5.043L9.934,26.366,3,28.257l1.891-6.934Z" transform="translate(-1.5 -1.757)" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                                    </svg>
+                                    Modifier le profil</a>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 mt-10">
+                                <a href="{{ path('security_logout')}}" class=" btn-profil">Déconnexion</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-7">
