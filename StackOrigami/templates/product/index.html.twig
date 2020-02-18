@@ -14,29 +14,20 @@
         <div class="top_filter">
             <div class="row">
                 <div class="col-sm-12 col-lg-3">
-                    {# barre de recherche produit #}
-                    <h3>Rechercher</h3>
-                    <form>
-                        <input type="email" name="email" class="input_footer" placeholder="Produit">
-                        <input type="submit" name="send" class="btn-footer " value="Recherche produit">
-                    </form>
                 </div>
                 <div class="col-sm-12 col-lg-9">
                     {# breadcrumb #}
                     <ol class="breadcrumb_stack">
-                        <li><a href="{{path('home')}}" title="Accueil">Accueil ></a></li>
-                        <li><a href="{{path('catalog')}}" title="formations">Catalogue</a></li>
+                        <li><a href="{{ path('home') }}" title="Accueil">Accueil ></a></li>
+                        <li><a href="{{ path('catalog') }}" title="formations">Catalogue</a></li>
                     </ol>
                 </div>
-
             </div>
 
             <div class="row">
-
-
                 <div class="col-sm-12 col-lg-3">
                     {# Filtrer par prix #}
-                    <h3>Filtrer par prix </h3>
+                    <h3>Filtrer les produits</h3>
                     <div class="jumbotron">
                         <div class="container">
                             {{ form_start(form) }}
@@ -44,8 +35,14 @@
                                 <div class="col">
                                     {{ form_widget(form.maxPrice) }}
                                 </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn-profil">Rechercher</button>
+                                <div class="col">
+                                    {{ form_widget(form.selectedCategory) }}
+                                </div>
+                                <div class="col">
+                                    {{ form_widget(form.searchbar) }}
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">OK</button>
                                 </div>
                             </div>
                             {{ form_end(form) }}
@@ -68,18 +65,6 @@
                         lentesque dolor. Sed quis commodo magna.
                     </p>
 
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-sm-12 col-lg-3">
-                    {# Filtrer par catégorie #}
-                    <h3>Filtrer par catégorie</h3>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Origami papier</a>
-                        <a href="#" class="list-group-item list-group-item-action">Origami serviette</a>
-                        <a href="#" class="list-group-item list-group-item-action">Origami résine</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -107,16 +92,16 @@
                 <div class="card-columns">
                     {# boucle pour afficher les articles #}
                     {% for product in products %}
-                            <a class="lien_card" href="{{ path('product_show', {'id': product.id}) }}">
-                                <div class="card card-product">
-                                    <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-title">{{ product.libelle }}</p>
-                                        <p class="card-text">{{ product.productCategory.name }}</p>
-                                        <p class="card-text">{{ product.price }}€</p>
-                                    </div>
+                        <a class="lien_card" href="{{ path('product_show', {'id': product.id}) }}">
+                            <div class="card card-product">
+                                <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-title">{{ product.libelle }}</p>
+                                    <p class="card-text">{{ product.productCategory.name }}</p>
+                                    <p class="card-text">{{ product.price }}€</p>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
                     {% endfor %}
                 </div>
 

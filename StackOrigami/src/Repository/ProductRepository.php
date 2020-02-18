@@ -22,13 +22,21 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function findAllVisible(PropertySearch $search)
+    public function findAllVisible(PropertySearch $search) //function qui affichera les produits dans le catalogue
     {
         $query = $this->findVisibleQuery();
 
         if ($search->getMaxPrice()) {
             $query = $query->andWhere('p.price <= :maxprice');
             $query->setParameter('maxprice', $search->getMaxPrice());
+        }
+        if ($search->getSelectedCategory()) {
+            $query = $query->andWhere('p.productCategory = :selectedcategory');
+            $query->setParameter('selectedcategory', $search->getSelectedCategory());
+        }
+        if($search->getSearchbar()){
+            $query = $query->andwhere('p.libelle = :searchbar');
+            $query->setParameter('searchbar', $search->getSearchbar());
         }
         return $query->getQuery()
             ->getResult();
