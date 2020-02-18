@@ -37,6 +37,7 @@ class CartController extends AbstractController
       }
       //ajoute un champs Fcount a la session avec le nombre de produit total dans le panier 
       $session->set('Fcount',$count);
+      
         return  $this->render('cart/index.html.twig', [
           'items' => $panierWithData,
           'total' => $total,
@@ -49,15 +50,17 @@ class CartController extends AbstractController
     public function add($id, SessionInterface $session)
     {
       $panier = $session->get('panier',[]);
-
+      $count = $session->get('Fcount',[]);
       if(!empty($panier[$id])){
         $panier[$id]++;
+        $count ++;
       }else{
         $panier[$id] =1;
+        $count=1;
       }
-
+      
       $session->set('panier',$panier);
-    
+      $session->set('Fcount',$count);
       // Flash affiche une notification sur la vue catalog
         $this->addFlash('add_product', 'Produit ajouté au panier');
 
@@ -65,7 +68,7 @@ class CartController extends AbstractController
         return $this->redirectToRoute("catalog");
     }
     /**
-    * @Route("/panier/remove/{id}", name="cart_remove")
+    * @Route("/cart/remove/{id}", name="cart_remove")
     */
     public function remove($id, SessionInterface $session){
       $panier= $session->get('panier',[]);
