@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -38,6 +39,20 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query->andwhere('p.libelle = :searchbar');
             $query->setParameter('searchbar', $search->getSearchbar());
         }
+
+        if($search->getOrderBy1() && $search->getOrderBy1() == 1) { //1 = prix croissant 2 = prix decroissant
+            $query->orderBy( 'p.price', 'ASC');
+        }
+        if($search->getOrderBy1() && $search->getOrderBy1() == 2) {
+            $query->orderBy( 'p.price', 'DESC');
+        }
+        if($search->getOrderBy1() && $search->getOrderBy1() == 3) {
+            $query->orderBy( 'p.createdAt', 'ASC');
+        }
+        if($search->getOrderBy1() && $search->getOrderBy1() == 4) {
+            $query->orderBy( 'p.createdAt', 'DESC');
+        }
+
         return $query->getQuery()
             ->getResult();
     }

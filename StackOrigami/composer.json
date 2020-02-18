@@ -28,12 +28,9 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/yaml": "5.0.*"
-    },
-        "require": {
+        "symfony/yaml": "5.0.*",
         "leafo/scssphp": "~0.6",
         "patchwork/jsqueeze": "~1.0",
-        "symfony/asset": "5.0.*",
         "symfony/assetic-bundle": "^2.8"
     },
     "require-dev": {

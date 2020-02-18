@@ -6,6 +6,7 @@ use App\Entity\ProductCategory;
 use App\Entity\PropertySearch;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,13 +26,21 @@ class PropertySearchType extends AbstractType
                 'class' => ProductCategory::class,
                 'choice_label' => 'name',
                 'required' => false,
-                'label' => false])
-            ->add('searchbar',SearchType::class, [
+                'label' => false,
+                'placeholder' => 'Catégorie'])
+            ->add('searchbar', SearchType::class, [
                 'required' => false,
                 'label' => false,
-                'attr' => ['placeholder' => 'Recherche..']
-            ])
-            ;
+                'attr' => ['placeholder' => 'Recherche..']])
+            ->add('orderBy1', ChoiceType::class, [
+                'choices' => [
+                    'Prix croissant' => 1,
+                    'Prix décroissant' => 2,
+                    'Du plus ancien au plus récent' => 3,
+                    'Du plus récent au plus ancien' => 4,
+                ],
+                'label' => 'Tri :',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
