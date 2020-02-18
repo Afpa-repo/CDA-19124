@@ -59,7 +59,7 @@
                             {% for product_category in product_categories %}
                                 <div class="col-sm-12 col-lg-4 text-center">
                                     <a href="">
-                                        <img class="saler" height="200" width="250" src="{{ product_category.picture }}">
+                                        <img class="saler lien_card" height="200" width="250" src="{{ product_category.picture }}">
 
                                         <p>{{ product_category.name }}</p>
                                     </a>
@@ -75,14 +75,14 @@
                         <div class="row">
                             <div class="col-sm-12 col-lg-3">
                                 <a href="">
-                                    <img class="saler" src="images/51IE-V8GE4L-removebg-preview.svg')">
+                                    <img class="saler lien_card" src="images/51IE-V8GE4L-removebg-preview.svg')">
                                 </a>
                                 <p>PandaStock</p>
                                 <p class="font-weight-bold">25€</p>
                             </div>
                             <div class="col-sm-12 col-lg-3">
                                 <a href="">
-                                    <img class="saler" src="{{ asset('images/hqdefault-removebg-preview.svg') }}">
+                                    <img class="saler lien_card" src="{{ asset('images/hqdefault-removebg-preview.svg') }}">
                                 </a>
                                 <p>OiseauStock</p>
                                 <p class="font-weight-bold">25€</p>
@@ -90,9 +90,9 @@
                             {% for partner in partners %}
                                 <div class="col-sm-12 col-lg-2">
                                     <a href="">
-                                        <img class="saler" height="200" width="200" src="{{ partner.picture }}">
-                                    </a>
-                                    <p class="font-weight-bold">Fnac</p>
+                                        <img class="saler lien_card" height="200" width="200" src="{{ partner.picture }}">
+
+                                    <p class="font-weight-bold">Fnac</p>   </a>
                                 </div>
                             {% endfor %}
                         </div>

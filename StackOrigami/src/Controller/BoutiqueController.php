@@ -34,6 +34,8 @@ class BoutiqueController extends AbstractController {
                     /* Retrouve toutes les valeurs das l'entité partners */
                     'partners' => $partnerRepository->findAll()
         ]);
+
+
     }
 
     /**
