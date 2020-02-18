@@ -29,6 +29,11 @@ class ProductCategory
     private $sub_category;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="productCategory")
+     */
+    private $products;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $Picture;
@@ -36,6 +41,7 @@ class ProductCategory
     public function __construct()
     {
         $this->sub_category = new ArrayCollection();
+        $this->products = $this->getName();
     }
 
     public function getId(): ?int
@@ -81,6 +87,35 @@ class ProductCategory
         return $this;
     }
 
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setProductCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+            // set the owning side to null (unless already changed)
+            if ($product->getProductCategory() === $this) {
+                $product->setProductCategory(null);
+            }
+        }
+    }
+
     public function getPicture(): ?string
     {
         return $this->Picture;
@@ -89,7 +124,6 @@ class ProductCategory
     public function setPicture(string $Picture): self
     {
         $this->Picture = $Picture;
-
         return $this;
     }
 }

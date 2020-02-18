@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -47,11 +48,15 @@ class Product
     private $stock;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProductCategory", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $productCategory;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $stars;
-
-
 
     public function getId(): ?int
     {
@@ -130,6 +135,17 @@ class Product
         return $this;
     }
 
+
+    public function getProductCategory(): ?ProductCategory
+    {
+        return $this->productCategory;
+    }
+
+    public function setProductCategory(?ProductCategory $productCategory): self
+    {
+        $this->productCategory = $productCategory;
+    }
+
     public function getStars(): ?string
     {
         return $this->stars;
@@ -138,6 +154,7 @@ class Product
     public function setStars(?string $stars): self
     {
         $this->stars = $stars;
+
 
         return $this;
     }
