@@ -33,6 +33,11 @@ class ProductCategory
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Picture;
+
     public function __construct()
     {
         $this->sub_category = new ArrayCollection();
@@ -109,7 +114,16 @@ class ProductCategory
                 $product->setProductCategory(null);
             }
         }
+    }
 
+    public function getPicture(): ?string
+    {
+        return $this->Picture;
+    }
+
+    public function setPicture(string $Picture): self
+    {
+        $this->Picture = $Picture;
         return $this;
     }
 }

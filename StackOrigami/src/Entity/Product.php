@@ -53,7 +53,10 @@ class Product
      */
     private $productCategory;
 
-
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stars;
 
     public function getId(): ?int
     {
@@ -132,6 +135,7 @@ class Product
         return $this;
     }
 
+
     public function getProductCategory(): ?ProductCategory
     {
         return $this->productCategory;
@@ -140,6 +144,17 @@ class Product
     public function setProductCategory(?ProductCategory $productCategory): self
     {
         $this->productCategory = $productCategory;
+    }
+
+    public function getStars(): ?string
+    {
+        return $this->stars;
+    }
+
+    public function setStars(?string $stars): self
+    {
+        $this->stars = $stars;
+
 
         return $this;
     }

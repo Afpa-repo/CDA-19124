@@ -5,17 +5,14 @@ namespace App\Controller;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Entity\Product;
-use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\ProductCategoryRepository;
-use App\Controller\CartController;
+use App\Repository\PartnerRepository;
 
 
 class BoutiqueController extends AbstractController
@@ -27,12 +24,16 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", methods={"GET"})
      */
-    public function home()
-    {
-        return $this->render('boutique/home.html.twig');
-    }
+public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository): Response
+        {
+            return $this->render('boutique/home.html.twig', [
+                'products' => $productRepository->findAll(),
+                'product_categories' => $productCategoryRepository->findAll(),
+                'partners' => $partnerRepository->findAll()
+            ]);
+        }
 
     /**
      * @Route("/contact", name="contact")
@@ -42,7 +43,7 @@ class BoutiqueController extends AbstractController
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         return $this->render('boutique/contact.html.twig', [
-            'form' => $form->createView()
+                    'form' => $form->createView()
         ]);
     }
 
@@ -65,8 +66,10 @@ class BoutiqueController extends AbstractController
         $form->handleRequest($request);
 
         return $this->render('product/index.html.twig', [
+
             'products' => $productRepository->findAllVisible($search),
-            'form' => $form->createView()
+            'form' => $form->createView(),
+                    'products' => $productRepository->findAll(),
         ]);
     }
 
@@ -77,4 +80,5 @@ class BoutiqueController extends AbstractController
     {
         return $this->render('boutique/profil.html.twig');
     }
+
 }

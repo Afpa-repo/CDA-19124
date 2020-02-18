@@ -8,13 +8,16 @@
 
         <h1>Contactez-nous</h1>
         {{ form_start(form) }}
-        {{ form_label(form.mail, null, { 'label': 'Your name'}) }}
-        {{ form_row(form.mail, {'attr': {'placeholder' : "Email", 'class' : "form-control", 'label' : "Email"}}) }}
+        
+        {{ form_label(form.mail, 'Adresse e-mail') }}
+        {{ form_widget(form.mail, {'attr': {'placeholder' : "Email", 'class' : "form-control"}}) }}
 
-        {{ form_row(form.subject, {'attr': {'placeholder' : "Sujet", 'class' : "form-control"}}) }}
-        {{ form_row(form.message, {'attr': {'placeholder' : "Contenu du message", 'class' : "form-control"}}) }}
+        {{ form_label(form.subject, 'Sujet') }}
+        {{ form_widget(form.subject, {'attr': {'placeholder' : "Sujet", 'class' : "form-control"}}) }}
+        
+        {{ form_label (form.message, 'Message') }}
+        {{ form_widget(form.message, {'attr': {'placeholder' : "Contenu du message", 'class' : "form-control"}}) }}
        
-
         <button type="submit" class="myButton mt-2 mb-4">
             Envoyer le ticket
         </button>
