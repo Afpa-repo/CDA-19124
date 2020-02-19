@@ -69,7 +69,7 @@ public function home(ProductRepository $productRepository, ProductCategoryReposi
         $products = $paginator->paginate(
             $this->repository->findAllVisible($search),
             $request->query->getInt('page',1),
-            12
+            24
         );
         return $this->render('product/index.html.twig', [
             'products' => $products,
