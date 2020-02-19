@@ -33,7 +33,7 @@
                                                 {{ product.description }}
                                             </p>
                                             <p class="font-weight-bold">25€</p>
-                                            <a href="" class="myButton">Ajouter au panier</a>
+                                            <a href="{{ path('cart_add',{'id':product.id}) }}" class="myButton">Ajouter au panier</a>
                                         </div>
                                     </div>
                                 </div>
