@@ -35,13 +35,17 @@ class CartController extends AbstractController
           $total += $totalItem;// code...
           $count += $item['quantity']; 
       }
-      //ajoute un champs Fcount a la session avec le nombre de produit total dans le panier 
+      //ajoute un champs Fcount a la variable session avec le nombre de produit total dans le panier 
       $session->set('Fcount',$count);
       
+      
+
         return  $this->render('cart/index.html.twig', [
           'items' => $panierWithData,
           'total' => $total,
-          'Cquantity' => $count
+          'Cquantity' => $count,
+          
+                
         ]) ;
     }
     /**
@@ -71,9 +75,16 @@ class CartController extends AbstractController
     * @Route("/cart/remove/{id}", name="cart_remove")
     */
     public function remove($id, SessionInterface $session){
+        $_POST['nb_product'];
       $panier= $session->get('panier',[]);
       if(!empty($panier[$id])){
-        unset($panier[$id]);
+          if($_POST['nb_product']<=0){              
+                   unset($panier[$id]);
+               }else{
+               $panier[$id]= $_POST['nb_product'];          
+               }            
+      }else{
+      unset($panier[$id]);
       }
       $session->set('panier',$panier);
 
