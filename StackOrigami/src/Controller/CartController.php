@@ -77,9 +77,9 @@ class CartController extends AbstractController
     public function remove($id, SessionInterface $session){
         $_POST['nb_product'];
       $panier= $session->get('panier',[]);
-      if(!empty($panier[$id])){
+      if(!empty($panier[$id])){        
           if($_POST['nb_product']<=0){              
-                   unset($panier[$id]);
+                    unset($panier[$id]);
                }else{
                $panier[$id]= $_POST['nb_product'];          
                }            
@@ -89,7 +89,7 @@ class CartController extends AbstractController
       $session->set('panier',$panier);
 
         // Flash affiche une notification sur la vue cart
-        $this->addFlash('delete_product', 'Produit retiré du panier');
+        $this->addFlash('delete_product', 'Quantité mis à jour');
 
 
         return $this->redirectToRoute("cart_index");
