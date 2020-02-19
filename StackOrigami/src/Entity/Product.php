@@ -149,6 +149,7 @@ class Product
     public function setProductCategory(?ProductCategory $productCategory): self
     {
         $this->productCategory = $productCategory;
+        return $this;
     }
 
     public function getStars(): ?string
