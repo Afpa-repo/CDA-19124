@@ -37,8 +37,8 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-			/* Add the date of the day*/
-			$contact->setDateSend(new \DateTime);		
+            /* Ajoute la date du jour */
+            $contact->setDateSend(new \DateTime);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);	
             $entityManager->flush();

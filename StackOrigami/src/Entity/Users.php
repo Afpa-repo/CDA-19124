@@ -25,28 +25,55 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un E-mail"
+     * )
+     * @Assert\Email(
+     *      message="Veuillez rentrer un e-mail valide"
+     * )
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="8", minMessage="Veuillez rentrer au moins 8 caractères" )
+     * @Assert\Length(
+     *      min="8", 
+     *      minMessage="Veuillez rentrer au moins 8 caractères",
+     *      max=255,
+     *      maxMessage="Veuillez rentrer moins de 255 caractères"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un Nom"
+     * )
+     * @Assert\Length(
+     *      max=255,
+     *      maxMessage="Veuillez rentrer moins de 255 caractères"
+     * )
      */
     private $surname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un Prénom"
+     * )
+     * @Assert\Length(
+     *      max=255,
+     *      maxMessage="Veuillez rentrer moins de 255 caractères"
+     * )
      */
     private $first_name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un Numéro"
+     * )
      */
     private $phone_number;
 
