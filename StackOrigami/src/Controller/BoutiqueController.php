@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
@@ -18,8 +19,9 @@ use App\Repository\PartnerRepository;
 class BoutiqueController extends AbstractController
 {
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(ProductRepository $repository, EntityManagerInterface $em)
     {
+        $this->repository = $repository;
         $this->em = $em;
     }
 
@@ -58,15 +60,19 @@ public function home(ProductRepository $productRepository, ProductCategoryReposi
     /**
      * @Route("/catalog", name="catalog")
      */
-    public function catalog(ProductRepository $productRepository, Request $request)
+    public function catalog(ProductRepository $productRepository, Request $request,PaginatorInterface $paginator)
     {
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $search);
         $form->handleRequest($request);
 
+        $products = $paginator->paginate(
+            $this->repository->findAllVisible($search),
+            $request->query->getInt('page',1),
+            12
+        );
         return $this->render('product/index.html.twig', [
-
-            'products' => $productRepository->findAllVisible($search),
+            'products' => $products,
             'form' => $form->createView(),
         ]);
     }
