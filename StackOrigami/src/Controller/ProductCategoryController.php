@@ -30,6 +30,7 @@ class ProductCategoryController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
         $productCategory = new ProductCategory();
         $form = $this->createForm(ProductCategoryType::class, $productCategory);
         $form->handleRequest($request);

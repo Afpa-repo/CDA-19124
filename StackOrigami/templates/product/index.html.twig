@@ -1,5 +1,7 @@
 {# héritage du fichier de base twig header et footer #}
 {% extends 'base.html.twig' %}
+{# theme bootstrap  pour les formumaire symfony #}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {# balise title #}
 {% block title %}Catalogue{% endblock %}
 {# balise body #}
@@ -13,8 +15,6 @@
         {% endfor %}
         <div class="top_filter">
             <div class="row">
-                <div class="col-sm-12 col-lg-3">
-                </div>
                 <div class="col-sm-12 col-lg-9">
                     {# breadcrumb #}
                     <ol class="breadcrumb_stack">
@@ -29,20 +29,25 @@
                     {# Filtrer par prix #}
                     <h3>Filtrer les produits</h3>
                     <div class="jumbotron">
-                        <div class="container">
+                        <div class="container-fluid">
                             {{ form_start(form) }}
                             <div class="form-row">
-                                <div class="col">
+                                <div class="col-12 mt-1">
+                                    <p>Filtrer par :</p>
                                     {{ form_widget(form.maxPrice) }}
                                 </div>
-                                <div class="col">
+                                <div class="col-12 mt-1">
                                     {{ form_widget(form.selectedCategory) }}
                                 </div>
-                                <div class="col">
+                                <div class="col-12 mt-1">
                                     {{ form_widget(form.searchbar) }}
                                 </div>
-                                <div class="col">
-                                    <button type="submit" class="btn btn-primary">OK</button>
+                                <div class="col-12 mt-1">
+                                   <p>Trier par : </p>
+                                    <p>{{ form_widget(form.orderBy1) }}</p>
+                                </div>
+                                <div class="col-12 mt-1 text-center">
+                                    <button type="submit" class="btn btn-primary">Valider</button>
                                 </div>
                             </div>
                             {{ form_end(form) }}
@@ -69,25 +74,6 @@
             </div>
         </div>
 
-        <div class="top_filter mt-3 text-center">
-            <div class="row">
-                <div class="col-7">
-                    {# Affichage et tri des produits #}
-                    <p>Affichage de 1–24 sur 982 résultats</p>
-                </div>
-                <div class="col-5">
-                    <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Tri du plus récent au plus ancien</option>
-                            <option>Tri par popularité</option>
-                            <option>Tri prix croissant</option>
-                            <option>Tri prix décroissant</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="products col-12">
                 <div class="card-columns">
                     {# boucle pour afficher les articles #}
@@ -97,6 +83,7 @@
                                 <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
                                 <div class="card-body">
                                     <p class="card-title">{{ product.libelle }}</p>
+                                    <p class="card-text small">Ajouter le {{ product.createdAt | date('d/m/Y') }}</p>
                                     <p class="card-text">{{ product.productCategory.name }}</p>
                                     <p class="card-text">{{ product.price }}€</p>
                                 </div>
@@ -104,7 +91,6 @@
                         </a>
                     {% endfor %}
                 </div>
-
 
                 <div class="row">
                     <div class="col-6 text-center">

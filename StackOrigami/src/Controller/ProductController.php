@@ -34,11 +34,12 @@ class ProductController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $product->setCreatedAt(new \Datetime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('catalog');
         }
 
         return $this->render('product/new.html.twig', [
