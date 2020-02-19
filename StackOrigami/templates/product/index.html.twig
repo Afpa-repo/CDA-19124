@@ -76,13 +76,13 @@
         <div class="top_filter mt-3 text-center">
             <div class="row">
                 <div class="col">
-                    <p>Affichage de 1–
+                    <p>Affichage de
                         {% if products.getTotalItemCount >= 24 %}
                             24
                         {% else %}
-                            {{ products.getTotalItemCount }}
+                            {{ products.getTotalItemCount }} {# Si il y a moins de 24 produits #}
                         {% endif %}
-                        sur {{ products.getTotalItemCount }} résultats</p>
+                        produits sur {{ products.getTotalItemCount }} résultats</p>
                 </div>
             </div>
 
