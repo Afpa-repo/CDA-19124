@@ -24,7 +24,10 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function findAllVisible(PropertySearch $search) //function qui affichera les produits dans le catalogue
+    /**
+     * @return Query
+     */
+    public function findAllVisible(PropertySearch $search): Query //function qui affichera les produits dans le catalogue
     {
         $query = $this->findVisibleQuery();
 
@@ -54,8 +57,7 @@ class ProductRepository extends ServiceEntityRepository
             $query->orderBy( 'p.createdAt', 'DESC');
         }
 
-        return $query->getQuery()
-            ->getResult();
+        return $query->getQuery();
     }
 
     private function findVisibleQuery(): QueryBuilder
