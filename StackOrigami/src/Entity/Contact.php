@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
@@ -18,16 +19,31 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un E-mail"
+     * )
+     * @Assert\Email(
+     *     message = "Veuillez rentrer un adresse E-mail sous la forme aaa@bb.cc"
+     * )
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min=5, 
+     *      minMessage="sujet trop court",
+     *      max=255,
+     *      maxMessage="Sujet trop long"
+     * )
      */
     private $subject;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un Message"
+     * )
      */
     private $message;
 

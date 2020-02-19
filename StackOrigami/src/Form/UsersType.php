@@ -13,7 +13,6 @@ class UsersType extends AbstractType
     {
         $builder
             ->add('mail')
-            ->add('password')
             ->add('surname')
             ->add('first_name')
             ->add('phone_number')
