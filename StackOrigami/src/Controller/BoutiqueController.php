@@ -60,7 +60,6 @@ public function home(ProductRepository $productRepository, ProductCategoryReposi
      */
     public function catalog(ProductRepository $productRepository, Request $request)
     {
-
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $search);
         $form->handleRequest($request);
