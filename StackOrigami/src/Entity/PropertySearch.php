@@ -23,6 +23,29 @@ class PropertySearch{
     /**
      * @return null
      */
+    public function getOrderBy1()
+    {
+        return $this->orderBy1;
+    }
+
+    /**
+     * @var null
+     */
+    private $orderBy1;
+
+    /**
+     * @param null $orderBy1
+     * @return PropertySearch
+     */
+    public function setOrderBy1($orderBy1)
+    {
+        $this->orderBy1 = $orderBy1;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
     public function getSearchbar()
     {
         return $this->searchbar;

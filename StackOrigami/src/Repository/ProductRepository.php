@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,6 +16,7 @@ use Doctrine\ORM\QueryBuilder;
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class ProductRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -22,24 +24,40 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function findAllVisible(PropertySearch $search) //function qui affichera les produits dans le catalogue
+    /**
+     * @return Query
+     */
+    public function findAllVisible(PropertySearch $search): Query //function qui affichera les produits dans le catalogue
     {
         $query = $this->findVisibleQuery();
 
-        if ($search->getMaxPrice()) {
+        if ($search->getMaxPrice()) { //Si l'utilisateur recherche un prix max
             $query = $query->andWhere('p.price <= :maxprice');
             $query->setParameter('maxprice', $search->getMaxPrice());
         }
-        if ($search->getSelectedCategory()) {
+        if ($search->getSelectedCategory()) { //Si l'utilisateur recherche une categorie precise
             $query = $query->andWhere('p.productCategory = :selectedcategory');
             $query->setParameter('selectedcategory', $search->getSelectedCategory());
         }
-        if($search->getSearchbar()){
+        if($search->getSearchbar()){ //Si l'utilisateur recherche
             $query = $query->andwhere('p.libelle = :searchbar');
             $query->setParameter('searchbar', $search->getSearchbar());
         }
-        return $query->getQuery()
-            ->getResult();
+
+        if($search->getOrderBy1() && $search->getOrderBy1() == 1) { //tri par prix croissant
+            $query->orderBy( 'p.price', 'ASC');
+        }
+        if($search->getOrderBy1() && $search->getOrderBy1() == 2) { //decroissant
+            $query->orderBy( 'p.price', 'DESC');
+        }
+        if($search->getOrderBy1() && $search->getOrderBy1() == 3) { //tri par date ancien au recent
+            $query->orderBy( 'p.createdAt', 'ASC');
+        }
+        if($search->getOrderBy1() && $search->getOrderBy1() == 4) { //recent au ancien
+            $query->orderBy( 'p.createdAt', 'DESC');
+        }
+
+        return $query->getQuery();
     }
 
     private function findVisibleQuery(): QueryBuilder
