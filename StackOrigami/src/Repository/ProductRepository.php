@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class ProductRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -27,29 +28,29 @@ class ProductRepository extends ServiceEntityRepository
     {
         $query = $this->findVisibleQuery();
 
-        if ($search->getMaxPrice()) {
+        if ($search->getMaxPrice()) { //Si l'utilisateur recherche un prix max
             $query = $query->andWhere('p.price <= :maxprice');
             $query->setParameter('maxprice', $search->getMaxPrice());
         }
-        if ($search->getSelectedCategory()) {
+        if ($search->getSelectedCategory()) { //Si l'utilisateur recherche une categorie precise
             $query = $query->andWhere('p.productCategory = :selectedcategory');
             $query->setParameter('selectedcategory', $search->getSelectedCategory());
         }
-        if($search->getSearchbar()){
+        if($search->getSearchbar()){ //Si l'utilisateur recherche
             $query = $query->andwhere('p.libelle = :searchbar');
             $query->setParameter('searchbar', $search->getSearchbar());
         }
 
-        if($search->getOrderBy1() && $search->getOrderBy1() == 1) { //1 = prix croissant 2 = prix decroissant
+        if($search->getOrderBy1() && $search->getOrderBy1() == 1) { //tri par prix croissant
             $query->orderBy( 'p.price', 'ASC');
         }
-        if($search->getOrderBy1() && $search->getOrderBy1() == 2) {
+        if($search->getOrderBy1() && $search->getOrderBy1() == 2) { //decroissant
             $query->orderBy( 'p.price', 'DESC');
         }
-        if($search->getOrderBy1() && $search->getOrderBy1() == 3) {
+        if($search->getOrderBy1() && $search->getOrderBy1() == 3) { //tri par date ancien au recent
             $query->orderBy( 'p.createdAt', 'ASC');
         }
-        if($search->getOrderBy1() && $search->getOrderBy1() == 4) {
+        if($search->getOrderBy1() && $search->getOrderBy1() == 4) { //recent au ancien
             $query->orderBy( 'p.createdAt', 'DESC');
         }
 

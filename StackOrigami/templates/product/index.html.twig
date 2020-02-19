@@ -91,6 +91,7 @@
             <div class="products col-12">
                 <div class="card-columns">
                     {# boucle pour afficher les articles #}
+                    tri par colonne ?
                     {% for product in products %}
                         <a class="lien_card" href="{{ path('product_show', {'id': product.id}) }}">
                             <div class="card card-product">

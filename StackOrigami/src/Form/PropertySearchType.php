@@ -15,24 +15,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PropertySearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) //Création d'un formulaire
     {
         $builder
-            ->add('maxPrice', IntegerType::class, [
+            ->add('maxPrice', IntegerType::class, [ // Recherche par prix max
                 'required' => false,
                 'label' => false,
                 'attr' => ['placeholder' => 'Budget max']])
-            ->add('selectedCategory', EntityType::class, [
+            ->add('selectedCategory', EntityType::class, [ // Recherche par catégorie
                 'class' => ProductCategory::class,
                 'choice_label' => 'name',
                 'required' => false,
                 'label' => false,
                 'placeholder' => 'Catégorie'])
-            ->add('searchbar', SearchType::class, [
+            ->add('searchbar', SearchType::class, [ // Recherche
                 'required' => false,
                 'label' => false,
                 'attr' => ['placeholder' => 'Recherche..']])
-            ->add('orderBy1', ChoiceType::class, [
+            ->add('orderBy1', ChoiceType::class, [ // Tri 
                 'choices' => [
                     'Prix croissant' => 1,
                     'Prix décroissant' => 2,
