@@ -72,6 +72,7 @@ footer  p {
     color : white;
 }
 .lien_card:hover{
+    text-decoration: none;
     zoom: 120%;
     box-shadow: #6B6B5B;
 }
