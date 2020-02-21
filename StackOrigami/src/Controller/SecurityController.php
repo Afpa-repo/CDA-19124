@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+/* Appel des éléments qui seront utilisés par ce controller */
+
 use App\Entity\Users;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,21 +12,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class SecurityController extends AbstractController
-{
+class SecurityController extends AbstractController {
+
     /**
      * @Route("/signup", name="security_registration")
      */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
+    /* Fonction de création de nouvel utilisateur avec vérification */
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
         $user = new Users();
 
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
+            /* Impute l'encodage qui sera utilisé pour crypter le mot de passe utilisateur dans la bdd */
             $hash = $encoder->encodePassword($user, $user->getPassword());
-
+            /* Cryptage du mot de passe que l'utilisateur aura entré */
             $user->setPassword($hash);
 
             $manager->persist($user);
@@ -36,20 +40,23 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_login');
         }
 
-        return $this->render('security/registration.html.twig', ['form'=> $form->createView()]);
+        return $this->render('security/registration.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * @Route("/login", name="security_login")
      */
-    public function login(){
+    /* Fonction de connexion utilisateur */
+    public function login() {
         return $this->render('security/login.html.twig');
     }
 
     /**
      * @Route("/logout", name="security_logout")
      */
-    public function logout(){
-
+    /* Fonction de déconnexion utilisateur */
+    public function logout() {
+        
     }
+
 }

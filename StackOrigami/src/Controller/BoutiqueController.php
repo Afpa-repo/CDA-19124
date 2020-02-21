@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-
-/* Appel  */
+/* Appel des éléments qui seront utilisés par ce controller */
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,12 +15,9 @@ use App\Repository\ProductRepository;
 use App\Repository\ProductCategoryRepository;
 use App\Repository\PartnerRepository;
 
+class BoutiqueController extends AbstractController {
 
-class BoutiqueController extends AbstractController
-{
-
-    public function __construct(EntityManagerInterface $em)
-    {
+    public function __construct(EntityManagerInterface $em) {
         $this->em = $em;
     }
 
@@ -35,24 +31,23 @@ class BoutiqueController extends AbstractController
                     'products' => $productRepository->findAll(),
                     /* Retrouve toutes les valeurs dans l'entité product_categories */
                     'product_categories' => $productCategoryRepository->findAll(),
-                    /* Retrouve toutes les valeurs das l'entité partners */
+                    /* Retrouve toutes les valeurs dans l'entité partners */
                     'partners' => $partnerRepository->findAll()
         ]);
-
-
     }
+
     /**
      * @Route("/contact", name="contact")
      */
-
-    /* Fonction qui créer un formulairevérifie la requete */
+    /* Fonction qui créer un formulaire et vérifie la requete */
     public function contact(Request $request) {
         /* Création du formulaire ContactType */
         $form = $this->createForm(ContactType::class);
-        /* Saisie de la requete */
+        /* Execution de la requete */
         $form->handleRequest($request);
-                /* renvoie un formulaire */
+        /* renvoie la fonction de création de formulaire sur la vue */
         return $this->render('boutique/contact.html.twig', [
+                    /* Envoie sous le nom 'form' la fonction createView */
                     'form' => $form->createView()
         ]);
     }
@@ -60,33 +55,35 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("/about", name="about_us")
      */
-    public function about()
-    {
+    public function about() {
+        /* Renvoie vers la page about_us */
         return $this->render('boutique/about_us.html.twig');
     }
 
     /**
      * @Route("/catalog", name="catalog")
      */
-    public function catalog(ProductRepository $productRepository, Request $request)
-    {
-
+    public function catalog(ProductRepository $productRepository, Request $request) {
+        /* Impute la nouvelle recherche a la variable */
         $search = new PropertySearch();
+        /* On donne au formulaire la recherche */
         $form = $this->createForm(PropertySearchType::class, $search);
+        /* Execution de la requete */
         $form->handleRequest($request);
-
+        /* renvoie la fonction de recherche et de création sur la vue */
         return $this->render('product/index.html.twig', [
-
-            'products' => $productRepository->findAllVisible($search),
-            'form' => $form->createView(),
+                    /* Envoie sous le nom 'products' la fonction findAllVisible de la variable search */
+                    'products' => $productRepository->findAllVisible($search),
+                    /* Envoie sous le nom 'form' la fonction createView */
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/profil", name="profil")
      */
-    public function profil()
-    {
+    public function profil() {
+        /* Renvoie vers la page profil */
         return $this->render('boutique/profil.html.twig');
     }
 
