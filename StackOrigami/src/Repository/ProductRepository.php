@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-
 class ProductRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -27,43 +26,46 @@ class ProductRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisible(PropertySearch $search): Query //function qui affichera les produits dans le catalogue
+    public function findAllVisible(PropertySearch $search): Query //fonction qui affichera les produits dans le catalogue
     {
         $query = $this->findVisibleQuery();
 
         if ($search->getMaxPrice()) { //Si l'utilisateur recherche un prix max
-            $query = $query->andWhere('p.price <= :maxprice');
-            $query->setParameter('maxprice', $search->getMaxPrice());
+            $query = $query->andWhere('p.price <= :maxprice'); //Spécifie une ou plusieurs restrictions au résultat de la requête.
+            $query->setParameter('maxprice', $search->getMaxPrice()); //Définit un paramètre de requête pour la requête en cours de construction.
         }
         if ($search->getSelectedCategory()) { //Si l'utilisateur recherche une categorie precise
             $query = $query->andWhere('p.productCategory = :selectedcategory');
             $query->setParameter('selectedcategory', $search->getSelectedCategory());
         }
-        if($search->getSearchbar()){ //Si l'utilisateur recherche
+        if ($search->getSearchbar()) { //Si l'utilisateur recherche
             $query = $query->andwhere('p.libelle = :searchbar');
             $query->setParameter('searchbar', $search->getSearchbar());
         }
 
-        if($search->getOrderBy1() && $search->getOrderBy1() == 1) { //tri par prix croissant
-            $query->orderBy( 'p.price', 'ASC');
+        if ($search->getOrderBy1() == 1) { //tri par prix croissant
+            $query->orderBy('p.price', 'ASC'); //Spécifie un ordre pour les résultats de la requête
         }
-        if($search->getOrderBy1() && $search->getOrderBy1() == 2) { //decroissant
-            $query->orderBy( 'p.price', 'DESC');
+        if ($search->getOrderBy1() == 2) { //decroissant
+            $query->orderBy('p.price', 'DESC');
         }
-        if($search->getOrderBy1() && $search->getOrderBy1() == 3) { //tri par date ancien au recent
-            $query->orderBy( 'p.createdAt', 'ASC');
+        if ($search->getOrderBy1() == 3) { //tri par date ancien au recent
+            $query->orderBy('p.createdAt', 'ASC');
         }
-        if($search->getOrderBy1() && $search->getOrderBy1() == 4) { //recent au ancien
-            $query->orderBy( 'p.createdAt', 'DESC');
+        if ($search->getOrderBy1() == 4) { //recent au ancien
+            $query->orderBy('p.createdAt', 'DESC');
+        }
+        if ($search->getOrderBy1()) { //meilleurs notes
+            $query->orderBy('p.stars', 'DESC');
         }
 
-        return $query->getQuery();
+        return $query->getQuery(); //Construit une instance d'une requête
     }
 
     private function findVisibleQuery(): QueryBuilder
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.stock != 0');
+        return $this->createQueryBuilder('p') //Construction d'une requete
+        ->where('p.stock != 0'); //Retire les produits qui ne sont plus en stock
     }
 
     // /**
