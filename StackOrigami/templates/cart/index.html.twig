@@ -52,6 +52,12 @@
                         <td></td>
                 </tfoot>
             </table>
+                         {% if app.user %}
+                        <a href="{{ path('cart_validate')}}" class="btn btn-profil">Valider la commande</a>
+                        {% else%}
+                            <a href="" class="btn btn-profil" >Vous devez être connecté pour valider votre panier</a>
+                        {% endif %}    
+                        
             </div>
         </div>
         {% else %}
