@@ -6,57 +6,17 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Product;
-use App\Entity\ProductCategory;
-use App\Entity\Orders;
-use App\Entity\Users;
-use App\Entity\OrderDetails;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\ProductRepository;
 
 class CartController extends AbstractController {
 
     /**
      * @Route("/cart", name="cart_index")
      */
-<<<<<<< HEAD
-    public function index(SessionInterface $session, ProductRepository $productRepository)
-    {
-      $count =0;
-      $panier=$session->get('panier',[]);
-      $panierWithData= [];
-      foreach ($panier as $id => $quantity) {
-        $panierWithData[] = [
-          'product' => $productRepository->find($id),
-          'quantity' => $quantity
-        ];
-      }
-
-      $total = 0;
-      foreach ($panierWithData as $item) {          
-          $totalItem = $item['product']->getPrice()*$item['quantity'];
-          $total += $totalItem;
-          $count += $item['quantity']; 
-      }
-      //ajoute un champs Fcount a la variable session avec le nombre de produit total dans le panier 
-      $session->set('Fcount',$count);
-      $session->set('FullCart',$panierWithData);
-      //dd($session);
-      // Si Le panier est valider alors vide le panier .
-      if($session->get('Validate',"false")=="true"){
-            unset($panierWithData);
-            $session->remove('Validate');
-            $session->remove('panier');
-            $session->set('Fcount',0);
-            return $this->redirectToRoute("profil");
-        }
-        return  $this->render('cart/index.html.twig', [
-          'items' => $panierWithData,
-          'total' => $total,
-          'Cquantity' => $count 
-        ]) ;
-=======
     public function index(SessionInterface $session, ProductRepository $productRepository) {
         $count = 0;
         /* Impute a la variable '$panier' la valeur récupérée 'panier' */
@@ -90,7 +50,6 @@ class CartController extends AbstractController {
                     'total' => $total,
                     'Cquantity' => $count
         ]);
->>>>>>> nicolas
     }
 
     /**
@@ -125,26 +84,6 @@ class CartController extends AbstractController {
     }
 
     /**
-<<<<<<< HEAD
-    * @Route("/cart/remove/{id}", name="cart_remove")
-    */
-    public function remove($id, SessionInterface $session){
-      
-      $panier= $session->get('panier',[]);
-      if(!empty($panier[$id])){        
-          if($_POST['nb_product']<=0){              
-                    unset($panier[$id]);
-               }else{
-               $panier[$id]= $_POST['nb_product'];          
-               }            
-      }else{
-      unset($panier[$id]);
-      }
-      $session->set('panier',$panier);
-
-        // Flash affiche une notification sur la vue cart
-        $this->addFlash('delete_product', 'Quantité mis à jour');
-=======
      * @Route("/cart/remove/{id}", name="cart_remove")
      */
     public function remove($id, SessionInterface $session) {
@@ -160,13 +99,10 @@ class CartController extends AbstractController {
 
         /* Flash affiche une notification sur la vue cart */
         $this->addFlash('delete_product', 'Produit retiré du panier');
->>>>>>> nicolas
 
         /* Retourne l'évèneent en cours vers la page 'cart_index' */
         return $this->redirectToRoute("cart_index");
     }
-<<<<<<< HEAD
-    
     /**
     * @Route("/cart/validate", name="cart_validate")
     */
@@ -201,7 +137,6 @@ class CartController extends AbstractController {
     
     
       }
-=======
 
-}
->>>>>>> nicolas
+
+

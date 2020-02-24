@@ -30,14 +30,8 @@ class ProductCategoryController extends AbstractController {
     /**
      * @Route("/new", name="product_category_new", methods={"GET","POST"})
      */
-<<<<<<< HEAD
-    public function new(Request $request): Response
-    {
-
-=======
     /* Fonction de création et de vérification de nouvelles catégories */
     public function new(Request $request): Response {
->>>>>>> nicolas
         $productCategory = new ProductCategory();
         $form = $this->createForm(ProductCategoryType::class, $productCategory);
         $form->handleRequest($request);
