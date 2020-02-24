@@ -48,7 +48,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *      message="Veuillez rentrer un Nom"
+     *      message="Veuillez rentrer un nom"
      * )
      * @Assert\Length(
      *      max=255,
@@ -60,7 +60,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *      message="Veuillez rentrer un Prénom"
+     *      message="Veuillez rentrer un prénom"
      * )
      * @Assert\Length(
      *      max=255,
@@ -70,9 +70,9 @@ class Users implements UserInterface
     private $first_name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Assert\NotBlank(
-     *      message="Veuillez rentrer un Numéro"
+     *      message="Veuillez rentrer un numéro"
      * )
      */
     private $phone_number;
@@ -145,7 +145,7 @@ class Users implements UserInterface
         return $this->phone_number;
     }
 
-    public function setPhoneNumber(int $phone_number): self
+    public function setPhoneNumber(string $phone_number): self
     {
         $this->phone_number = $phone_number;
 
