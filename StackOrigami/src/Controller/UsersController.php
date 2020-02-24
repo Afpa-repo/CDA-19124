@@ -11,6 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//Pour la modification du mot de passe
+use App\Entity\Password;
+use App\Form\PasswordsType;
+use Symfony\Component\Form\FormError;   //pour ajouter des erreurs à afficher
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/users")
@@ -93,8 +98,37 @@ class UsersController extends AbstractController {
             $entityManager->remove($user);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('users_index');
+		return $this->redirectToRoute('home');
     }
+    
+    /**
+     * @Route("/{id}/password", name="users_ChangePassword", methods={"GET","POST"})
+     */
+    public function ChangePassword(Request $request, Users $user,UserPasswordEncoderInterface $encoder): Response
+    {
+        $password = new Password(); //Crée un nouvel objet de type password
+        $form = $this->createForm(PasswordsType::class, $password); //crée un formulaire pour cet objet
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data=$form->getData();
+            $oldPassword = $data->getOldPassword(); //récupère la l'ancien mot de passe entrée par l'utilisateur
+            $newPassword = $data->getNewPassword(); //récupère le nouveau mot de passe
+            if(password_verify($oldPassword,$user->getPassword())){  //Si l'ancien mot de passe correspond
+                $entityManager = $this->getDoctrine()->getManager();
+                $user->setPassword(password_hash($newPassword,PASSWORD_BCRYPT));   //hash le nouveau mot de passe 
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->redirectToRoute('profil');    //redirige sur la page profil
+            }else{   //sinon, l'ancien mot de passe ne correspond pas 
+                $form->get('oldPassword')->addError(new FormError('Ancien mot de passe incorrect'));    //On ajoute l'erreur à afficher
+            }
+            
+        }
+
+        return $this->render('users/edit_password.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
 }
