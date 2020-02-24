@@ -20,6 +20,7 @@ class CartController extends AbstractController {
      * @Route("/cart", name="cart_index")
      */
     public function index(SessionInterface $session, ProductRepository $productRepository) {
+        
         $count = 0;
         /* Impute a la variable '$panier' la valeur récupérée 'panier' */
         $panier = $session->get('panier', []);
@@ -46,6 +47,15 @@ class CartController extends AbstractController {
         }
         //ajoute un champs Fcount a la session avec le nombre de produit total dans le panier 
         $session->set('Fcount', $count);
+        $session->set('FullCart',$panierWithData);
+         // Si Le panier est valider alors vide le panier .
+      if($session->get('Validate',"false")=="true"){
+            unset($panierWithData);
+            $session->remove('Validate');
+            $session->remove('panier');
+            $session->set('Fcount',0);
+            return $this->redirectToRoute("profil");
+        }
         /* Renvoie la fonction sur la vue */
         return $this->render('cart/index.html.twig', [
                     'items' => $panierWithData,
@@ -93,16 +103,20 @@ class CartController extends AbstractController {
         $panier = $session->get('panier', []);
         /* Si la variable 'id' de la variable 'panier' n'est pas vide */
         if (!empty($panier[$id])) {
-            /* Vidage du panier */
-            unset($panier[$id]);
-        }
-        /* Attribution de la valeur 'panier' à la variable 'panier' */
-        $session->set('panier', $panier);
-
-        /* Flash affiche une notification sur la vue cart */
-        $this->addFlash('delete_product', 'Produit retiré du panier');
-
-        /* Retourne l'évèneent en cours vers la page 'cart_index' */
+            if($_POST['nb_product']<=0){              
+                    /* Vidage du panier */ 
+                unset($panier[$id]);
+               }else{
+               $panier[$id]= $_POST['nb_product'];          
+               }            
+      }else{
+      unset($panier[$id]);
+      }
+      /* Attribution de la valeur 'panier' à la variable 'panier' */
+      $session->set('panier',$panier);
+        // Flash affiche une notification sur la vue cart
+        $this->addFlash('delete_product', 'Quantité mise à jour');
+        /* Retourne l'évènement en cours vers la page 'cart_index' */
         return $this->redirectToRoute("cart_index");
     }
     /**

@@ -18,7 +18,8 @@ use App\Repository\PartnerRepository;
 
 class BoutiqueController extends AbstractController {
 
-    public function __construct(EntityManagerInterface $em) {
+    public function __construct(ProductRepository $repository,EntityManagerInterface $em) {
+        $this->repository = $repository;
         $this->em = $em;
     }
 
@@ -79,7 +80,7 @@ class BoutiqueController extends AbstractController {
         /* renvoie la fonction de recherche et de création sur la vue */
         return $this->render('product/index.html.twig', [
                     /* Envoie sous le nom 'products' la fonction findAllVisible de la variable search */
-                    'products' => $productRepository->findAllVisible($search),
+                    'products' => $products,
                     /* Envoie sous le nom 'form' la fonction createView */
                     'form' => $form->createView(),
         ]);
