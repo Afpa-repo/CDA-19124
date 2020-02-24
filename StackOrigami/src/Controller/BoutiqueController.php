@@ -70,6 +70,11 @@ class BoutiqueController extends AbstractController {
         $form = $this->createForm(PropertySearchType::class, $search);
         /* Execution de la requete */
         $form->handleRequest($request);
+        $products = $paginator->paginate(
+            $this->repository->findAllVisible($search),
+            $request->query->getInt('page',1),
+            24
+        );
         /* renvoie la fonction de recherche et de création sur la vue */
         return $this->render('product/index.html.twig', [
                     /* Envoie sous le nom 'products' la fonction findAllVisible de la variable search */
