@@ -94,11 +94,12 @@ class UsersController extends AbstractController {
     /* Fonction de suppression, vérification d'identité et de droits pour les utilisateurs */
     public function delete(Request $request, Users $user): Response {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $this->get('security.token_storage')->setToken(null);   //force la déconnexion
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($user);
-            $entityManager->flush();
+            $entityManager->remove($user);  //crée la requête de suppression
+            $entityManager->flush();    //lance la requête
         }
-		return $this->redirectToRoute('home');
+        return $this->redirectToRoute('home');
     }
     
     /**
