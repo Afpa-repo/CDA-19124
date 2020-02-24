@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;

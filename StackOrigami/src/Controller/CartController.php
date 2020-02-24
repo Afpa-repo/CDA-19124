@@ -6,12 +6,14 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
-use App\Entity\Product;
 use App\Repository\ProductRepository;
-
+use App\Entity\Product;
+use App\Entity\ProductCategory;
+use App\Entity\Orders;
+use App\Entity\Users;
+use App\Entity\OrderDetails;
+use Symfony\Component\Security\Core\User\UserInterface;
 class CartController extends AbstractController {
 
     /**
