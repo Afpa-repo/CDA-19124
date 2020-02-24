@@ -63,7 +63,7 @@ class BoutiqueController extends AbstractController {
     /**
      * @Route("/catalog", name="catalog")
      */
-    public function catalog(ProductRepository $productRepository, Request $request) {
+    public function catalog(ProductRepository $productRepository, Request $request,PaginatorInterface $paginator) {
         /* Impute la nouvelle recherche a la variable */
         $search = new PropertySearch();
         /* On donne au formulaire la recherche */
