@@ -19,21 +19,57 @@ class OrderDetails
     /**
      * @ORM\Column(type="integer")
      */
-    private $number;
+    private $Quantity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Product;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Orders;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumber(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->number;
+        return $this->Quantity;
     }
 
-    public function setNumber(int $number): self
+    public function setQuantity(int $Quantity): self
     {
-        $this->number = $number;
+        $this->Quantity = $Quantity;
+
+        return $this;
+    }
+
+    public function getProduct(): ?product
+    {
+        return $this->Product;
+    }
+
+    public function setProduct(?product $Product): self
+    {
+        $this->Product = $Product;
+
+        return $this;
+    }
+
+    public function getOrders(): ?Orders
+    {
+        return $this->Orders;
+    }
+
+    public function setOrders(?Orders $Orders): self
+    {
+        $this->Orders = $Orders;
 
         return $this;
     }

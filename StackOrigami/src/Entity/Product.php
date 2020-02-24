@@ -54,7 +54,7 @@ class Product
     private $productCategory;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="integer", length=10, nullable=true)
      */
     private $stars;
 
@@ -152,7 +152,7 @@ class Product
         return $this;
     }
 
-    public function getStars(): ?string
+    public function getStars(): ?int
     {
         return $this->stars;
     }

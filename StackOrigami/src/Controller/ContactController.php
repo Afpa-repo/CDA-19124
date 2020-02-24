@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+/* Appel des éléments qui seront utilisés par ce controller */
+
 use App\Entity\Contact;
 use App\Form\Contact1Type;
 use App\Repository\ContactRepository;
@@ -13,60 +15,60 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/contact")
  */
- /* Date init in localtime */
- 
-class ContactController extends AbstractController
-{
+/* Date init in localtime */
+
+class ContactController extends AbstractController {
+
     /**
      * @Route("/contact_admin", name="contact_index", methods={"GET"})
      */
-    public function index(ContactRepository $contactRepository): Response
-    {
+    /* Fonction index pour afficher les contacts sur la vue */
+    public function index(ContactRepository $contactRepository): Response {
         return $this->render('contact/index.html.twig', [
-            'contacts' => $contactRepository->findAll(),
+                    'contacts' => $contactRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("/new", name="contact_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
-    {
+    /* Fonction de création et d'envoie de demande contact */
+    public function new(Request $request): Response {
         $contact = new Contact();
         $form = $this->createForm(Contact1Type::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /* Ajoute la date du jour */
+            /* Add the date of the day */
             $contact->setDateSend(new \DateTime);
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contact);	
+            $entityManager->persist($contact);
             $entityManager->flush();
 
             return $this->redirectToRoute('contact_new');
         }
 
         return $this->render('contact/new.html.twig', [
-            'contact' => $contact,
-            'form' => $form->createView(),
+                    'contact' => $contact,
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="contact_show", methods={"GET"})
      */
-    public function show(Contact $contact): Response
-    {
+    /* Fonction d'affichage de la vue */
+    public function show(Contact $contact): Response {
         return $this->render('contact/show.html.twig', [
-            'contact' => $contact,
+                    'contact' => $contact,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="contact_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Contact $contact): Response
-    {
+    /* Fonction de vérification, d'édition et d'envoie de requete de demande de contact */
+    public function edit(Request $request, Contact $contact): Response {
         $form = $this->createForm(Contact1Type::class, $contact);
         $form->handleRequest($request);
 
@@ -77,17 +79,19 @@ class ContactController extends AbstractController
         }
 
         return $this->render('contact/edit.html.twig', [
-            'contact' => $contact,
-            'form' => $form->createView(),
+                    'contact' => $contact,
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="contact_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Contact $contact): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
+    /* Fonction de verification d'identité et de suppression de fiche de contact */
+    public function delete(Request $request, Contact $contact): Response {
+        /* CSRF => Usurpation d'identité, la fonction 'idCsrfTokerValid' permet de verifier si l'utilisateur à les droits de suppression */
+        if ($this->isCsrfTokenValid('delete' . $contact->getId(), $request->request->get('_token'))) {
+            /* Demande a Doctrine de d'utiliser le Manager pour la suppression */
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($contact);
             $entityManager->flush();
@@ -95,4 +99,5 @@ class ContactController extends AbstractController
 
         return $this->redirectToRoute('contact_index');
     }
+
 }

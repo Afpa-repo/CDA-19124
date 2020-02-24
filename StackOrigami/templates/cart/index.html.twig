@@ -23,8 +23,6 @@
                         <th>Prix</th>
                         <th>Quantité</th>
                         <th>Total</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
@@ -41,16 +39,12 @@
                                     </div>
                             </div></td>
                             <td>{{item.product.price * item.quantity}}</td>
-
-
                         </tr>
                     {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>
-
                         <td colspan="2"></td>
-
                         <td class="">Nombre de produits :
                             {{ Cquantity }}</td>
                         <td class="">Total :
@@ -58,6 +52,12 @@
                         <td></td>
                 </tfoot>
             </table>
+                         {% if app.user %}
+                        <a href="{{ path('cart_validate')}}" class="btn btn-profil">Valider la commande</a>
+                        {% else%}
+                            <a href="" class="btn btn-profil" >Vous devez être connecté pour valider votre panier</a>
+                        {% endif %}    
+                        
             </div>
         </div>
         {% else %}

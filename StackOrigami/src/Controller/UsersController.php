@@ -131,4 +131,3 @@ class UsersController extends AbstractController {
             'form' => $form->createView(),
         ]);
     }
-}
