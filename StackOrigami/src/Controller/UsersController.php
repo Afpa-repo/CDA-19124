@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+/* Appel des éléments qui seront utilisés par ce controller */
+
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
@@ -13,23 +15,23 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/users")
  */
-class UsersController extends AbstractController
-{
+class UsersController extends AbstractController {
+
     /**
      * @Route("/", name="users_index", methods={"GET"})
      */
-    public function index(UsersRepository $usersRepository): Response
-    {
+    /* Fonction de recherche des utilisateurs */
+    public function index(UsersRepository $usersRepository): Response {
         return $this->render('users/index.html.twig', [
-            'users' => $usersRepository->findAll(),
+                    'users' => $usersRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("/new", name="users_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
-    {
+    /* fonction d'affichage des utilisateurs */
+    public function new(Request $request): Response {
         $user = new Users();
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
@@ -46,26 +48,26 @@ class UsersController extends AbstractController
         }
 
         return $this->render('users/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
+                    'user' => $user,
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="users_show", methods={"GET"})
      */
-    public function show(Users $user): Response
-    {
+    /* Fonction d'affichage de l'utilisateur */
+    public function show(Users $user): Response {
         return $this->render('users/show.html.twig', [
-            'user' => $user,
+                    'user' => $user,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="users_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Users $user): Response
-    {
+    /* Fonction d'édition et de verification  de l'utilisateur */
+    public function edit(Request $request, Users $user): Response {
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 
@@ -76,17 +78,17 @@ class UsersController extends AbstractController
         }
 
         return $this->render('users/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
+                    'user' => $user,
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="users_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Users $user): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+    /* Fonction de suppression, vérification d'identité et de droits pour les utilisateurs */
+    public function delete(Request $request, Users $user): Response {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
@@ -94,4 +96,5 @@ class UsersController extends AbstractController
 
         return $this->redirectToRoute('users_index');
     }
+
 }
