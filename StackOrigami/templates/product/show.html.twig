@@ -45,7 +45,7 @@
                             <label class="custom-control-label" for="customCheck1">Emballage cadeau ? (option gratuite)</label>
                     </div>
                     {# Bouton ajout au panier #}
-                    <a href="{{ path('cart_add',{'id':product.id}) }}" class="myButton mt-3 mb-3">Ajouter au panier</a>
+                    <a href="{{ path('cart_add',{'id':product.id}) }}" class="myButton mt-3 mb-3" id="add_basket">Ajouter au panier</a>
                     <p>
                         {# Lien description produit #}
                         <a class="link_show_product" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Description 
@@ -124,5 +124,6 @@
 
         </div>
         </div>
+
     </div>
 {% endblock %}
