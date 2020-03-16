@@ -137,4 +137,17 @@ class UsersController extends AbstractController {
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/orders", name="users_orders", methods={"GET"})
+     */
+    /* Fonction d'affichage de l'historique de commande de l'utilisateur */
+    public function orders(Users $user, OrdersRepository $ordersRepository, OrderDetailsRepository $orderDetailsRepository){
+        $orders=$ordersRepository-> findBy(array('UsersID' => $user->getId())); //récupère les commandes de l'utilisateur
+        
+        return $this->render('users/users_orders.html.twig', [
+            'user' => $user,
+            'orders' => $orders,
+        ]);
+    }
 }

@@ -8,13 +8,16 @@
         </div>
     {% else %}
         <div class="container">
-            <div class="row mt-5">
-                <div class="col-sm-12 col-lg-5">
+            <h1>Historique des commandes</h1>
+            {% if orders | length == 0 %}
+                <p>Vous n'avez aucun historique</p> 
+            {% else %}
                 {% for order in orders %}
-                    {{ order.id }}
+                    <p> Commande numéro {{order.id}}<p>
+                    
                 {% endfor %}
-                </div>
-            </div>
+            {% endif %}
+            <a href="{{ path('profil') }}">Retour</a>
         </div>
     {% endif %}
 {% endblock %}
