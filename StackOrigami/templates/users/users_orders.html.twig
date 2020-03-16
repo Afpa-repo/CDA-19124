@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if not app.user %}
+        <div class="alert alert-warning" role="alert">
+            Veuillez vous connecter pour accéder à cette page !
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-sm-12 col-lg-5">
+                {% for order in orders %}
+                    {{ order.id }}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

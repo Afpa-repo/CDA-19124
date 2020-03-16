@@ -11,8 +11,14 @@ use App\Repository\ProductRepository;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
 use App\Entity\Orders;
+use App\Repository\OrdersRepository;
 use App\Entity\Users;
 use App\Entity\OrderDetails;
+use App\Repository\OrderDetailsRepository;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 class CartController extends AbstractController {
 
@@ -124,7 +130,7 @@ class CartController extends AbstractController {
     */
     
     // Validation du panier.
-    public function validate(SessionInterface $session, UserInterface $user) {         
+    public function validate(SessionInterface $session, UserInterface $user, OrdersRepository $listOrders) {         
         $order = new Orders();  //Crée un objet Orders
         $order->setUsersID($user);    //récupère les valeurs
         $order->setDate(new \DateTime());
@@ -145,6 +151,16 @@ class CartController extends AbstractController {
             $entityManager->merge($orderDetails);
             $entityManager->flush();    //On le rajoute dans la base de donnée
             }
+            
+            //Rajoute toute les Commandes au fichier JSON
+            $encoders = array(new JsonEncoder());  //crée l'encoder (format Array => json) 
+            $normalizers = array(new ObjectNormalizer());   //crée le normalizer (format Objet => Array)
+            $serializer = new Serializer($normalizers, $encoders);  //crée le serializer (format objet => json)
+            $listOrders=$listOrders->findAll(); //récupère toute les commandes
+            $jsonOrders= $serializer->serialize($listOrders, 'json');   //les met en format json
+            $fileOrders=fopen('../public/json/orders.json','w+');   //ouvre le fichier orders.json en mode écriture
+            fputs($fileOrders,$jsonOrders);   //écrit le resultat dans le fichier
+            fclose($fileOrders);    //ferme le fichier
             
             $session->set('Validate',"true");
         return $this->redirectToRoute("cart_index");    //redirige vers le profil

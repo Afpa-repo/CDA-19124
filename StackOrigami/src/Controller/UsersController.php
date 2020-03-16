@@ -16,6 +16,11 @@ use App\Entity\Password;
 use App\Form\PasswordsType;
 use Symfony\Component\Form\FormError;   //pour ajouter des erreurs à afficher
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+//Pour l'historique des commandes
+use App\Entity\Orders;
+use App\Repository\OrdersRepository;
+use App\Entity\OrderDetails;
+use App\Repository\OrderDetailsRepository;
 
 /**
  * @Route("/users")
