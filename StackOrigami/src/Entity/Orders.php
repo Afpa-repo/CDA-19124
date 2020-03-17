@@ -36,6 +36,12 @@ class Orders
      */
     private $delivery_form;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $UsersID;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +91,18 @@ class Orders
     public function setDeliveryForm(string $delivery_form): self
     {
         $this->delivery_form = $delivery_form;
+
+        return $this;
+    }
+
+    public function getUsersID(): ?Users
+    {
+        return $this->UsersID;
+    }
+
+    public function setUsersID(?Users $UsersID): self
+    {
+        $this->UsersID = $UsersID;
 
         return $this;
     }

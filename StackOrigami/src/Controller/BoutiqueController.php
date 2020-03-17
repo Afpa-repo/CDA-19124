@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+/* Appel des éléments qui seront utilisés par ce controller */
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
@@ -14,35 +16,40 @@ use App\Repository\ProductRepository;
 use App\Repository\ProductCategoryRepository;
 use App\Repository\PartnerRepository;
 
+class BoutiqueController extends AbstractController {
 
-class BoutiqueController extends AbstractController
-{
-
-    public function __construct(EntityManagerInterface $em)
-    {
+    public function __construct(ProductRepository $repository,EntityManagerInterface $em) {
+        $this->repository = $repository;
         $this->em = $em;
     }
 
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository): Response
-        {
-            return $this->render('boutique/home.html.twig', [
-                'products' => $productRepository->findAll(),
-                'product_categories' => $productCategoryRepository->findAll(),
-                'partners' => $partnerRepository->findAll()
-            ]);
-        }
+    /* Fonction qui appelle dans la page home tous les produits, tous les catégories et tous les partenaires de la BDD */
+    public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository): Response {
+        return $this->render('boutique/home.html.twig', [
+                    /* Retrouve toutes les valeurs dans l'entité products */
+                    'products' => $productRepository->findAll(),
+                    /* Retrouve toutes les valeurs dans l'entité product_categories */
+                    'product_categories' => $productCategoryRepository->findAll(),
+                    /* Retrouve toutes les valeurs dans l'entité partners */
+                    'partners' => $partnerRepository->findAll()
+        ]);
+    }
 
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request)
-    {
+    /* Fonction qui créer un formulaire et vérifie la requete */
+    public function contact(Request $request) {
+        /* Création du formulaire ContactType */
         $form = $this->createForm(ContactType::class);
+        /* Execution de la requete */
         $form->handleRequest($request);
+        /* renvoie la fonction de création de formulaire sur la vue */
         return $this->render('boutique/contact.html.twig', [
+                    /* Envoie sous le nom 'form' la fonction createView */
                     'form' => $form->createView()
         ]);
     }
@@ -50,33 +57,40 @@ public function home(ProductRepository $productRepository, ProductCategoryReposi
     /**
      * @Route("/about", name="about_us")
      */
-    public function about()
-    {
+    public function about() {
+        /* Renvoie vers la page about_us */
         return $this->render('boutique/about_us.html.twig');
     }
 
     /**
      * @Route("/catalog", name="catalog")
      */
-    public function catalog(ProductRepository $productRepository, Request $request)
-    {
-
+    public function catalog(ProductRepository $productRepository, Request $request,PaginatorInterface $paginator) {
+        /* Impute la nouvelle recherche a la variable */
         $search = new PropertySearch();
+        /* On donne au formulaire la recherche */
         $form = $this->createForm(PropertySearchType::class, $search);
+        /* Execution de la requete */
         $form->handleRequest($request);
-
+        $products = $paginator->paginate(
+            $this->repository->findAllVisible($search),
+            $request->query->getInt('page',1),
+            24
+        );
+        /* renvoie la fonction de recherche et de création sur la vue */
         return $this->render('product/index.html.twig', [
-
-            'products' => $productRepository->findAllVisible($search),
-            'form' => $form->createView(),
+                    /* Envoie sous le nom 'products' la fonction findAllVisible de la variable search */
+                    'products' => $products,
+                    /* Envoie sous le nom 'form' la fonction createView */
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/profil", name="profil")
      */
-    public function profil()
-    {
+    public function profil() {
+        /* Renvoie vers la page profil */
         return $this->render('boutique/profil.html.twig');
     }
 

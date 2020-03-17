@@ -54,9 +54,14 @@ class Product
     private $productCategory;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="integer", length=10, nullable=true)
      */
     private $stars;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -144,9 +149,10 @@ class Product
     public function setProductCategory(?ProductCategory $productCategory): self
     {
         $this->productCategory = $productCategory;
+        return $this;
     }
 
-    public function getStars(): ?string
+    public function getStars(): ?int
     {
         return $this->stars;
     }
@@ -155,6 +161,18 @@ class Product
     {
         $this->stars = $stars;
 
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

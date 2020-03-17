@@ -25,28 +25,55 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un E-mail"
+     * )
+     * @Assert\Email(
+     *      message="Veuillez rentrer un e-mail valide"
+     * )
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="8", minMessage="Veuillez rentrer au moins 8 caractères" )
+     * @Assert\Length(
+     *      min="8", 
+     *      minMessage="Veuillez rentrer au moins 8 caractères",
+     *      max=255,
+     *      maxMessage="Veuillez rentrer moins de 255 caractères"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un nom"
+     * )
+     * @Assert\Length(
+     *      max=255,
+     *      maxMessage="Veuillez rentrer moins de 255 caractères"
+     * )
      */
     private $surname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un prénom"
+     * )
+     * @Assert\Length(
+     *      max=255,
+     *      maxMessage="Veuillez rentrer moins de 255 caractères"
+     * )
      */
     private $first_name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un numéro"
+     * )
      */
     private $phone_number;
 
@@ -59,6 +86,16 @@ class Users implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address_fact;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $coefficient;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $type;
 
     public function getId(): ?int
     {
@@ -113,12 +150,12 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phone_number;
     }
 
-    public function setPhoneNumber(int $phone_number): self
+    public function setPhoneNumber(string $phone_number): self
     {
         $this->phone_number = $phone_number;
 
@@ -179,6 +216,30 @@ class Users implements UserInterface
     public function setAddressFact(?string $address_fact): self
     {
         $this->address_fact = $address_fact;
+
+        return $this;
+    }
+
+    public function getCoefficient(): ?float
+    {
+        return $this->coefficient;
+    }
+
+    public function setCoefficient(float $coefficient): self
+    {
+        $this->coefficient = $coefficient;
+
+        return $this;
+    }
+
+    public function getType(): ?bool
+    {
+        return $this->type;
+    }
+
+    public function setType(?bool $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -1,5 +1,7 @@
 {# héritage du fichier de base twig header et footer #}
 {% extends 'base.html.twig' %}
+{# theme bootstrap  pour les formumaire symfony #}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {# balise title #}
 {% block title %}Catalogue{% endblock %}
 {# balise body #}
@@ -13,39 +15,38 @@
         {% endfor %}
         <div class="top_filter">
             <div class="row">
-                <div class="col-sm-12 col-lg-3">
-                    {# barre de recherche produit #}
-                    <h3>Rechercher</h3>
-                    <form>
-                        <input type="email" name="email" class="input_footer" placeholder="Produit">
-                        <input type="submit" name="send" class="btn-footer " value="Recherche produit">
-                    </form>
-                </div>
                 <div class="col-sm-12 col-lg-9">
                     {# breadcrumb #}
                     <ol class="breadcrumb_stack">
-                        <li><a href="{{path('home')}}" title="Accueil">Accueil ></a></li>
-                        <li><a href="{{path('catalog')}}" title="formations">Catalogue</a></li>
+                        <li><a href="{{ path('home') }}" title="Accueil">Accueil ></a></li>
+                        <li><a href="{{ path('catalog') }}" title="formations">Catalogue</a></li>
                     </ol>
                 </div>
-
             </div>
 
             <div class="row">
-
-
                 <div class="col-sm-12 col-lg-3">
-                    {# Filtrer par prix #}
-                    <h3>Filtrer par prix </h3>
+                    {# Filtres et tri #}
                     <div class="jumbotron">
-                        <div class="container">
+                        <div class="container-fluid">
                             {{ form_start(form) }}
                             <div class="form-row">
-                                <div class="col">
+                                <div class="col-12 mt-1">
+                                    <p>Filtrer par :</p>
                                     {{ form_widget(form.maxPrice) }}
                                 </div>
-                                <div class="col">
-                                    <button type="submit" class="btn btn-primary">OK</button>
+                                <div class="col-12 mt-1">
+                                    {{ form_widget(form.selectedCategory) }}
+                                </div>
+                                <div class="col-12 mt-1">
+                                    {{ form_widget(form.searchbar) }}
+                                </div>
+                                <div class="col-12 mt-1">
+                                    <p>Trier par : </p>
+                                    <p>{{ form_widget(form.orderBy1) }}</p>
+                                </div>
+                                <div class="col-12 mt-1 text-center">
+                                    <button type="submit" class="btn btn-primary">Valider</button>
                                 </div>
                             </div>
                             {{ form_end(form) }}
@@ -70,77 +71,54 @@
 
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-sm-12 col-lg-3">
-                    {# Filtrer par catégorie #}
-                    <h3>Filtrer par catégorie</h3>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Origami papier</a>
-                        <a href="#" class="list-group-item list-group-item-action">Origami serviette</a>
-                        <a href="#" class="list-group-item list-group-item-action">Origami résine</a>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="top_filter mt-3 text-center">
             <div class="row">
-                <div class="col-7">
-                    {# Affichage et tri des produits #}
-                    <p>Affichage de 1–24 sur 982 résultats</p>
-                </div>
-                <div class="col-5">
-                    <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Tri du plus récent au plus ancien</option>
-                            <option>Tri par popularité</option>
-                            <option>Tri prix croissant</option>
-                            <option>Tri prix décroissant</option>
-                        </select>
-                    </div>
+                <div class="col">
+                    <p>Affichage de
+                        {% if products.getTotalItemCount >= 24 %}
+                            24
+                        {% else %}
+                            {{ products.getTotalItemCount }} {# Si il y a moins de 24 produits #}
+                        {% endif %}
+                        produits sur {{ products.getTotalItemCount }} résultats</p>
                 </div>
             </div>
 
-
             <div class="products col-12">
-                <div class="card-columns">
+                <div class="row">
                     {# boucle pour afficher les articles #}
                     {% for product in products %}
+                        <div class="col-4 mt-3">
                             <a class="lien_card" href="{{ path('product_show', {'id': product.id}) }}">
-                                <div class="card card-product">
-                                    <img class="card-img-top" src="{{ product.picture }}" alt="Card image cap">
+                                <div class="card-product">
+                                    <img class="card-img-top" src="{{ product.picture }}"
+                                         alt="{{ product.libelle }} image">
                                     <div class="card-body">
-                                        <p class="card-title">{{ product.libelle }}</p>
-                                        <p class="card-text">{{ product.productCategory.name }}</p>
-                                        <p class="card-text">{{ product.price }}€</p>
+                                        <p class="card-title">{{ product.libelle }}
+                                            - {{ product.productCategory.name }}</p>
+                                        <p class="card-text small">Ajouter
+                                            le {{ product.createdAt | date('d/m/Y') }}</p>
+                                        <p class="card-text text-danger">
+                                            <span class="text-primary">
+                                                {% if product.stars is same as (NULL) %}
+                                                    Pas encore de note
+                                                {% else %}
+                                                    {{ product.stars }} ⭐
+                                                {% endif %}
+                                            </span> - {{ product.price }}€
+                                        </p>
                                     </div>
                                 </div>
                             </a>
+                        </div>
                     {% endfor %}
                 </div>
 
-                <div class="row">
-                    <div class="col-6 text-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                <div class="row mt-3">
+                    <div class="col-6 pagination">
+                        {{ knp_pagination_render(products) }}
                     </div>
                 </div>
             </div>
