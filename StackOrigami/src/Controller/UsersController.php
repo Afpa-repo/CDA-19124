@@ -82,6 +82,11 @@ class UsersController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($user->getType()){   //si le client est un particulier
+                $user->setCoefficient(1);   //met le coefficient initial
+            }else{  //si c'est une entreprise
+                $user->setCoefficient(2);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('profil');

@@ -25,6 +25,9 @@
             {{ form_label(form.phone_number, 'Numéro') }}
             {{ form_widget(form.phone_number, {'attr': {'placeholder' : "Numéro de téléphone", 'class' : "form-control"}}) }}
 
+            {{ form_label(form.type, {'attr': {'class' : "form-check-label"}}) }}
+            {{ form_widget(form.type, {'attr': {'class' : "form-check-input"}}) }}
+
         <button type="submit" class="btn-profil mt-2 mb-4">Inscription</button>
 
         {{ form_end(form) }}

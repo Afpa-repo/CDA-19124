@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class RegistrationType extends AbstractType
 {
@@ -18,6 +19,9 @@ class RegistrationType extends AbstractType
             ->add('surname')
             ->add('first_name')
             ->add('phone_number')
+            ->add('type', CheckboxType::class,[
+                'label' => 'Je suis un particulier',
+                'required' => false])
         ;
     }
 
