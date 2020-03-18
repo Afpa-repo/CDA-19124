@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
+use App\Repository\UsersRepository;
 
 
 class AdministrationController extends AbstractController
@@ -12,11 +13,12 @@ class AdministrationController extends AbstractController
     /**
      * @Route("/administration", name="administration")
      */
-    public function index(ProductRepository $productRepository)
+    public function index(ProductRepository $productRepository, UsersRepository $usersRepository)
     {
         return $this->render('administration/index.html.twig', [
             'controller_name' => 'AdministrationController',
             'product' => $productRepository->findAll(),
+            'users' => $usersRepository->findAll(),
         ]);
     }
     

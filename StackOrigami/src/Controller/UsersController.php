@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Form\UsersAdminType;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,7 +44,7 @@ class UsersController extends AbstractController {
     /* fonction d'affichage des utilisateurs */
     public function new(Request $request): Response {
         $user = new Users();
-        $form = $this->createForm(UsersType::class, $user);
+        $form = $this->createForm(UsersAdminType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +52,7 @@ class UsersController extends AbstractController {
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('add_user', 'Utilisateur ajouté');
+            /*$this->addFlash('add_user', 'Utilisateur ajouté');*/
 
 
             return $this->redirectToRoute('users_index');
@@ -93,6 +94,30 @@ class UsersController extends AbstractController {
         }
 
         return $this->render('users/edit.html.twig', [
+                    'user' => $user,
+                    'form' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/{id}/editAdmin", name="users_editAdmin", methods={"GET","POST"})
+     */
+    /* Fonction d'édition et de verification  de l'utilisateur */
+    public function editAdmin(Request $request, Users $user): Response {
+        $form = $this->createForm(UsersAdminType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($user->getType()){   //si le client est un particulier
+                $user->setCoefficient(1);   //met le coefficient initial
+            }else{  //si c'est une entreprise
+                $user->setCoefficient(2);
+            }
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('users_index');
+        }
+
+        return $this->render('users/edit_admin.html.twig', [
                     'user' => $user,
                     'form' => $form->createView(),
         ]);

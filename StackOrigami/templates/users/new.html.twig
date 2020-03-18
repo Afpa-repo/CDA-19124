@@ -3,9 +3,16 @@
 {% block title %}Ajouter un utilisateur{% endblock %}
 
 {% block body %}
+    <div class="container text-center">
+
+    {% if app.user.role == 1 %}
     <h1>Ajouter un utilisateur</h1>
 
-    {{ include('users/_form.html.twig', {'button_label': 'Ajouter'}) }}
+    {{ include('users/_form_admin.html.twig', {'button_label': 'Ajouter'}) }}
 
-    <a href="{{ path('users_index') }}">Retour à la liste</a>
+    <a class='btn-profil' href="{{ path('users_index') }}">Retour à la liste</a>
+    {% else %}
+    <p>Vous n'êtes pas autorisé à accéder à cette page !</p>
+    {% endif %}
+
 {% endblock %}
