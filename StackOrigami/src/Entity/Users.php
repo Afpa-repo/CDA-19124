@@ -87,6 +87,11 @@ class Users implements UserInterface
      */
     private $address_fact;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $role;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -206,6 +211,18 @@ class Users implements UserInterface
     public function setAddressFact(?string $address_fact): self
     {
         $this->address_fact = $address_fact;
+
+        return $this;
+    }
+
+    public function getRole(): ?int
+    {
+        return $this->role;
+    }
+
+    public function setRole(?int $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

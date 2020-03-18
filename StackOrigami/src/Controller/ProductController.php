@@ -43,7 +43,7 @@ class ProductController extends AbstractController {
             $entityManager->persist($product);
             $entityManager->flush();
 
-            return $this->redirectToRoute('catalog');
+            return $this->redirectToRoute('manager_product');
         }
 
         return $this->render('product/new.html.twig', [
@@ -73,7 +73,7 @@ class ProductController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('manager_product');
         }
 
         return $this->render('product/edit.html.twig', [
