@@ -88,9 +88,21 @@ class Users implements UserInterface
     private $address_fact;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $coefficient;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $type;
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $role;
+
+    
 
     public function getId(): ?int
     {
@@ -215,6 +227,30 @@ class Users implements UserInterface
         return $this;
     }
 
+    public function getCoefficient(): ?float
+    {
+        return $this->coefficient;
+    }
+
+    public function setCoefficient(float $coefficient): self
+    {
+        $this->coefficient = $coefficient;
+
+        return $this;
+    }
+
+    public function getType(): ?bool
+    {
+        return $this->type;
+    }
+
+    public function setType(?bool $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     public function getRole(): ?int
     {
         return $this->role;
@@ -226,6 +262,7 @@ class Users implements UserInterface
 
         return $this;
     }
+
 
 
 }
