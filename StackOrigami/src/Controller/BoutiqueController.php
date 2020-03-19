@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Repository\ProductRepository;
 use App\Repository\ProductCategoryRepository;
 use App\Repository\PartnerRepository;
+use App\Repository\OrderDetailsRepository;
 
 class BoutiqueController extends AbstractController {
 
@@ -27,14 +28,16 @@ class BoutiqueController extends AbstractController {
      * @Route("/", name="home", methods={"GET"})
      */
     /* Fonction qui appelle dans la page home tous les produits, tous les catégories et tous les partenaires de la BDD */
-    public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository): Response {
+    public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository, OrderDetailsRepository $orderdetails): Response {
         return $this->render('boutique/home.html.twig', [
                     /* Retrouve toutes les valeurs dans l'entité products */
                     'products' => $productRepository->findAll(),
                     /* Retrouve toutes les valeurs dans l'entité product_categories */
                     'product_categories' => $productCategoryRepository->findAll(),
                     /* Retrouve toutes les valeurs dans l'entité partners */
-                    'partners' => $partnerRepository->findAll()
+                    'partners' => $partnerRepository->findAll(),
+                    /* Retrouve les meilleurs ventes */
+                    'bestsales' => $orderdetails->findBestSales(),
         ]);
     }
 

@@ -71,6 +71,13 @@
                     <div class="most_sale text-center col-12 mt-5">
                         <div class="row">
                             <h2 class="col-6" >Nos meilleures ventes</h2>
+                            <div class="most_sale col-12 mt-5">
+                            {% for produit in bestsales %}
+                            {{ produit.Total }}
+                            {{ produit.ID }}
+                            {{ produit.ProductName }}
+                            {% endfor %}
+                            </div>
                             <h2 class="col-6">Nos partenaires</h2>
                         </div>
                         <div class="row">
