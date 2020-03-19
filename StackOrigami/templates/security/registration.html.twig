@@ -6,6 +6,11 @@
 
 {% block body %}
 
+{% if app.user %}
+    <p>Vous êtes déjà connecté</p>
+    <a href="{{ path('profil') }}" class="btn-profil mt-2 mb-4">Profil</a>
+{% else %}
+
     <div class="container text-center">
         <h1>Inscription</h1>
 
@@ -33,4 +38,5 @@
         {{ form_end(form) }}
 
     </div>
+    {% endif %}
 {% endblock %}

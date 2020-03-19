@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% if app.user %}
+    <p>Vous êtes déjà connecté</p>
+    <a href="{{ path('profil') }}" class="btn-profil mt-2 mb-4">Profil</a>
+{% else %}
 
     <div class="container text-center">
 
@@ -24,5 +28,6 @@
         </form>
             <p> Pas de compte ? <a href="{{ path('security_registration') }}">Inscrivez-vous</p>
     </div>
+{% endif %}
 
 {% endblock %}
