@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\OrderDetails;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method OrderDetails|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,33 @@ class OrderDetailsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, OrderDetails::class);
     }
+
+     /**
+     * @return QueryBuilder
+     */
+    public function findSoldStat(): QueryBuilder
+    {
+        return $query = $this->createQueryBuilder('s')
+            ->select('SUM(s.Quantity) as Total, p.id as ID, p.libelle as ProductName')
+            ->join('s.Product','p')
+            ->groupBy('p.id')
+            ->orderBy('Total', 'DESC');
+    }
+
+    /**
+     *
+     */
+    public function findBestSales()
+    {
+        $bestsales = $this->findSoldStat()
+            ->setMaxResults(3);
+
+        return $bestsales->getQuery()
+            ->getResult();
+    }
+
+
+
 
     // /**
     //  * @return OrderDetails[] Returns an array of OrderDetails objects
