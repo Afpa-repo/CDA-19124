@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\OrderDetailsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,9 +57,10 @@ class ProductController extends AbstractController {
      * @Route("/{id}", name="product_show", methods={"GET"})
      */
     /* Fonction d'affichage des catégories  */
-    public function show(Product $product): Response {
+    public function show(Product $product, OrderDetailsRepository $orderdetails): Response {
         return $this->render('product/show.html.twig', [
                     'product' => $product,
+                    'monthlysales' => $orderdetails->findMonthlySales($product->getId()),
         ]);
     }
 

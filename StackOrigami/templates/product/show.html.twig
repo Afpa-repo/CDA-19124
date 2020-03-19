@@ -67,6 +67,10 @@
 
                                     Sed quis lectus auctor, gravida augue quis, condimentum est. Donec eu hendrerit mi. Praesen
                                     t eget placerat nisi, sit amet iaculis mauris. Phasellus dictum libero sit amet mollis rhoncus. Nulla vene vehi
+                                    {% for produit in monthlysales %}
+                                        {{ produit.Total }}
+                                    {{ produit.ProductName }} {{ produit.Mois }}
+                                        {% endfor %}
                                 </div>
                             </div>
                         </div>

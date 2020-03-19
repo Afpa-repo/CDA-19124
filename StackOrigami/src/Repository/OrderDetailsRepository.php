@@ -44,6 +44,24 @@ class OrderDetailsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findMonthlySales($id)
+    {
+        $monthlysales = $this->createQueryBuilder('s')
+            ->select('SUM(s.Quantity) as Total, p.id as ID, p.libelle as ProductName, MONTH(o.Date) as Mois')
+            ->join('s.Product', 'p')
+            ->Join('s.Orders', 'o')
+            ->where('s.Orders = o.id and p.id = :id')
+            ->setParameter(':id', $id)
+            ->groupBy('p.id')
+            ->addGroupBy('Mois');
+
+        return $monthlysales->getQuery()
+            ->getResult();
+    }
 
 
 
