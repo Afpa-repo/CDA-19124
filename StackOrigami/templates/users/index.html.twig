@@ -9,6 +9,7 @@
         <div class="alert alert-warning" role="alert">
             Veuillez vous connecter pour accéder à cette page !
         </div>
+        <a href="{{ path('security_login')}}" class="btn-profil">Connexion</a>
     {% else %}
     {% if app.user.role == 1 %}
         <h1>Liste des utilisateurs</h1>
@@ -56,6 +57,7 @@
 
         {% else %}
         <p>Vous n'êtes pas autorisé à accéder à cette page !</p>
+        <a href="{{ path('home')}}" class="btn-profil">Page d'accueil</a>
         {% endif %}
     {% endif %}
     </div>
