@@ -58,9 +58,31 @@ class ProductController extends AbstractController {
      */
     /* Fonction d'affichage des catégories  */
     public function show(Product $product, OrderDetailsRepository $orderdetails): Response {
+        $productSells=$orderdetails->findMonthlySales($product->getId());
+    //dd($productSells);
+
+
+        $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\LineChart();
+        $chart->getData()->setArrayToDataTable([
+            ['Mois','Nombre de ventes'],
+            ["0",0],
+            [$productSells[0]['Mois'],intval($productSells[0]['Total'])],
+            [$productSells[1]['Mois'],$productSells[1]['Total']],
+            //[$productSells[2]['Mois'],$productSells[2]['Total']]
+            ]);
+            $chart->getOptions()->getChart()
+            ->setTitle('Nombre de ventes par mois');
+        $chart->getOptions()
+            ->setHeight(400)
+            ->setWidth(600);
+    //$chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
+        //->setColors('#1b9e77','#d95f02','#7570b3')
+    $chart->getOptions()->getVAxis()->setMinValue(0);
+        
         return $this->render('product/show.html.twig', [
                     'product' => $product,
                     'monthlysales' => $orderdetails->findMonthlySales($product->getId()),
+                    'chart' => $chart,
         ]);
     }
 
