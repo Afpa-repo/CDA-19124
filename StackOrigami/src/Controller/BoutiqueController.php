@@ -35,10 +35,10 @@ class BoutiqueController extends AbstractController {
 
         $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
         $chart->getData()->setArrayToDataTable([
-            ['Produit', 'Vents total'],
-            [$jeej[2]["ProductName"], $jeej[2]["Total"]],
-            [$jeej[1]["ProductName"], $jeej[1]["Total"]],
-            [$jeej[0]["ProductName"], $jeej[0]["Total"]],
+            ['Produit', 'Vents total',[ 'role' => 'style' ]],
+            [$jeej[2]["ProductName"], $jeej[2]["Total"],["color: d95f02"]],
+            [$jeej[1]["ProductName"], $jeej[1]["Total"],"#7570b3"],
+            [$jeej[0]["ProductName"], $jeej[0]["Total"],"#1b9e77"],
         ]);
 
     $chart->getOptions()->getChart()
@@ -48,7 +48,7 @@ class BoutiqueController extends AbstractController {
         ->setBars('vertical')
         ->setHeight(400)
         ->setWidth(600)
-        ->setColors('#1b9e77','#d95f02','#7570b3')
+        //->setColors('#1b9e77','#d95f02','#7570b3')
         ->getVAxis()
         ->setFormat('decimal');
 

@@ -38,6 +38,7 @@
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.phoneNumber }}</td>
                         <td>{% if user.type %} Particulier {% else %} Professionnel {% endif %}</td>
+                        <td></td>
                         <td>{% if user.role == 1 %} Oui {% endif %}</td>
                         <td>
                             <a class="btn btn-warning" href="{{ path('users_editAdmin', {'id': user.id}) }}">Modifier</a>

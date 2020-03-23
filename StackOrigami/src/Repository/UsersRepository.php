@@ -19,6 +19,20 @@ class UsersRepository extends ServiceEntityRepository
         parent::__construct($registry, Users::class);
     }
 
+     /**
+     * @return QueryBuilder
+     */
+    public function allbills(): QueryBuilder {
+        return $query = $this->createQueryBuilder('b')
+                ->select('SUM(b.bill) AS Total, o.user_id_id AS userID')
+                // ->from('orders')
+                ->join('b.Orders','o')
+                //->where('o.users_id_id = b.id')
+                ->groupBy('o.users_id_id')
+                ->orderBy('Total','DESC');
+            }   
+
+
     // /**
     //  * @return Users[] Returns an array of Users objects
     //  */
