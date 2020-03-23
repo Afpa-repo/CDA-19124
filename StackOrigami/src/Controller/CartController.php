@@ -54,7 +54,8 @@ class CartController extends AbstractController {
         //ajoute un champs Fcount a la session avec le nombre de produit total dans le panier 
         $session->set('Fcount', $count);
         $session->set('FullCart',$panierWithData);
-         // Si Le panier est valider alors vide le panier .
+        $session->set('Total',$total);
+        // Si Le panier est valider alors vide le panier .
       if($session->get('Validate',"false")=="true"){
             unset($panierWithData);
             $session->remove('Validate');
@@ -138,7 +139,8 @@ class CartController extends AbstractController {
         /*** Rajouter les valeurs ***/
         $order->setBill('jeej');
         $order->setDeliveryForm('jeej');
-        
+        $order->setTotal($session->get('Total',0));
+        $order;
          $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($order);
             $entityManager->flush();

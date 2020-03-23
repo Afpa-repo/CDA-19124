@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Users|null find($id, $lockMode = null, $lockVersion = null)
@@ -24,13 +25,23 @@ class UsersRepository extends ServiceEntityRepository
      */
     public function allbills(): QueryBuilder {
         return $query = $this->createQueryBuilder('b')
-                ->select('SUM(b.bill) AS Total, o.user_id_id AS userID')
+                ->select('SUM(b.total) AS Total, o.user_id_id AS userID')
                 // ->from('orders')
                 ->join('b.Orders','o')
                 //->where('o.users_id_id = b.id')
                 ->groupBy('o.users_id_id')
                 ->orderBy('Total','DESC');
             }   
+
+    /**
+     *
+     */
+    public function users_total()
+    {
+        return $this->allbills()->getQuery()
+            ->getResult();
+    }
+
 
 
     // /**

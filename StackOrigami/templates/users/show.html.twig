@@ -45,13 +45,17 @@
                 <td>{% if user.role == 1 %}
                 Oui {% endif %}</td>
             </tr>
+            <tr>
+                <th>Total des dépenses</th>
+                <td>{{ total.Total }} €</td>
+            </tr>
         </tbody>
     </table>
 
     <a class="btn-profil" href="{{ path('users_index') }}">Retour</a>
-    
-    <a class="btn btn-warning" href="{{ path('users_editAdmin', {'id': user.id}) }}">Modifier</a>
-
+    <p>
+    <a class="btn btn-warning mt-5" href="{{ path('users_editAdmin', {'id': user.id}) }}">Modifier</a>
+    </p>
     {{ include('users/_delete_form.html.twig') }}
     {% else %}
     

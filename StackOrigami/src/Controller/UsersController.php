@@ -32,10 +32,23 @@ class UsersController extends AbstractController {
      * @Route("/", name="users_index", methods={"GET"})
      */
     /* Fonction de recherche des utilisateurs */
-    public function index(UsersRepository $usersRepository): Response {
+    public function index(UsersRepository $usersRepository, OrdersRepository $ordersRepository): Response {
+        //dd($ordersRepository->usersTotal());
+        //dd($ordersRepository->TotalID(3));
+        //$tab=new Array();
+        /*
+        $i=0;
+        foreach($usersRepository->findAll() as $user ){
+            $tab[
+            $i++;
+        }
+        $tab[0]=$usersRepository->findAll();
+        $tab[1]=*/
+        //dd($ordersRepository->usersTotal());
         return $this->render('users/index.html.twig', [
                     'users' => $usersRepository->findAll(),
-                    'allbills' => $usersRepository->allbills(),
+                    /*'allbills' => $ordersRepository->usersTotal(),
+                    */
         ]);
     }
 
@@ -69,9 +82,12 @@ class UsersController extends AbstractController {
      * @Route("/{id}", name="users_show", methods={"GET"})
      */
     /* Fonction d'affichage de l'utilisateur */
-    public function show(Users $user): Response {
+    public function show(Users $user,OrdersRepository $ordersRepository): Response {
+        $total=$ordersRepository->TotalID($user->getID());
+        //dd($total[0]);
         return $this->render('users/show.html.twig', [
                     'user' => $user,
+                    'total' => $total[0]
         ]);
     }
 
