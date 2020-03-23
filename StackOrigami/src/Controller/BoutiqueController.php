@@ -29,6 +29,31 @@ class BoutiqueController extends AbstractController {
      */
     /* Fonction qui appelle dans la page home tous les produits, tous les catégories et tous les partenaires de la BDD */
     public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository, OrderDetailsRepository $orderdetails): Response {
+        $jeej=$orderdetails->findBestSales();
+        //dd($jeej[1]["Total"]);
+
+
+        $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
+        $chart->getData()->setArrayToDataTable([
+            ['Produit', 'Vents total'],
+            [$jeej[2]["ProductName"], $jeej[2]["Total"]],
+            [$jeej[1]["ProductName"], $jeej[1]["Total"]],
+            [$jeej[0]["ProductName"], $jeej[0]["Total"]],
+        ]);
+
+    $chart->getOptions()->getChart()
+        ->setTitle('Meilleurs ventes')
+        ->setSubtitle('');
+    $chart->getOptions()
+        ->setBars('vertical')
+        ->setHeight(400)
+        ->setWidth(600)
+        ->setColors('#1b9e77','#d95f02','#7570b3')
+        ->getVAxis()
+        ->setFormat('decimal');
+
+
+
         return $this->render('boutique/home.html.twig', [
                     /* Retrouve toutes les valeurs dans l'entité products */
                     'products' => $productRepository->findAll(),
@@ -38,6 +63,8 @@ class BoutiqueController extends AbstractController {
                     'partners' => $partnerRepository->findAll(),
                     /* Retrouve les meilleurs ventes */
                     'bestsales' => $orderdetails->findBestSales(),
+                    /*Retrouve le graphique*/
+                    'chart' => $chart,
         ]);
     }
 

@@ -32,7 +32,8 @@
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
         "symfony/serializer": "5.0.*",
-        "beberlei/doctrineextensions": "^1.2"
+        "beberlei/doctrineextensions": "^1.2",
+        "cmen/google-charts-bundle": "^3.2"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

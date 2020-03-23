@@ -71,17 +71,14 @@
                     <div class="most_sale text-center col-12 mt-5">
                         <div class="row">
                             <h2 class="col-6" >Nos meilleures ventes</h2>
-                            <div class="most_sale col-12 mt-5">
-                            {% for produit in bestsales %}
-                            {{ produit.Total }}
-                            {{ produit.ID }}
-                            {{ produit.ProductName }}
-                            {% endfor %}
-                            </div>
                             <h2 class="col-6">Nos partenaires</h2>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-lg-3">
+                            <div id="div_chart" class="most_sale col-6 mt-5"></div>
+                            </div>
+                            </div>
+                            <div class="row">
                                 <a href="">
                                     <img class="saler lien_card" src="images/51IE-V8GE4L-removebg-preview.svg')">
                                 </a>
@@ -113,7 +110,10 @@
                     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
                     <!-- Swiper JS -->
                     <script src="../package/js/swiper.min.js"></script>
-
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                        {{ gc_draw(chart, 'div_chart') }}
+                    </script>
                     <script src="{{ asset('js/swiperScript.js') }}"></script>
 
                 {% endblock %}
