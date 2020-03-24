@@ -40,6 +40,7 @@
                         <td>{% if user.type %} Particulier {% else %} Professionnel {% endif %}</td>
                         <td>{% if user.role == 1 %} Oui {% endif %}</td>
                         <td>
+							<a class="btn btn-success" href="{{ path('users_show', {'id': user.id}) }}">Voir</a>
                             <a class="btn btn-warning" href="{{ path('users_editAdmin', {'id': user.id}) }}">Modifier</a>
                         </td>
                     </tr>
