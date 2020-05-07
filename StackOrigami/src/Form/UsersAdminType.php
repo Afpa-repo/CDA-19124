@@ -22,6 +22,7 @@ class UsersAdminType extends AbstractType
                 'label' => 'C\'est un particulier',
                 'required' => false])
             ->add('role')
+            ->add('siret')
         ;
     }
 

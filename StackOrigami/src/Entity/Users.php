@@ -102,7 +102,11 @@ class Users implements UserInterface
      */
     private $role;
 
-    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $siret;
+
 
     public function getId(): ?int
     {
@@ -259,6 +263,18 @@ class Users implements UserInterface
     public function setRole(?int $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(?string $siret): self
+    {
+        $this->siret = $siret;
 
         return $this;
     }

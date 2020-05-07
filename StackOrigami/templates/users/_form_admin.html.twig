@@ -16,10 +16,14 @@
 
     {{ form_label(form.role, 'Droits d\'administrateur') }}
     {{ form_widget(form.role, {'attr': {'placeholder' : "role (1 pour oui)", 'class' : "form-control"}}) }}
-
     
     {{ form_label(form.type, {'attr': {'class' : "form-check-label"}}) }}
     {{ form_widget(form.type, {'attr': {'class' : "form-check-input"}}) }}
+
+    <div id="siret">
+    {{ form_label(form.siret, 'Siret') }}
+    {{ form_widget(form.siret, {'attr': {'placeholder' : "numéro de siret", 'class' : "form-control"}}) }}
+    </div>
 
     <button class="btn btn-success mb-5 mt-3">{{ button_label|default('Ajouter l\utilisateur') }}</button>
 {{ form_end(form) }}

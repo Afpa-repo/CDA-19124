@@ -33,6 +33,11 @@
             {{ form_label(form.type, {'attr': {'class' : "form-check-label"}}) }}
             {{ form_widget(form.type, {'attr': {'class' : "form-check-input"}}) }}
 
+            <div id="siret">
+            {{ form_label(form.siret, 'Siret') }}
+            {{ form_widget(form.siret, {'attr': {'placeholder' : "numéro de siret", 'class' : "form-control"}}) }}
+            </div>
+
         <button type="submit" class="btn-profil mt-2 mb-4">Inscription</button>
 
         {{ form_end(form) }}

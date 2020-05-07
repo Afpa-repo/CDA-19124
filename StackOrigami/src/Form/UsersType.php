@@ -21,6 +21,7 @@ class UsersType extends AbstractType
             ->add('type', CheckboxType::class,[
                 'label' => 'Je suis un particulier',
                 'required' => false])
+            ->add('siret')
         ;
     }
 

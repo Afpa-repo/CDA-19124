@@ -40,10 +40,17 @@
                 {% endif %}
                 </td>
             </tr>
+            {% if user.type != 1 %}
+                <th>Siret</th>
+                <td>{{ user.siret }}</td>
+            {% endif %}
             <tr>
                 <th>Droits d'administration</th>
                 <td>{% if user.role == 1 %}
-                Oui {% endif %}</td>
+                Oui
+                {% else %}
+                Non
+                {% endif %}</td>
             </tr>
             <tr>
                 <th>Total des dépenses</th>
