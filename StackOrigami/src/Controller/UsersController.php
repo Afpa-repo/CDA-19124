@@ -58,7 +58,7 @@ class UsersController extends AbstractController {
      * @Route("/new", name="users_new", methods={"GET","POST"})
      */
     /* fonction d'affichage des utilisateurs */
-    public function new(Request $request,UserPasswordEncoderInterface $encoder): Response {
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, UsersRepository $usersRepository): Response {
         $user = new Users();
         $form = $this->createForm(UsersNewType::class, $user);
         $form->handleRequest($request);
@@ -72,6 +72,20 @@ class UsersController extends AbstractController {
                 $user->setCoefficient(1);   //met le coefficient initial
             }else{  //si c'est une entreprise
                 $user->setCoefficient(2);
+            }
+            /* Associe l'utilisateur à un commercial*/
+            if($user->getType()){   //si le client est un particulier
+                $user->setCoefficient(1);   //met le coefficient initial
+                if($usersRepository->findByRole(2) != []){
+                    $commercial = $usersRepository->findByRole(2)[0];   //récupèle le premier commercial 
+                    $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
+                }
+            }else{  //si c'est une entreprise
+                $user->setCoefficient(2);
+                if($usersRepository->findByRole(3) != []){
+                    $commercial = $usersRepository->findByRole(3)[0];   //récupèle le premier commercial 
+                    $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
+                }
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
