@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * JavaFX App
@@ -23,13 +24,20 @@ public class App extends Application {
         user.setAdress("Addresse");
         user.setType(1);
         user.setMail("mail@ok.fr");
-        user.setCommercial(10);
+        user.setCommercial(10); //mettre un user existant
         user.setPassword("mdp");
         user.setPhone("026516416");
         user.setCoefficient(1);
         user.setSiret("");
         UserDAO userDAO = new UserDAO();
-        userDAO.Insert(user);
+        userDAO.Insert_user(user);
+        /***
+        OrderDAO orderDAO = new OrderDAO();
+        Order order = new Order();
+        order = orderDAO.Find_order(31);    //mettre une commande existante
+        System.out.println(order.getTotal());
+         */
+
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();

@@ -8,7 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class UserDAO extends BaseDAO{
+    /*
     private static UserDAO userDAO;
     private BoneCP connectionPool;
 
@@ -49,17 +50,17 @@ public class UserDAO {
     public Connection getConnection() throws SQLException {
         return this.connectionPool.getConnection();
     }
-
+*/
     /**
-     * <b>Insert</b> est une méthode qui ajoute un client dans la base de donnée
+     * <b>Insert_user</b> est une méthode qui ajoute un client dans la base de donnée
      * @param user l'utilisateur à ajouter
      */
-    public void Insert(User user) {
+    public void Insert_user(User user) {
         int id=1;   //initialide l'id du client à ajouter
         /*Récupère le dernier id*/
 
         try{
-            Connection con = userDAO.getInstance().getConnection();
+            Connection con = baseDAO.getInstance().getConnection();
             Statement stm = con.createStatement();
             ResultSet result = stm.executeQuery("SELECT MAX(id) as id FROM users");
             if(result.next()){  //s'il y a un résultat
@@ -73,7 +74,7 @@ public class UserDAO {
 
         /*ajoute le client à la base de donnée*/
         try {
-            Connection con = userDAO.getInstance().getConnection();
+            Connection con = baseDAO.getInstance().getConnection();
             PreparedStatement stm = con.prepareStatement("INSERT INTO users (mail,surname,first_name,phone_number,address_fact,type,siret,commercial_id,id,password,coefficient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             //ajoute les valeurs à la requête
@@ -102,12 +103,12 @@ public class UserDAO {
     }
 
     /**
-     * <b>Update</b> est une méthode qui met à jour un client dans la base de donnée
+     * <b>Update_user</b> est une méthode qui met à jour un client dans la base de donnée
      * @param user l'utilisateur à modifier
      */
-    public void Update(User user) {
+    public void Update_user(User user) {
         try {
-            Connection con = userDAO.getInstance().getConnection();
+            Connection con = baseDAO.getInstance().getConnection();
 
             PreparedStatement stm = con.prepareStatement("UPDATE client SET mail = ?, surname = ?,first_name = ?, phone_number = ?, address_fact = ?, type = ?,siret = ?,commercial_id = ? WHERE id=?");
 
@@ -134,12 +135,12 @@ public class UserDAO {
     }
 
     /**
-     * <b>Delete</b> est une méthode qui supprime un client de la base de donnée
+     * <b>Delete_user</b> est une méthode qui supprime un client de la base de donnée
      * @param user  l'utilisateur à supprimer
      */
-    public void Delete(User user) {
+    public void Delete_user(User user) {
         try{
-            Connection con = userDAO.getInstance().getConnection();
+            Connection con = baseDAO.getInstance().getConnection();
             PreparedStatement stm = con.prepareStatement("DELETE FROM users WHERE id=?");
             stm.setInt(1,user.getId());
             stm.execute();
@@ -154,19 +155,18 @@ public class UserDAO {
     }
 
     /**
-     * <b>Find</b> est une méthode qui récupère un client de la base de donnée à partir de son id
+     * <b>Find_user</b> est une méthode qui récupère un client de la base de donnée à partir de son id
      * @param id l'identifiant du client
      * @return le client
      */
-    public User Find(int id)     {
+    public User Find_user(int id)     {
         User user=new User();
         try {
-            Connection con = userDAO.getInstance().getConnection();
+            Connection con = baseDAO.getInstance().getConnection();
 
             PreparedStatement stm = con.prepareStatement("SELECT * FROM users WHERE id=?");
             stm.setInt(1,id);
             ResultSet result = stm.executeQuery();
-//mail,surname,first_name,phone_number,address_fact,type,siret,commercial_id
             if (result.next()) {
                 user.setId(result.getInt("id"));
                 user.setSurname(result.getString("surname"));
@@ -193,14 +193,14 @@ public class UserDAO {
     }
 
     /**
-     * <b>List</b> est une méthode qui retourne la liste de touts les utilisateurs dans la base de donnée
+     * <b>List_user</b> est une méthode qui retourne la liste de touts les utilisateurs dans la base de donnée
      * @return  la liste des utilisateurs
      */
-    public List<User> List()     {
+    public List<User> List_user(){
         List<User> resultat = new ArrayList<User>();
 
         try {
-            Connection con = userDAO.getInstance().getConnection();
+            Connection con = baseDAO.getInstance().getConnection();
             Statement stm = con.createStatement();
             ResultSet result = stm.executeQuery("SELECT * FROM users WHERE ");
             while (result.next()) {
@@ -222,11 +222,10 @@ public class UserDAO {
             result.close();
             con.close();
         } catch (IOException | SQLException e) {
-            System.out.println("Erreur dans la lecture de 'client'");
+            System.out.println("Erreur dans la lecture de 'users'");
             System.out.println(e.getMessage());
         }
         return resultat;
     }
-
 
 }
