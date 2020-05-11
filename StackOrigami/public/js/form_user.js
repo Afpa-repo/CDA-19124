@@ -5,6 +5,7 @@ $(document).ready(function(){
     } else {        //si c'est une entreprise
         $('#siret').show();    //affiche le siret
     }
+    var choice;
     
     /* pour la page admin  */
     $('input[id=users_admin_type]').click(function(){   //quand le type change
@@ -33,6 +34,16 @@ $(document).ready(function(){
         if(choice){   //si le module est éteint
             $('#siret').hide(); //bloque le champ siret
             $('#registration_siret').val('');   //supprime l'éventuel texte dans le champ
+        }else{  //si il est allumé
+            $('#siret').show();    //débloque le champ
+        }
+    });
+
+    /* pour l'ajout d'utilisateur */
+    $('input[id=users_new_type]').click(function(){ //quand le type change
+        choice = $('input[id=users_new_type').is(':checked')  //récupère la valeur cochée
+        if(choice){   //si le module est éteint
+            $('#siret').hide(); //bloque le champ siret
         }else{  //si il est allumé
             $('#siret').show();    //débloque le champ
         }
