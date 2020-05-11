@@ -45,11 +45,15 @@
                 <td>{{ user.siret }}</td>
             {% endif %}
             <tr>
-                <th>Droits d'administration</th>
+                <th>Rôle</th>
                 <td>{% if user.role == 1 %}
-                Oui
+                Administrateur
+                {% elseif user.role == 2 %}
+                Commercial particulier
+                {% elseif user.role == 2 %}
+                Commercial entreprise
                 {% else %}
-                Non
+                Client
                 {% endif %}</td>
             </tr>
             <tr>

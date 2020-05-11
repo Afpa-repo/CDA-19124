@@ -25,7 +25,7 @@
                         <th>Prénom</th>
                         <th>Numéro</th>
                         <th>Type</th>
-                        <th>Administrateur</th>
+                        <th>Rôle</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -38,7 +38,11 @@
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.phoneNumber }}</td>
                         <td>{% if user.type %} Particulier {% else %} Professionnel {% endif %}</td>
-                        <td>{% if user.role == 1 %} Oui {% endif %}</td>
+                        <td>{% if user.role == 1 %} Administrateur
+                        {% elseif user.role == 2 %} Commercial Particulier
+                        {% elseif user.role == 3 %} Commercial Entreprise
+                        {% else %} Client
+                        {% endif %}</td>
                         <td>
 							<a class="btn btn-success" href="{{ path('users_show', {'id': user.id}) }}">Voir</a>
                             <a class="btn btn-warning" href="{{ path('users_editAdmin', {'id': user.id}) }}">Modifier</a>

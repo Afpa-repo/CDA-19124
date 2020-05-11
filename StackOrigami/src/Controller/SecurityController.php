@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\RegistrationType;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ class SecurityController extends AbstractController {
      * @Route("/signup", name="security_registration")
      */
     /* Fonction de création de nouvel utilisateur avec vérification */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, UsersRepository $usersRepository) {
         $user = new Users();
 
         $form = $this->createForm(RegistrationType::class, $user);
@@ -34,8 +35,16 @@ class SecurityController extends AbstractController {
             $user->setPassword($hash);
             if($user->getType()){   //si le client est un particulier
                 $user->setCoefficient(1);   //met le coefficient initial
+                if($usersRepository->findByRole(2) != []){
+                    $commercial = $usersRepository->findByRole(2)[0];   //récupèle le premier commercial 
+                    $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
+                }
             }else{  //si c'est une entreprise
                 $user->setCoefficient(2);
+                if($usersRepository->findByRole(3) != []){
+                    $commercial = $usersRepository->findByRole(3)[0];   //récupèle le premier commercial 
+                    $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
+                }
             }
             $manager->persist($user);
             $manager->flush();

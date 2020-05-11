@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -36,6 +38,9 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message="Veuillez rentrer un mot de passe"
+     * )
      * @Assert\Length(
      *      min="8", 
      *      minMessage="Veuillez rentrer au moins 8 caractères",
@@ -80,11 +85,6 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $address_ship;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $address_fact;
 
     /**
@@ -106,6 +106,21 @@ class Users implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $siret;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="clients")
+     */
+    private $commercial;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="commercial")
+     */
+    private $clients;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -207,18 +222,6 @@ class Users implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function getAddressShip(): ?string
-    {
-        return $this->address_ship;
-    }
-
-    public function setAddressShip(?string $address_ship): self
-    {
-        $this->address_ship = $address_ship;
-
-        return $this;
-    }
-
     public function getAddressFact(): ?string
     {
         return $this->address_fact;
@@ -275,6 +278,49 @@ class Users implements UserInterface
     public function setSiret(?string $siret): self
     {
         $this->siret = $siret;
+
+        return $this;
+    }
+
+    public function getCommercial(): ?self
+    {
+        return $this->commercial;
+    }
+
+    public function setCommercial(?self $commercial): self
+    {
+        $this->commercial = $commercial;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getClients(): Collection
+    {
+        return $this->clients;
+    }
+
+    public function addClient(self $client): self
+    {
+        if (!$this->clients->contains($user)) {
+            $this->clients[] = $user;
+            $user->setCommercial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(self $user): self
+    {
+        if ($this->clients->contains($user)) {
+            $this->clients->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getCommercial() === $this) {
+                $user->setCommercial(null);
+            }
+        }
 
         return $this;
     }

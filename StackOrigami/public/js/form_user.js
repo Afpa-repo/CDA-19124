@@ -11,7 +11,6 @@ $(document).ready(function(){
         choice = $('input[id=users_admin_type').is(':checked')  //récupère la valeur cochée
         if(choice){   //si le module est éteint
             $('#siret').hide(); //bloque le champ siret
-            $('#users_admin_siret').val('');   //supprime l'éventuel texte dans le champ
         }else{  //si il est allumé
             $('#siret').show();    //débloque le champ
         }

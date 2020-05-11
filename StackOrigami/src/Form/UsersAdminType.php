@@ -17,7 +17,7 @@ class UsersAdminType extends AbstractType
             ->add('surname')
             ->add('first_name')
             ->add('phone_number')
-            ->add('address_ship')
+            ->add('address_fact')
             ->add('type', CheckboxType::class,[
                 'label' => 'C\'est un particulier',
                 'required' => false])

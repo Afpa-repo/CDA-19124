@@ -3,12 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Users;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class UsersType extends AbstractType
+class UsersNewType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -16,11 +17,13 @@ class UsersType extends AbstractType
             ->add('mail')
             ->add('surname')
             ->add('first_name')
+            ->add('password', PasswordType::class)
             ->add('phone_number')
             ->add('address_fact')
             ->add('type', CheckboxType::class,[
-                'label' => 'Je suis un particulier',
+                'label' => 'C\'est un particulier',
                 'required' => false])
+            ->add('role')
             ->add('siret')
         ;
     }

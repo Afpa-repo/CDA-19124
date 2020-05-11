@@ -42,6 +42,18 @@ class UsersRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Retourne les users ayant le role demandé
+     */
+    public function findByRole($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.role = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 
     // /**

@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Form\UsersNewType;
 use App\Form\UsersAdminType;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,6 +46,7 @@ class UsersController extends AbstractController {
         $tab[0]=$usersRepository->findAll();
         $tab[1]=*/
         //dd($ordersRepository->usersTotal());
+        //dd($usersRepository->findByRole(1));
         return $this->render('users/index.html.twig', [
                     'users' => $usersRepository->findAll(),
                     /*'allbills' => $ordersRepository->usersTotal(),
@@ -56,12 +58,21 @@ class UsersController extends AbstractController {
      * @Route("/new", name="users_new", methods={"GET","POST"})
      */
     /* fonction d'affichage des utilisateurs */
-    public function new(Request $request): Response {
+    public function new(Request $request,UserPasswordEncoderInterface $encoder): Response {
         $user = new Users();
-        $form = $this->createForm(UsersAdminType::class, $user);
+        $form = $this->createForm(UsersNewType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /* Impute l'encodage qui sera utilisé pour crypter le mot de passe utilisateur dans la bdd */
+            $hash = $encoder->encodePassword($user, $user->getPassword());
+            /* Cryptage du mot de passe que l'utilisateur aura entré */
+            $user->setPassword($hash);
+            if($user->getType()){   //si le client est un particulier
+                $user->setCoefficient(1);   //met le coefficient initial
+            }else{  //si c'est une entreprise
+                $user->setCoefficient(2);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -119,15 +130,27 @@ class UsersController extends AbstractController {
      * @Route("/{id}/editAdmin", name="users_editAdmin", methods={"GET","POST"})
      */
     /* Fonction d'édition et de verification  de l'utilisateur */
-    public function editAdmin(Request $request, Users $user): Response {
+    public function editAdmin(Request $request, Users $user, UsersRepository $usersRepository): Response {
         $form = $this->createForm(UsersAdminType::class, $user);
         $form->handleRequest($request);
+        //dd($usersRepository->findByRole(1));
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $commercial = new Users();
             if($user->getType()){   //si le client est un particulier
                 $user->setCoefficient(1);   //met le coefficient initial
+                if($usersRepository->findByRole(2) != []){
+                    $commercial = $usersRepository->findByRole(2)[0];   //récupèle le premier commercial 
+                    $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
+                }
+                //$user->setCommercial($usersRepository)
             }else{  //si c'est une entreprise
-                $user->setCoefficient(2);
+                $user->setCoefficient(2);   //met le coeficient initial
+                if($usersRepository->findByRole(3) != []){
+                    $commercial = $usersRepository->findByRole(3)[0];   //récupèle le premier commercial 
+                    $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
+                }
             }
             $this->getDoctrine()->getManager()->flush();
 
