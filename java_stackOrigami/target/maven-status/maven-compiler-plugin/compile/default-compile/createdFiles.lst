@@ -1,0 +1,6 @@
+org\afpa\stackorigami\UserDAO.class
+module-info.class
+org\afpa\stackorigami\User.class
+org\afpa\stackorigami\App.class
+org\afpa\stackorigami\SecondaryController.class
+org\afpa\stackorigami\PrimaryController.class
