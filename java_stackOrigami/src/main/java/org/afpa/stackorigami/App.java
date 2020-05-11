@@ -38,7 +38,7 @@ public class App extends Application {
         System.out.println(order.getTotal());
          */
 
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("home"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }

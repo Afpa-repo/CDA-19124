@@ -202,7 +202,7 @@ public class UserDAO extends BaseDAO{
         try {
             Connection con = baseDAO.getInstance().getConnection();
             Statement stm = con.createStatement();
-            ResultSet result = stm.executeQuery("SELECT * FROM users WHERE ");
+            ResultSet result = stm.executeQuery("SELECT * FROM users");
             while (result.next()) {
                 User user = new User();
                 user.setId(result.getInt("id"));
