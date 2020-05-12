@@ -18,6 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        /*
         User user = new User();
         user.setSurname("Nom");
         user.setFirst_name("prenom");
@@ -38,7 +39,7 @@ public class App extends Application {
         System.out.println(order.getTotal());
          */
 
-        scene = new Scene(loadFXML("home"), 640, 480);
+        scene = new Scene(loadFXML("home"), 610, 420);
         stage.setScene(scene);
         stage.show();
     }
