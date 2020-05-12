@@ -228,4 +228,43 @@ public class UserDAO extends BaseDAO{
         return resultat;
     }
 
+    /**
+     * <b>List_role_user</b> est une méthode qui retourne la liste des utilisateurs du role demandé
+     * @param role le numéro du type
+     * @return  la liste des utilisateurs
+     */
+    public List<User> List_role_user(int role){
+        List<User> resultat = new ArrayList<User>();
+
+        try {
+            Connection con = baseDAO.getInstance().getConnection();
+            PreparedStatement stm = con.prepareStatement("SELECT * FROM users WHERE role = ?");
+            stm.setInt(1,role);
+            ResultSet result = stm.executeQuery();
+            while (result.next()) {
+                User user = new User();
+                user.setId(result.getInt("id"));
+                user.setSurname(result.getString("surname"));
+                user.setFirst_name(result.getString("first_name"));
+                user.setAdress(result.getString("Address_fact"));
+                user.setMail(result.getString("mail"));
+                user.setPhone(result.getString("phone_number"));
+                user.setType(result.getInt("type"));
+                user.setCommercial(result.getInt("commercial_id"));
+                user.setSiret(result.getString("siret"));
+                user.setCoefficient(result.getFloat("coefficient"));
+                user.setRole(result.getInt("role"));
+                System.out.println(user.getRole());
+                resultat.add(user);
+            }
+            stm.close();
+            result.close();
+            con.close();
+        } catch (IOException | SQLException e) {
+            System.out.println("Erreur dans la lecture de 'users'");
+            System.out.println(e.getMessage());
+        }
+        return resultat;
+    }
+
 }

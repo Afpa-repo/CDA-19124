@@ -118,11 +118,22 @@ public class User {
         return coefficient;
     }
 
+    public String getFullname(){
+        String fullname = surname + " "+first_name;
+        return fullname;
+    }
+
     public void setTotal_achat(double total_achat) {
         this.total_achat = total_achat;
     }
 
     public double getTotal_achat() {
         return total_achat;
+    }
+
+    //Nom afficher pour la liste des commerciaux.
+    @Override
+    public String toString() {
+        return this.getFullname();
     }
 }
