@@ -68,6 +68,9 @@ class UsersController extends AbstractController {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             /* Cryptage du mot de passe que l'utilisateur aura entré */
             $user->setPassword($hash);
+            if($user->getRole()==''){   //si l'utilisateur n'a pas de role
+                $user->setRole(0);  //on le met en client
+            }
             if($user->getType()){   //si le client est un particulier
                 $user->setCoefficient(1);   //met le coefficient initial
             }else{  //si c'est une entreprise
@@ -151,6 +154,10 @@ class UsersController extends AbstractController {
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($user->getRole()==''){   //si l'utilisateur n'a pas de role
+                $user->setRole(0);  //on le met en client
+            }
+            /* associe à un commercial */
             $commercial = new Users();
             if($user->getType()){   //si le client est un particulier
                 $user->setCoefficient(1);   //met le coefficient initial
