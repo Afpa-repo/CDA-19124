@@ -142,7 +142,7 @@ public class HomeController implements Initializable {
      */
     @FXML
     public void ajoute(ActionEvent actionEvent) throws IOException {
-        App.setRoot("secondary");
+        App.setRoot("add");
     }
 
     /**
