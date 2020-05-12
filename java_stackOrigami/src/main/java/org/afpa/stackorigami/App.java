@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * JavaFX App
@@ -17,6 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        /*
         User user = new User();
         user.setSurname("Nom");
         user.setFirst_name("prenom");
@@ -29,8 +31,15 @@ public class App extends Application {
         user.setCoefficient(1);
         user.setSiret("");
         UserDAO userDAO = new UserDAO();
-        userDAO.Insert(user);
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        userDAO.Insert_user(user);
+        /***
+        OrderDAO orderDAO = new OrderDAO();
+        Order order = new Order();
+        order = orderDAO.Find_order(31);    //mettre une commande existante
+        System.out.println(order.getTotal());
+         */
+
+        scene = new Scene(loadFXML("home"), 610, 420);
         stage.setScene(scene);
         stage.show();
     }

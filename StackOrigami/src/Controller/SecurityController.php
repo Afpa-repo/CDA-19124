@@ -33,6 +33,7 @@ class SecurityController extends AbstractController {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             /* Cryptage du mot de passe que l'utilisateur aura entré */
             $user->setPassword($hash);
+            $user->setRole(0);  //l'utilisateur est un client
             /* Associe l'utilisateur à un commercial */
             if($user->getType()){   //si le client est un particulier
                 $user->setCoefficient(1);   //met le coefficient initial
