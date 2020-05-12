@@ -23,7 +23,7 @@ public class App extends Application {
         user.setAdress("Addresse");
         user.setType(1);
         user.setMail("mail@ok.fr");
-        user.setCommercial(10);
+        user.setCommercial(1);
         user.setPassword("mdp");
         user.setPhone("026516416");
         user.setCoefficient(1);
