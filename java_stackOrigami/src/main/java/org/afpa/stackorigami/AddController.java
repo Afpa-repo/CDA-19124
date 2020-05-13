@@ -6,12 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 
 
 public class AddController implements Initializable {
@@ -250,7 +252,7 @@ public class AddController implements Initializable {
             user.setFirst_name(val_first_name.getText());
             user.setMail(val_mail.getText());
             user.setAdress(val_adress.getText());
-            user.setPassword(val_password.getText());
+            user.setPassword(Hashpwd(val_password.getText()));
             user.setCommercial(val_commercial);
             user.setPhone(val_phone.getText());
             user.setRole(0);    //c'est un client
@@ -272,5 +274,13 @@ public class AddController implements Initializable {
             alert.setContentText("Le client a bien été ajouté");   //set le message à afficher
             alert.show();   //affiche l'alert
         }
+    }
+
+    // Hashage du mot de passe en Bcrypt
+    public String Hashpwd(String pwd){
+        String bcryptHashString;
+        bcryptHashString = BCrypt.hashpw(pwd, BCrypt.gensalt());
+        System.out.println(bcryptHashString);
+       return bcryptHashString;
     }
 }
