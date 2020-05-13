@@ -49,7 +49,11 @@ public class UpdateController implements Initializable {
         }else{
             lst_commercial = userDAO.List_role_user(3);
         }
-        obs_list_commercial.addAll(lst_commercial);;
+        obs_list_commercial.addAll(lst_commercial);
+        list_commercial.setItems(obs_list_commercial);
+        System.out.println(lst_commercial);
+        System.out.println(obs_list_commercial);
+        System.out.println(list_commercial);
     }
 
     @Override
@@ -91,7 +95,7 @@ public class UpdateController implements Initializable {
         val_phone.setText(App.user_app.getPhone());
         val_siret.clear();
         if(App.user_app.getType()==1) {
-            val_type.setSelected(true); //décoche le type
+            val_type.setSelected(true); //coche le type
         }else{
             val_type.setSelected(false); //décoche le type
         }
