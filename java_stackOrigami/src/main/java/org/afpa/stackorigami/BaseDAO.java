@@ -25,7 +25,7 @@ public class BaseDAO {
             // jdbc url specific to your database
             config.setJdbcUrl("jdbc:mysql://localhost/fil_rouge?serverTimezone=UTC");
             config.setUsername("root");
-            config.setPassword("");
+            config.setPassword("root");
             config.setMinConnectionsPerPartition(5);
             config.setMaxConnectionsPerPartition(10);
             config.setPartitionCount(1);

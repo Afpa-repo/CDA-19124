@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\Order.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\OrderDAO.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\App.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\HomeController.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\User.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\module-info.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\SecondaryController.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\BaseDAO.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\PrimaryController.java
-C:\Users\dineh\Desktop\Stackorigami\CDA-19124\java_stackOrigami\src\main\java\org\afpa\stackorigami\UserDAO.java
-=======
 C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java\org\afpa\stackorigami\PrimaryController.java
 C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java\org\afpa\stackorigami\BaseDAO.java
 C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java\org\afpa\stackorigami\OrderDAO.java
@@ -22,4 +10,3 @@ C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java
 C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java\org\afpa\stackorigami\AddController.java
 C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java\org\afpa\stackorigami\SecondaryController.java
 C:\Users\Orlanelina\Desktop\Cours2\new_fil_rouge\java_stackOrigami\src\main\java\org\afpa\stackorigami\Order.java
->>>>>>> b950c1793cc0be275cf498e036c29f90a42013de

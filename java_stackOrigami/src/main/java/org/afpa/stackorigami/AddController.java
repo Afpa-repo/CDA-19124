@@ -91,6 +91,8 @@ public class AddController implements Initializable {
         val_phone.clear();
         val_password.clear();
         val_siret.clear();
+        val_type.setSelected(false); //décoche le type
+        change_type(null);  //remet la liste des commerciaux à zéro
     }
 
     /**
@@ -216,6 +218,15 @@ public class AddController implements Initializable {
             val_siret.setStyle("");    //l'input est normal
         }
 
+        /*pour le commercial*/
+        int num_commercial = list_commercial.getSelectionModel().getSelectedIndex();
+        //int val_commercial = obs_list_commercial.get(list_commercial.getSelectionModel().getSelectedIndex()).getId();
+        //System.out.println(val_commercial);
+        if(num_commercial==-1){
+            valid = false;
+            message_err += "\n- Aucun commercial n'est selectionné";
+        }
+
         if(valid) {  //si le formulairfe est valide
             return true;    //on retourne vrai
         }else{  //si le formulaire est invalide
@@ -228,33 +239,32 @@ public class AddController implements Initializable {
 
     @FXML
     public void ajouter(ActionEvent actionEvent) {
-         /*
-        Pour Le commerciale : test
-         */
-        int val_commercial = obs_list_commercial.get(list_commercial.getSelectionModel().getSelectedIndex()).getId();
-
         boolean form_valid = verif_form();  //ajoute le formulaire
         if(form_valid){ //si le formulaire est valide
             User user = new User(); //crée l'utilisateur
             /*récupère les valeurs du formulaire*/
+            /*récupère le commercial selectionné*/
+            int val_commercial = obs_list_commercial.get(list_commercial.getSelectionModel().getSelectedIndex()).getId();
             user.setSurname(val_surname.getText()); //récupère le nom
             user.setFirst_name(val_first_name.getText());
             user.setMail(val_mail.getText());
             user.setPassword(val_password.getText());
             user.setCommercial(val_commercial);
             user.setPhone(val_phone.getText());
-            user.setSiret(val_siret.getText());
             user.setRole(0);    //c'est un client
             if(val_type.isSelected()){   //si c'est un particulier
                 user.setType(1);
                 user.setCoefficient(1);
+                user.setSiret(null);
             }else{
                 user.setType(0);
                 user.setCoefficient(2);
+                user.setSiret(val_siret.getText());
             }
             //ajoute l'utilisateur
             UserDAO userDAO = new UserDAO();
             userDAO.Insert_user(user);
+            effacer(null);  //vide les input
             //alert
             Alert alert = new Alert(Alert.AlertType.INFORMATION); //crée l'alerte
             alert.setContentText("Le client a bien été ajouté");   //set le message à afficher
