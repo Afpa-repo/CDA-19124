@@ -72,6 +72,7 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#details" text="Détail" />
                         <Button mnemonicParsing="false" onAction="#ajoute" text="Ajout Client" />
+                        <Button mnemonicParsing="false" onAction="#modif" text="Modifier Client" />
                         <Button mnemonicParsing="false" onAction="#supprime" text="Suppression" />
                         <Button mnemonicParsing="false" onAction="#quitte" text="Quitter" />
                      </children>
