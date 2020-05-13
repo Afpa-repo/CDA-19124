@@ -16,6 +16,8 @@ public class App extends Application {
 
     private static Scene scene;
 
+    public static User user_app;
+
     @Override
     public void start(Stage stage) throws IOException {
         /*
@@ -38,6 +40,7 @@ public class App extends Application {
         order = orderDAO.Find_order(31);    //mettre une commande existante
         System.out.println(order.getTotal());
          */
+        user_app =null;
 
         scene = new Scene(loadFXML("home"), 610, 420);
         stage.setScene(scene);

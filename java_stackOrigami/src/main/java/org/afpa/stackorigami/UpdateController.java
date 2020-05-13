@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.afpa.stackorigami.App;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,14 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
-public class AddController implements Initializable {
+public class UpdateController implements Initializable {
     @FXML
     public TextField val_surname;
     @FXML
     public TextField val_first_name;
-    @FXML
-    public PasswordField val_password;
     @FXML
     public TextField val_adress;
     @FXML
@@ -43,14 +41,19 @@ public class AddController implements Initializable {
      * méthode qui affiche la liste des commerciaux correspondant au type de l'utilisateur
      */
     public void show_commercial(){
+        /*** selectionner celui correspondant***/
+
         UserDAO userDAO = new UserDAO();
         if(val_type.isSelected()){  //si c'est un particulier
             lst_commercial = userDAO.List_role_user(2); //récupère la liste des commerciaux pour particulier
         }else{
             lst_commercial = userDAO.List_role_user(3);
         }
-        obs_list_commercial.addAll(lst_commercial);;
+        obs_list_commercial.addAll(lst_commercial);
         list_commercial.setItems(obs_list_commercial);
+        System.out.println(lst_commercial);
+        System.out.println(obs_list_commercial);
+        System.out.println(list_commercial);
     }
 
     @Override
@@ -84,15 +87,18 @@ public class AddController implements Initializable {
 
     @FXML
     public void effacer(ActionEvent actionEvent) {
-        /*vide les input*/
-        val_surname.clear();
-        val_first_name.clear();
-        val_adress.clear();
-        val_mail.clear();
-        val_phone.clear();
-        val_password.clear();
+        /*rempli les input avec les valeurs de l'utilisateur*/
+        val_surname.setText(App.user_app.getSurname());
+        val_first_name.setText(App.user_app.getFirst_name());
+        val_adress.setText(App.user_app.getAdress());
+        val_mail.setText(App.user_app.getMail());
+        val_phone.setText(App.user_app.getPhone());
         val_siret.clear();
-        val_type.setSelected(false); //décoche le type
+        if(App.user_app.getType()==1) {
+            val_type.setSelected(true); //coche le type
+        }else{
+            val_type.setSelected(false); //décoche le type
+        }
         change_type(null);  //remet la liste des commerciaux à zéro
     }
 
@@ -144,23 +150,6 @@ public class AddController implements Initializable {
             message_err+="\n- Le prénom comporte des caractères non autorisés";
         }else{
             val_first_name.setStyle("");    //l'input est normal
-        }
-
-        /*pour le mot de passe*/
-        if(val_password.getText().equals("")){ //si le mot de passe est vide
-            valid = false;
-            val_password.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ");    //colore l'input
-            message_err+="\n- Le mot de passe est vide";
-        }else if(val_password.getText().length()>255) {    //si le mot de passe est trop long
-            valid = false;
-            val_password.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ");    //colore l'input
-            message_err+="\n- Le mot de passe est trop long";
-        }else if(!val_password.getText().matches(reg_adr)){    //si le mot de passe respecte l'expression régulière
-            valid = false;
-            val_password.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ");    //colore l'input
-            message_err+="\n- Le mot de passe comporte des caractères non autorisés";
-        }else{
-            val_password.setStyle("");    //l'input est normal
         }
 
         /*pour l'adresse*/
@@ -239,37 +228,34 @@ public class AddController implements Initializable {
     }
 
     @FXML
-    public void ajouter(ActionEvent actionEvent) {
-        boolean form_valid = verif_form();  //ajoute le formulaire
+    public void valider(ActionEvent actionEvent) {
+        boolean form_valid = verif_form();  //vérifie le formulaire
         if(form_valid){ //si le formulaire est valide
-            User user = new User(); //crée l'utilisateur
             /*récupère les valeurs du formulaire*/
             /*récupère le commercial selectionné*/
             int val_commercial = obs_list_commercial.get(list_commercial.getSelectionModel().getSelectedIndex()).getId();
-            user.setSurname(val_surname.getText()); //récupère le nom
-            user.setFirst_name(val_first_name.getText());
-            user.setMail(val_mail.getText());
-            user.setAdress(val_adress.getText());
-            user.setPassword(val_password.getText());
-            user.setCommercial(val_commercial);
-            user.setPhone(val_phone.getText());
-            user.setRole(0);    //c'est un client
+            App.user_app.setSurname(val_surname.getText()); //récupère le nom
+            App.user_app.setFirst_name(val_first_name.getText());
+            App.user_app.setMail(val_mail.getText());
+            App.user_app.setCommercial(val_commercial);
+            App.user_app.setPhone(val_phone.getText());
+            App.user_app.setRole(0);    //c'est un client
             if(val_type.isSelected()){   //si c'est un particulier
-                user.setType(1);
-                user.setCoefficient(1);
-                user.setSiret(null);
+                App.user_app.setType(1);
+                App.user_app.setCoefficient(1);
+                App.user_app.setSiret(null);
             }else{
-                user.setType(0);
-                user.setCoefficient(2);
-                user.setSiret(val_siret.getText());
+                App.user_app.setType(0);
+                App.user_app.setCoefficient(2);
+                App.user_app.setSiret(val_siret.getText());
             }
-            //ajoute l'utilisateur
+            //modifie l'utilisateur
             UserDAO userDAO = new UserDAO();
-            userDAO.Insert_user(user);
+            userDAO.Update_user(App.user_app);
             effacer(null);  //vide les input
             //alert
             Alert alert = new Alert(Alert.AlertType.INFORMATION); //crée l'alerte
-            alert.setContentText("Le client a bien été ajouté");   //set le message à afficher
+            alert.setContentText("Le client a bien été modifié");   //set le message à afficher
             alert.show();   //affiche l'alert
         }
     }

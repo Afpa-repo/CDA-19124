@@ -153,11 +153,12 @@ public class HomeController implements Initializable {
     public void supprime(ActionEvent actionEvent) {
         int i = user_selected();
         if(i!=-1){
-            User user = new User();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);  //crée une alert de confirmation
             alert.setContentText("Voulez vous vraiment supprimer l'utilisateur ?");   //set le texte de l'alerte
             Optional<ButtonType> result = alert.showAndWait();    //affiche l'alert et récupère la réponse
             if (result.get() == ButtonType.OK){ //si l'utilisateur valide l'alerte
+                User user = new User();
+                user = obs_list_user.get(i);    //récupère les valeurs de l'utilisateur
                 UserDAO userDAO = new UserDAO();
                 userDAO.Delete_user(user);    //supprime l'utilisateur de la base de donnée
                 obs_list_user.remove(i);    //enlève l'utilisateur de la liste
@@ -189,5 +190,13 @@ public class HomeController implements Initializable {
     @FXML
     public void ok(ActionEvent actionEvent) {
         fiche_user.setVisible(false);   //cache la partie fiche utilisateur
+    }
+
+    public void modif(ActionEvent actionEvent) throws IOException {
+        int i = user_selected();
+        if(i!=-1){
+            App.user_app=obs_list_user.get(i);    //récupère les valeurs de l'utilisateur
+            App.setRoot("update");
+        }
     }
 }

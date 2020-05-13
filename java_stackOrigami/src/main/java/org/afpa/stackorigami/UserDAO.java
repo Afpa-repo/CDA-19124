@@ -75,7 +75,7 @@ public class UserDAO extends BaseDAO{
         /*ajoute le client à la base de donnée*/
         try {
             Connection con = baseDAO.getInstance().getConnection();
-            PreparedStatement stm = con.prepareStatement("INSERT INTO users (mail,surname,first_name,phone_number,address_fact,type,siret,commercial_id,id,password,coefficient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stm = con.prepareStatement("INSERT INTO users (mail,surname,first_name,phone_number,address_fact,type,siret,commercial_id,id,password,coefficient,role) VALUES (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             //ajoute les valeurs à la requête
             stm.setString(1, user.getMail());
@@ -89,6 +89,7 @@ public class UserDAO extends BaseDAO{
             stm.setInt(9,id);
             stm.setString(10,user.getPassword());
             stm.setDouble(11,user.getCoefficient());
+            stm.setInt(12,user.getRole());
             stm.execute();  //lance la requête
             stm.close();
             con.close();
@@ -254,7 +255,6 @@ public class UserDAO extends BaseDAO{
                 user.setSiret(result.getString("siret"));
                 user.setCoefficient(result.getFloat("coefficient"));
                 user.setRole(result.getInt("role"));
-                System.out.println(user.getRole());
                 resultat.add(user);
             }
             stm.close();
