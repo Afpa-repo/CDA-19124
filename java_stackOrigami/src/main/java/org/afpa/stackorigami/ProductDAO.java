@@ -145,14 +145,14 @@ public class ProductDAO extends BaseDAO{
             if (result.next()) {
                 product.setId(result.getInt("id"));
                 product.setLibelle(result.getString("libelle"));
-                product.setDescription(result.getString("desciption"));
+                product.setDescription(result.getString("description"));
                 product.setColor(result.getString("color"));
                 product.setPicture(result.getString("picture"));
                 product.setPrice(result.getDouble("price"));
                 product.setStock(result.getInt("stock"));
                 product.setCreated_at(result.getDate("created_at"));
                 /*récupère la catégorie du produit*/
-                product.setProduct_category(this.Get_product_category(result.getInt("product_catagory")));
+                product.setProduct_category(this.Get_product_category(result.getInt("product_category_id")));
             }else{
                 return null;
             }
@@ -181,14 +181,14 @@ public class ProductDAO extends BaseDAO{
                 Product product = new Product();
                 product.setId(result.getInt("id"));
                 product.setLibelle(result.getString("libelle"));
-                product.setDescription(result.getString("desciption"));
+                product.setDescription(result.getString("description"));
                 product.setColor(result.getString("color"));
                 product.setPicture(result.getString("picture"));
                 product.setPrice(result.getDouble("price"));
                 product.setStock(result.getInt("stock"));
                 product.setCreated_at(result.getDate("created_at"));
                 /*récupère la catégorie du produit*/
-                product.setProduct_category(this.Get_product_category(result.getInt("product_category")));
+                product.setProduct_category(this.Get_product_category(result.getInt("product_category_id")));
                 products.add(product);
             }
             stm.close();
@@ -199,5 +199,33 @@ public class ProductDAO extends BaseDAO{
             System.out.println(e.getMessage());
         }
         return products;
+    }
+
+    /**
+     * <b>List_product_category</b> est une méthode qui retourne la liste de touts les produits dans la base de donnée
+     * @return  la liste des produits
+     */
+    public List<Product_Category> List_Product_category(){
+        List<Product_Category> product_categories = new ArrayList<Product_Category>();
+
+        try {
+            Connection con = baseDAO.getInstance().getConnection();
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT * FROM product_category");
+            while (result.next()) {
+                Product_Category product_category = new Product_Category();
+                product_category.setId(result.getInt("id"));
+                product_category.setName(result.getString("name"));
+                product_category.setPicture(result.getString("picture"));
+                product_categories.add(product_category);
+            }
+            stm.close();
+            result.close();
+            con.close();
+        } catch (IOException | SQLException e) {
+            System.out.println("Erreur dans la lecture des produits");
+            System.out.println(e.getMessage());
+        }
+        return product_categories;
     }
 }

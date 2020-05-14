@@ -35,9 +35,9 @@
             </HBox>
             <HBox prefHeight="285.0" prefWidth="607.0">
                <children>
-                  <TabPane prefHeight="285.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tab_x" prefHeight="285.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Liste Clients">
+                      <Tab fx:id="tab_user" text="Liste Clients">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="607.0">
                                  <children>
@@ -53,14 +53,17 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Stats">
+                      <Tab fx:id="tab_product" text="Liste produits">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="464.0">
                                  <children>
-                                    <TableView layoutY="-2.0" prefHeight="260.0" prefWidth="291.0">
+                                    <TableView fx:id="table_product" layoutY="-2.0" prefHeight="260.0" prefWidth="494.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="libelle" prefWidth="118.0" text="libelle" />
+                                        <TableColumn fx:id="color" prefWidth="117.0" text="couleur" />
+                                          <TableColumn fx:id="price" prefWidth="79.0" text="Prix" />
+                                          <TableColumn fx:id="stock" prefWidth="61.0" text="Stock" />
+                                          <TableColumn fx:id="category" prefWidth="118.0" text="Catégorie" />
                                       </columns>
                                     </TableView>
                                  </children></AnchorPane>
@@ -70,10 +73,11 @@
                   </TabPane>
                   <VBox prefHeight="285.0" prefWidth="120.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#details" text="Détail" />
-                        <Button mnemonicParsing="false" onAction="#ajoute" text="Ajout Client" />
-                        <Button mnemonicParsing="false" onAction="#modif" text="Modifier Client" />
-                        <Button mnemonicParsing="false" onAction="#supprime" text="Suppression" />
+                        <Button fx:id="btn_detail" mnemonicParsing="false" onAction="#details" text="Détail" />
+                        <Button fx:id="btn_add" mnemonicParsing="false" onAction="#ajoute" text="Ajout Client" />
+                        <Button fx:id="btn_update" mnemonicParsing="false" onAction="#modif" text="Modifier Client" />
+                        <Button fx:id="btn_delete" mnemonicParsing="false" onAction="#supprime" text="Suppression" />
+                         <Button mnemonicParsing="false" onAction="#product" text="Liste des produits" />
                         <Button mnemonicParsing="false" onAction="#quitte" text="Quitter" />
                      </children>
                      <HBox.margin>
