@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 
 
-public class AddProductController implements Initializable {
+public class UpdateProductController implements Initializable {
 
     @FXML
     public TextField val_libelle;
@@ -66,11 +66,12 @@ public class AddProductController implements Initializable {
     @FXML
     public void effacer(ActionEvent actionEvent) {
         /*vide les input*/
-        val_libelle.clear();
-        val_color.clear();
-        //val_stock.;
-        val_description.clear();
-        val_img.clear();
+        // nb_stock = App.product_app.getStock().toString;
+        val_libelle.setText(App.product_app.getLibelle());
+        val_color.setText(App.product_app.getColor());
+        val_description.setText(App.product_app.getDescription());
+        val_img.setText(App.product_app.getPicture());
+        show_category();
     }
 
     /**
