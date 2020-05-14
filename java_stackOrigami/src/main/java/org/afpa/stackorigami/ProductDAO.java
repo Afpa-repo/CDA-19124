@@ -40,7 +40,7 @@ public class ProductDAO extends BaseDAO{
             stm.setString(4, product.getPicture());
             stm.setDouble(5, product.getPrice());
             stm.setInt(6,product.getStock());
-            stm.setDate(7, (Date) product.getCreated_at());
+            stm.setDate(7,(java.sql.Date) product.getCreated_at());
             stm.setInt(8,id);
             stm.setInt(9,product.getProduct_category().getId());
             stm.execute();  //lance la requête

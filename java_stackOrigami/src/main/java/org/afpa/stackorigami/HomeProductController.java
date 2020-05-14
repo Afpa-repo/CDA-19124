@@ -103,7 +103,7 @@ public class HomeProductController implements Initializable {
     public void update(ActionEvent actionEvent) throws IOException {
         int i = is_selected();
         if(i!=-1) {
-            //App.product_app = obs_list_product.get(i);    //récupère les valeurs de l'utilisateur
+            App.product_app = obs_list_product.get(i);    //récupère les valeurs de l'utilisateur
             App.setRoot("update_product");
         }
     }

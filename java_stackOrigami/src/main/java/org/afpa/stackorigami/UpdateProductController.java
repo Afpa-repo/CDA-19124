@@ -83,7 +83,6 @@ public class UpdateProductController implements Initializable {
         String reg_name = "[A-Za-zÀ-ú -]+";  //expression régulière pour le nom
         String reg_adr = "[^<>]*";  //expression régulière pour l'stocke
         String reg_phone = "[+]?[0-9]+";
-        String reg_img = "[0-9]{14}";
         String message_err = "";    //message d'erreur à afficher si le formulaire est invalide
         Alert alert_err = new Alert(Alert.AlertType.ERROR); //crée l'alert pour afficher les erreurs
 
@@ -155,7 +154,7 @@ public class UpdateProductController implements Initializable {
         }
 
         /*pour le img*/
-        if(!val_img.getText().matches(reg_img) && !val_img.getText().equals("")){    //si l'stocke respecte l'expression régulière
+        if(!val_img.getText().matches(reg_adr) && !val_img.getText().equals("")){    //si l'stocke respecte l'expression régulière
             valid = false;
             val_img.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ");    //colore l'input
             message_err+="\n- Le img n'est pas valide";
@@ -207,6 +206,10 @@ public class UpdateProductController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION); //crée l'alerte
             alert.setContentText("Le Produit a bien été ajouté");   //set le message à afficher
             alert.show();   //affiche l'alert
+        }else{
+            Alert failalert = new Alert(Alert.AlertType.WARNING);
+            failalert.setContentText("Echec de la modification");
+            failalert.show();
         }
     }
 

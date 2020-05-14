@@ -10,7 +10,7 @@ public class Product {
     private String picture;
     private double price;
     private int stock;
-    private Date created_at;
+    private java.sql.Date created_at;
     private Product_Category product_category;
 
     public Product() {
@@ -76,7 +76,7 @@ public class Product {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(java.sql.Date created_at) {
         this.created_at = created_at;
     }
 
