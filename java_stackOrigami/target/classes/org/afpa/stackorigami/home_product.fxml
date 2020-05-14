@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.afpa.stackorigami.HomeProductController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="400.0" prefWidth="607.0">
+         <children>
+            <HBox prefHeight="60.0" prefWidth="607.0" style="-fx-background-color: gray;">
+               <children>
+                  <ImageView fitHeight="68.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label text="Dashboard Produit">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#actualise" text="F5">
+                     <HBox.margin>
+                        <Insets left="60.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="285.0" prefWidth="607.0">
+               <children>
+                  <TabPane prefHeight="285.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Liste Produits">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="607.0">
+                                 <children>
+                                    <TableView fx:id="table_product" prefHeight="256.0" prefWidth="494.0">
+                                       <columns>
+                                          <TableColumn fx:id="libelle" prefWidth="123.0" text="Libelle" />
+                                          <TableColumn fx:id="color" prefWidth="100.0" text="Couleur" />
+                                          <TableColumn fx:id="price" prefWidth="101.0" text="Prix" />
+                                          <TableColumn fx:id="stock" prefWidth="72.0" text="Stock" />
+                                          <TableColumn fx:id="category" prefWidth="103.0" text="Catégorie" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <VBox prefHeight="285.0" prefWidth="120.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btn_detail" mnemonicParsing="false" onAction="#details" text="Détail" />
+                        <Button fx:id="btn_add" mnemonicParsing="false" onAction="#add" text="Ajout Produit" />
+                        <Button fx:id="btn_update" mnemonicParsing="false" onAction="#update" text="Modifier Produit" />
+                        <Button fx:id="btn_delete" mnemonicParsing="false" onAction="#delete" text="Suppression" />
+                        <Button mnemonicParsing="false" onAction="#exit" text="Quitter" />
+                     </children>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label text="StackOrigami">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
