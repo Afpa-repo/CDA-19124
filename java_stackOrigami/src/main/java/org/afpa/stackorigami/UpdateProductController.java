@@ -47,8 +47,9 @@ public class UpdateProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        val_stock.setEditable(true);
         effacer(null);  //vide les input
-        //show_category();
+        show_category();
     }
 
 
@@ -68,7 +69,6 @@ public class UpdateProductController implements Initializable {
         // nb_stock = App.product_app.getStock().toString;
         val_libelle.setText(App.product_app.getLibelle());
         val_color.setText(App.product_app.getColor());
-        val_stock.set;
         val_description.setText(App.product_app.getDescription());
         val_img.setText(App.product_app.getPicture());
         show_category();

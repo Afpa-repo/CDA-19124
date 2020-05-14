@@ -47,8 +47,9 @@ public class AddProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        val_stock.setEditable(true);
         effacer(null);  //vide les input
-        //show_category();
+        show_category();
     }
 
 
