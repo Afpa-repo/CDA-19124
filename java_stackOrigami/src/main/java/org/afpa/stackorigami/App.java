@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * JavaFX App
@@ -17,6 +16,8 @@ public class App extends Application {
     private static Scene scene;
 
     public static User user_app;
+
+    public static Product product_app;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,6 +42,7 @@ public class App extends Application {
         System.out.println(order.getTotal());
          */
         user_app =null;
+        product_app=null;
 
         scene = new Scene(loadFXML("home"), 610, 420);
         stage.setScene(scene);
