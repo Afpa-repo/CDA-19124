@@ -1,23 +1,19 @@
 package org.afpa.stackorigami;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class HomeProductController implements Initializable {
     @FXML
@@ -30,6 +26,25 @@ public class HomeProductController implements Initializable {
     public TableColumn<Product,Double> price;
     @FXML
     public TableColumn<Product,Integer> stock;
+    @FXML
+    public TableColumn<Product,String> category;
+    /*Fiche détail*/
+    @FXML
+    public VBox fiche_product;
+    @FXML
+    public Label val_libelle;
+    @FXML
+    public Label val_color;
+    @FXML
+    public Label val_price;
+    @FXML
+    public Label val_stock;
+    @FXML
+    public Label val_category;
+    @FXML
+    public Label val_description;
+    @FXML
+    public Label val_date;
     /*
     @FXML
     public TableColumn<Product_Category,String> category;*/
@@ -45,12 +60,14 @@ public class HomeProductController implements Initializable {
      */
     public void maj_lst(){
 
-            libelle.setCellValueFactory(new PropertyValueFactory("libelle"));
-            color.setCellValueFactory(new PropertyValueFactory("color"));
-            price.setCellValueFactory(new PropertyValueFactory("price"));
-            stock.setCellValueFactory(new PropertyValueFactory("stock"));
-            //category.setCellValueFactory(new PropertyValueFactory("category"));
-            table_product.setItems(obs_list_product);
+        libelle.setCellValueFactory(new PropertyValueFactory("libelle"));
+        color.setCellValueFactory(new PropertyValueFactory("color"));
+        price.setCellValueFactory(new PropertyValueFactory("price"));
+        stock.setCellValueFactory(new PropertyValueFactory("stock"));
+        category.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getProduct_category().toString())
+        );
+        table_product.setItems(obs_list_product);
 
     }
 
@@ -86,7 +103,20 @@ public class HomeProductController implements Initializable {
 
     @FXML
     public void details(ActionEvent actionEvent) {
-
+        int i = is_selected();  //vérifie qu'il y a un produit selectionné
+        if (i != -1) { //s'il y a un produit
+            Product product = new Product(); //cree le produit
+            product = obs_list_product.get(i);    //récupère les valeurs du produit
+            /*met les valeurs de l'utilisateur sur la fiche*/
+            val_libelle.setText(product.getLibelle());
+            val_color.setText(product.getColor());
+            val_price.setText(String.valueOf(product.getPrice()));
+            val_stock.setText(String.valueOf(product.getStock()));
+            val_description.setText(product.getDescription());
+            val_date.setText(product.getCreated_at().toString());
+            val_category.setText(product.getProduct_category().getName());
+            fiche_product.setVisible(true);    //Affiche la fiche utilisateur
+        }
     }
 
     /**
@@ -144,4 +174,16 @@ public class HomeProductController implements Initializable {
         }
     }
 
+    public void user(ActionEvent actionEvent) throws IOException {
+        App.setRoot("home");
+    }
+
+    /**
+     * <b>ok</b> est la méthode qui ferme la fiche produit
+     * @param actionEvent
+     */
+    @FXML
+    public void ok(ActionEvent actionEvent) {
+        fiche_product.setVisible(false);   //cache la partie fiche utilisateur
+    }
 }
