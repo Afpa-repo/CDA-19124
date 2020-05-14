@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
@@ -16,10 +18,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class HomeController implements Initializable {
     /*Les boutons de droite*/
@@ -36,20 +35,6 @@ public class HomeController implements Initializable {
     public TabPane tab_x;
     @FXML
     public Tab tab_user;
-    @FXML
-    public Tab tab_product;
-    @FXML
-    public TableView<Product> table_product;
-    @FXML
-    public TableColumn<Product, String> libelle;
-    @FXML
-    public TableColumn<Product, String> color;
-    @FXML
-    public TableColumn<Product, Double> price;
-    @FXML
-    public TableColumn<Product, Integer> stock;
-    @FXML
-    public TableColumn<Product, Integer> category;
     @FXML
     public TableView<User> table_user;
     @FXML
@@ -79,6 +64,8 @@ public class HomeController implements Initializable {
     public Label val_type;
     @FXML
     public Label val_siret;
+    @FXML
+    public PieChart graph_type; //le graphique
 
     public UserDAO userDAO = new UserDAO();
 
@@ -86,13 +73,7 @@ public class HomeController implements Initializable {
 
     public ObservableList<User> obs_list_user = FXCollections.observableArrayList();
 
-    public ProductDAO productDAO = new ProductDAO();
-
-    public List<Product> list_product = new ArrayList<Product>();
-
-    public ObservableList<Product> obs_list_product = FXCollections.observableArrayList();
-
-    public String Tab;  //le tableau qui est utilisé
+    //public ObservableList<PieChart.Data> obs_graph = FXCollections.observableArrayList();
 
     public HomeController() throws IOException{
     }
@@ -102,21 +83,11 @@ public class HomeController implements Initializable {
      */
     public void maj_lst(){
 
-        //if(Tab.equals("utilisateur")){ //si on est sur la table user
-            first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));   // Jonction du tableau avec les données
-            surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-            phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-            type.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-            table_user.setItems(obs_list_user);    // On indique au TableView quelle modèle observer pour trouver les données
-        /*}else{
-            libelle.setCellFactory(new PropertyValueFactory("libelle"));
-            color.setCellFactory(new PropertyValueFactory("color"));
-            price.setCellFactory(new PropertyValueFactory("price"));
-            stock.setCellFactory(new PropertyValueFactory("stock"));
-            category.setCellFactory(new PropertyValueFactory("id"));
-            table_product.setItems(obs_list_product);
-        }*/
+        first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));   // Jonction du tableau avec les données
+        surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        table_user.setItems(obs_list_user);    // On indique au TableView quelle modèle observer pour trouver les données
 
     }
 
@@ -127,28 +98,24 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /* au changement de tab
-        tab_x.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Tab>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
-                        if(t1==tab_user){   //si on est sur la table user
-                            Tab = "utilisateur";   //on change la variable
-                        }else{  //si on est sur la table produit
-                            Tab = "produit";
-                        }
-                        maj_lst();
-                    }
-                }
-        );*/
-        //Tab = "utilisateur";   //on initialise la variable du tableau actuel
+
         table_user.setEditable(false); //rend la liste des clients non éditable
-        //table_product.setEditable(false);
         list_user = userDAO.List_user();   //récupère la liste des clients
-        //list_product = productDAO.List_Product();
         obs_list_user.addAll(list_user);    //met la liste des clients dans obs_liste
-        //obs_list_product.addAll(list_product);
-        maj_lst();
+        maj_lst();  //affiche la liste dans le tableau
+
+        /*rajoue les valeurs au graphique*/
+        int total_part = userDAO.sum_commande_part();   //récupère le CA pour les particuliers
+        int total_ent = userDAO.sum_commande_ent();
+
+        ObservableList<PieChart.Data> obs_graph = FXCollections.observableArrayList(
+                new PieChart.Data("particulier ("+total_part+"€)",total_part),    //ajoute les valeurs
+                new PieChart.Data("entreprise ("+total_ent+"€)", total_ent)
+                );
+        graph_type.setData(obs_graph);  //associe l'observableListe au graphique
+        graph_type.setTitle("CA par type de client (total : "+(total_ent+total_part)+"€)"); //met un titre
+
+
     }
 
 
@@ -167,15 +134,11 @@ public class HomeController implements Initializable {
     public int is_selected(){
         int i;  //index de l'élément selectionné
         Alert alert = new Alert(Alert.AlertType.ERROR); //crée l'alerte
-        //if(Tab.equals("utilisateur")){
             i = table_user.getSelectionModel().getSelectedIndex(); //récupère l'index de l'utilisateur selectionné
-        /*}else{
-            i = table_product.getSelectionModel().getSelectedIndex(); //récupère l'index du produit selectionné
-        }*/
 
         if(i==-1) { //s'il n'y a pas de selection
             /* On affiche une alerte */
-            alert.setContentText("Veuillez selectionner un "+Tab);   //set le message à afficher
+            alert.setContentText("Veuillez selectionner un utilisateur");   //set le message à afficher
             alert.show();   //affiche l'erreur
         }
         return i;
@@ -188,7 +151,6 @@ public class HomeController implements Initializable {
     @FXML
     public void details(ActionEvent actionEvent) {
         int i = is_selected();
-        //if(Tab.equals("utilisateur")) {
             if (i != -1) { //s'il y en a un
                 User user = new User(); //cree l'utilisateur
                 user = obs_list_user.get(i);    //récupère les valeurs de l'utilisateur
@@ -210,9 +172,6 @@ public class HomeController implements Initializable {
                 }
                 fiche_user.setVisible(true);    //Affiche la fiche utilisateur
             }
-        /*}else{
-
-        }*/
     }
 
     /**

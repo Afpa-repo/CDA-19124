@@ -267,4 +267,46 @@ public class UserDAO extends BaseDAO{
         return resultat;
     }
 
+    /**
+     * <b>sum_commande</b> est une méthode qui retourne la somme des totaux de commande des utilisateur d'un type demandé
+     * @param i le type d'utilisateur
+     * @return la somme des totaux des commandes
+     */
+    public int sum_commande(int i){
+        int somme = 0;
+        try {
+            Connection con = baseDAO.getInstance().getConnection();
+            PreparedStatement stm = con.prepareStatement("SELECT SUM(orders.total) as somme FROM `orders` INNER JOIN users on users.id=orders.users_id_id WHERE users.type = ?");
+            stm.setInt(1,i);
+            ResultSet result = stm.executeQuery();
+
+            if (result.next()) {
+                somme=result.getInt("somme");
+            }
+            stm.close();
+            result.close();
+            con.close();
+        } catch (IOException | SQLException e) {
+            System.out.println("Erreur dans la lecture des commandes");
+            System.out.println(e.getMessage());
+        }
+        return somme;
+    }
+
+    /**
+     * <b>sum_commande_part</b> est une méthode qui retourne le total des commandes des particuliers
+     * @return le total des commandes
+     */
+    public int sum_commande_part(){
+        return sum_commande(0);
+    }
+
+    /**
+     * <b>sum_commande_ent</b> est une méthode qui retourne le total des commandes des particuliers
+     * @return le total des commandes
+     */
+    public int sum_commande_ent(){
+        return sum_commande(1);
+    }
+
 }
