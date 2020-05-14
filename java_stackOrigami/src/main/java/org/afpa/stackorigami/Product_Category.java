@@ -31,4 +31,10 @@ public class Product_Category {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    //Nom afficher pour la liste des commerciaux.
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }
