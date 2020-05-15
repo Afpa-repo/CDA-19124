@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,16 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.afpa.stackorigami.UpdateProductController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.afpa.stackorigami.UpdateProductController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="607.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="607.0" style="-fx-background-color: gray;">
                     <children>
-                        <Label text="Ajout d'un Produit">
+                        <Label text="Modification d'un Produit">
                             <font>
                                 <Font size="33.0" />
                             </font>
@@ -45,17 +42,19 @@
                                     </VBox.margin>
                                 </TextField>
                                 <Label text="Stock" />
-                                <Spinner fx:id="val_stock">
+                                <TextField fx:id="val_stock">
                                     <VBox.margin>
                                         <Insets bottom="10.0" />
                                     </VBox.margin>
-                                </Spinner>
+                                </TextField>
                                 <Label text="URL image :" />
                                 <TextField fx:id="val_img">
                                     <VBox.margin>
                                         <Insets bottom="10.0" />
                                     </VBox.margin>
                                 </TextField>
+                                <Label text="Date de création" />
+                                <DatePicker fx:id="val_date" />
                             </children>
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
@@ -69,6 +68,12 @@
                                         <Insets bottom="10.0" />
                                     </VBox.margin>
                                 </TextArea>
+                                <Label text="Prix" />
+                                <TextField fx:id="val_price">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </TextField>
                                 <Label text="Catégorie" />
                                 <ComboBox fx:id="liste_category" prefWidth="150.0">
                                     <VBox.margin>
@@ -88,7 +93,7 @@
                     <children>
                         <Button mnemonicParsing="false" onAction="#annuler" text="Annuler" />
                         <Button mnemonicParsing="false" onAction="#effacer" text="Effacer" />
-                        <Button mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+                        <Button mnemonicParsing="false" onAction="#ajouter" text="Modifier" />
                     </children>
                 </HBox>
                 <Label text="StackOrigami">

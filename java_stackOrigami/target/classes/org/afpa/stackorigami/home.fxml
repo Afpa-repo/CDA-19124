@@ -26,10 +26,13 @@
                      <font>
                         <Font size="33.0" />
                      </font>
-                  </Label>
-                  <Button mnemonicParsing="false" onAction="#actualise" text="F5">
                      <HBox.margin>
-                        <Insets left="60.0" top="20.0" />
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                   <Button mnemonicParsing="false" onAction="#product" text="Liste des produits">
+                     <HBox.margin>
+                        <Insets left="25.0" top="20.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -70,7 +73,6 @@
                         <Button fx:id="btn_add" mnemonicParsing="false" onAction="#ajoute" text="Ajout Client" />
                         <Button fx:id="btn_update" mnemonicParsing="false" onAction="#modif" text="Modifier Client" />
                         <Button fx:id="btn_delete" mnemonicParsing="false" onAction="#supprime" text="Suppression" />
-                         <Button mnemonicParsing="false" onAction="#product" text="Liste des produits" />
                         <Button mnemonicParsing="false" onAction="#quitte" text="Quitter" />
                      </children>
                      <HBox.margin>

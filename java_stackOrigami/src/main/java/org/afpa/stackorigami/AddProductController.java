@@ -90,6 +90,7 @@ public class AddProductController implements Initializable {
         String reg_name = "[A-Za-zÀ-ú -]+";  //expression régulière pour le nom
         String reg_adr = "[^<>]*";  //expression régulière pour interdir les cheveron
         String reg_num = "[0-9]+"; //expression reguliere pour les num
+        String reg_price = "[0-9]+([,.][0-9]{1,2})?"; // Expression reguliere pour le prix
         String message_err = "";    //message d'erreur à afficher si le formulaire est invalide
         Alert alert_err = new Alert(Alert.AlertType.ERROR); //crée l'alert pour afficher les erreurs
 
@@ -177,6 +178,21 @@ public class AddProductController implements Initializable {
             valid = false;
             message_err += "\n- Aucun category n'est selectionné";
         }
+        /* Pour la date */
+        if(val_date.getValue().equals("")){
+            valid = false;
+            val_date.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ");
+            message_err += "\n- Aucune date choisis";
+        }
+        /* Pour le prix */
+        if (val_price.getText().equals("")){
+            valid = false;
+            message_err = "\n Aucun prix choisis";
+        }else if(!val_price.getText().matches(reg_price)){
+            valid = false;
+            val_price.setStyle("-fx-text-box-border: red ; -fx-focus-color: red");
+            message_err = "\n Le prix n'est pas valid";
+        }
 
         if(valid) {  //si le formulairfe est valide
             return true;    //on retourne vrai
@@ -224,7 +240,7 @@ public class AddProductController implements Initializable {
             alert.show();   //affiche l'alert
         }else{
             Alert failalert = new Alert(Alert.AlertType.WARNING);
-            failalert.setContentText("Echec de la modification");
+            failalert.setContentText("Echec de l'ajout");
             failalert.show();
         }
     }

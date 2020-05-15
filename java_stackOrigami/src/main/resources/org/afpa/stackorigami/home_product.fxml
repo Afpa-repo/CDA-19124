@@ -25,10 +25,13 @@
                      <font>
                         <Font size="33.0" />
                      </font>
-                  </Label>
-                  <Button mnemonicParsing="false" onAction="#actualise" text="F5">
                      <HBox.margin>
-                        <Insets left="60.0" top="20.0" />
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#user" text="Liste Utilisateurs">
+                     <HBox.margin>
+                        <Insets left="30.0" top="20.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -59,10 +62,9 @@
                   <VBox prefHeight="285.0" prefWidth="120.0" spacing="10.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#details" text="Détail" />
-                        <Button  mnemonicParsing="false" onAction="#add" text="Ajout Produit" />
-                        <Button  mnemonicParsing="false" onAction="#update" text="Modifier Produit" />
-                        <Button  mnemonicParsing="false" onAction="#delete" text="Suppression" />
-                        <Button  mnemonicParsing="false" onAction="#user" text="Liste Utilisateurs" />
+                        <Button mnemonicParsing="false" onAction="#add" text="Ajout Produit" />
+                        <Button mnemonicParsing="false" onAction="#update" text="Modifier Produit" />
+                        <Button mnemonicParsing="false" onAction="#delete" text="Suppression" />
                         <Button mnemonicParsing="false" onAction="#exit" text="Quitter" />
                      </children>
                      <HBox.margin>
@@ -101,7 +103,7 @@
                         <Label text="Stock :" />
                         <Label text="Catégorie :" />
                         <Label text="Description :" />
-                        <Label  text="Date d'ajout" />
+                        <Label text="Date d'ajout" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />
