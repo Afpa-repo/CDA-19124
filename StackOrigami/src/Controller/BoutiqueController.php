@@ -29,31 +29,7 @@ class BoutiqueController extends AbstractController {
      */
     /* Fonction qui appelle dans la page home tous les produits, tous les catégories et tous les partenaires de la BDD */
     public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository, OrderDetailsRepository $orderdetails): Response {
-        $jeej=$orderdetails->findBestSales();
-        //dd($jeej[1]["Total"]);
-
-
-        $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
-        $chart->getData()->setArrayToDataTable([
-            ['Produit', 'Vents total',[ 'role' => 'style' ]],
-            [$jeej[2]["ProductName"], $jeej[2]["Total"],["color: d95f02"]],
-            [$jeej[1]["ProductName"], $jeej[1]["Total"],"#7570b3"],
-            [$jeej[0]["ProductName"], $jeej[0]["Total"],"#1b9e77"],
-        ]);
-
-    $chart->getOptions()->getChart()
-        ->setTitle('Meilleurs ventes')
-        ->setSubtitle('');
-    $chart->getOptions()
-        ->setBars('vertical')
-        ->setHeight(400)
-        ->setWidth(600)
-        //->setColors('#1b9e77','#d95f02','#7570b3')
-        ->getVAxis()
-        ->setFormat('decimal');
-
-
-
+        
         return $this->render('boutique/home.html.twig', [
                     /* Retrouve toutes les valeurs dans l'entité products */
                     'products' => $productRepository->findAll(),
@@ -63,8 +39,6 @@ class BoutiqueController extends AbstractController {
                     'partners' => $partnerRepository->findAll(),
                     /* Retrouve les meilleurs ventes */
                     'bestsales' => $orderdetails->findBestSales(),
-                    /*Retrouve le graphique*/
-                    'chart' => $chart,
         ]);
     }
 
@@ -95,7 +69,7 @@ class BoutiqueController extends AbstractController {
     /**
      * @Route("/catalog", name="catalog")
      */
-    public function catalog(ProductRepository $productRepository, Request $request,PaginatorInterface $paginator) {
+    public function catalog(ProductRepository $productRepository, Request $request,PaginatorInterface $paginator,OrderDetailsRepository $orderdetails) {
         /* Impute la nouvelle recherche a la variable */
         $search = new PropertySearch();
         /* On donne au formulaire la recherche */
@@ -107,12 +81,40 @@ class BoutiqueController extends AbstractController {
             $request->query->getInt('page',1),
             24
         );
+        
+        /* Implementation du graphique */
+             
+         $jeej=$orderdetails->findBestSales();
+        //dd($jeej[1]["Total"]);
+
+
+        $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
+        $chart->getData()->setArrayToDataTable([
+            ['Produit', 'Vents total',[ 'role' => 'style' ]],
+            [$jeej[2]["ProductName"], $jeej[2]["Total"],["color: d95f02"]],
+            [$jeej[1]["ProductName"], $jeej[1]["Total"],"#7570b3"],
+            [$jeej[0]["ProductName"], $jeej[0]["Total"],"#1b9e77"],
+        ]);
+
+    $chart->getOptions()->getChart()
+        ->setTitle('Meilleurs ventes')
+        ->setSubtitle('');
+    $chart->getOptions()
+        ->setBars('vertical')
+        ->setHeight(400)
+        ->setWidth(600)
+        //->setColors('#1b9e77','#d95f02','#7570b3')
+        ->getVAxis()
+        ->setFormat('decimal');
+    
         /* renvoie la fonction de recherche et de création sur la vue */
         return $this->render('product/index.html.twig', [
                     /* Envoie sous le nom 'products' la fonction findAllVisible de la variable search */
                     'products' => $products,
                     /* Envoie sous le nom 'form' la fonction createView */
                     'form' => $form->createView(),
+                    /* Envoi le graphique sous le nom 'chart' */
+                    'chart' => $chart,
         ]);
     }
 
