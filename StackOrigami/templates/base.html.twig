@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="{{asset('images/StackOrigami-logo.png')}}"/>
     {% endblock %}
 </head>
 
@@ -17,7 +18,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a id="logo_text" href="{{ path('home') }}">StackOrigami</a>
+        <a id="logo_text" href="{{ path('home') }}"><img src="{{ asset('images/StackOrigami-name.png') }}" alt="Nom StackOrigami" height="50" width="120" ></a>
         <ul class="lg-pl-5 navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item  ">
                 <a class="nav-link" href="{{ path('home') }}">Accueil</a> <span class="sr-only">(current)</span></a>
@@ -67,7 +68,7 @@
 
                 </a>
 
-                        {% if app.user.role == 1 %}
+                        {% if app.user.role == "admin" %}
                         <a href="{{path('administration')}}" class="">
                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="31.5" viewBox="0 0 40 31.5">
   <path id="Icon_material-settings" data-name="Icon material-settings" d="M38.687,20.294a9.459,9.459,0,0,0,.144-1.543,9.459,9.459,0,0,0-.144-1.543l4.338-2.6a.677.677,0,0,0,.247-1.008L39.16,8.15A1.2,1.2,0,0,0,37.906,7.8l-5.12,1.575a16.61,16.61,0,0,0-3.475-1.544L28.53,3.662A.956.956,0,0,0,27.523,3H19.3a.956.956,0,0,0-1.007.662L17.51,7.835a17.467,17.467,0,0,0-3.475,1.543L8.915,7.8a1.16,1.16,0,0,0-1.254.346L3.549,13.6A.664.664,0,0,0,3.8,14.608l4.338,2.6A9.626,9.626,0,0,0,7.99,18.75a9.626,9.626,0,0,0,.144,1.543L3.8,22.892A.677.677,0,0,0,3.549,23.9l4.112,5.45a1.2,1.2,0,0,0,1.254.347l5.12-1.575a16.609,16.609,0,0,0,3.475,1.544l.781,4.174A.956.956,0,0,0,19.3,34.5h8.224a.956.956,0,0,0,1.007-.661l.781-4.174a17.468,17.468,0,0,0,3.475-1.544l5.12,1.575a1.16,1.16,0,0,0,1.254-.347l4.112-5.45a.677.677,0,0,0-.247-1.008l-4.338-2.6ZM23.411,24.263c-3.968,0-7.2-2.473-7.2-5.513s3.228-5.513,7.2-5.513,7.2,2.473,7.2,5.513S27.379,24.263,23.411,24.263Z" transform="translate(-3.406 -3)" fill="#fff"/>
@@ -85,7 +86,7 @@
                     <span class="basket" id="basket">{{ app.session.get('Fcount') }}</span>
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="40.5" height="31.5" viewBox="0 0 40.5 31.5">
-                            <path id="Icon_awesome-shopping-basket" data-name="Icon awesome-shopping-basket" d="M40.5,15.188v1.125A1.687,1.687,0,0,1,38.813,18H38.25L36.414,30.852a3.375,3.375,0,0,1-3.341,2.9H7.427a3.375,3.375,0,0,1-3.341-2.9L2.25,18H1.688A1.687,1.687,0,0,1,0,16.313V15.188A1.687,1.687,0,0,1,1.688,13.5H6.422L13.93,3.177A2.25,2.25,0,1,1,17.57,5.823L11.987,13.5H28.513L22.93,5.823A2.25,2.25,0,0,1,26.57,3.177L34.078,13.5h4.735A1.687,1.687,0,0,1,40.5,15.188ZM21.938,27.563V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm7.875,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm-15.75,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Z" transform="translate(0 -2.25)" fill="#e9e9e9"/>
+                            <path id="Icon_awesome-shopping-basket" data-name="Icon awesome-shopping-basket" d="M40.5,15.188v1.125A1.687,1.687,0,0,1,38.813,18H38.25L36.414,30.852a3.375,3.375,0,0,1-3.341,2.9H7.427a3.375,3.375,0,0,1-3.341-2.9L2.25,18H1.688A1.687,1.687,0,0,1,0,16.313V15.188A1.687,1.687,0,0,1,1.688,13.5H6.422L13.93,3.177A2.25,2.25,0,1,1,17.57,5.823L11.987,13.5H28.513L22.93,5.823A2.25,2.25,0,0,1,26.57,3.177L34.078,13.5h4.735A1.687,1.687,0,0,1,40.5,15.188ZM21.938,27.563V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm7.875,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm-15.75,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Z" transform="translate(0 -2.25)" fill="#6B6B5B"/>
                         </svg>
 
                     </a>

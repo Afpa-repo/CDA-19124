@@ -83,11 +83,11 @@ class BoutiqueController extends AbstractController {
         );
         
         /* Implementation du graphique */
-             
+        /* recupère les meilleurs ventes */     
          $jeej=$orderdetails->findBestSales();
         //dd($jeej[1]["Total"]);
 
-
+         /* Création de graphique */
         $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
         $chart->getData()->setArrayToDataTable([
             ['Produit', 'Vents total',[ 'role' => 'style' ]],

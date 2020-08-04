@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ApiResource
  */
 class Product
 {
@@ -14,52 +17,62 @@ class Product
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("Api:Product")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("Api:Product")
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("Api:Product")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("Api:Product")
      */
     private $color;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("Api:Product")
      */
     private $picture;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups("Api:Product")
      */
     private $price;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("Api:Product")
      */
     private $stock;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ProductCategory", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("Api:Product")
      */
     private $productCategory;
 
     /**
      * @ORM\Column(type="integer", length=10, nullable=true)
+     * @Groups("Api:Product")
      */
     private $stars;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("Api:Product")
      */
     private $createdAt;
 

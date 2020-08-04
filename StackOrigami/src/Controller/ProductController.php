@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\CartController;
 
-
 /**
  * @Route("/product")
  */
@@ -25,7 +24,6 @@ class ProductController extends AbstractController {
      */
     /* Fonction de recherche des produits */
     public function index(ProductRepository $productRepository): Response {
-   
         return $this->render('product/index.html.twig', [
                     'products' => $productRepository->findAll(),
         ]);
@@ -77,7 +75,7 @@ class ProductController extends AbstractController {
         $chart->getOptions()
             ->setHeight(400)
             ->setWidth(600);
-    $chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
+    //$chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
         //->setColors('#1b9e77','#d95f02','#7570b3')
     $chart->getOptions()->getVAxis()->setMinValue(0);
         

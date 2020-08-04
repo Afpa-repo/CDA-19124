@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="642.0" stylesheets="@../Css/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddProductController">
+<children>
+    <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="642.0">
+        <children>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="642.0" style="-fx-background-color: #ffe294;">
+                <children>
+                    <Label text="Ajout d'un Produit">
+                        <font>
+                            <Font size="33.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+            <HBox prefHeight="262.0" prefWidth="607.0">
+                <children>
+                    <VBox prefHeight="285.0" prefWidth="512.0">
+                        <children>
+                            <Label text="Libelle" />
+                            <TextField fx:id="val_libelle">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <Label text="Couleur" />
+                            <TextField fx:id="val_color">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <Label text="Stock" />
+                        <TextField fx:id="val_stock">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="URL image :" />
+                        <TextField fx:id="val_img">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Date de création" />
+                        <DatePicker fx:id="val_date" />
+                        </children>
+                        <HBox.margin>
+                            <Insets left="10.0" right="10.0" />
+                        </HBox.margin>
+                    </VBox>
+                    <VBox prefHeight="285.0" prefWidth="505.0">
+                        <children>
+                            <Label text="Description" />
+                        <TextArea fx:id="val_description" prefHeight="77.0" prefWidth="280.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <Label text="Prix" />
+                        <TextField fx:id="val_price">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                            <Label text="Catégorie" />
+                            <ComboBox fx:id="liste_category" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></ComboBox>
+                        </children>
+                        <HBox.margin>
+                            <Insets left="10.0" right="10.0" />
+                        </HBox.margin>
+                    </VBox>
+                </children>
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="607.0" spacing="50.0">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#annuler" text="Retour" />
+                    <Button mnemonicParsing="false" onAction="#effacer" text="Effacer" />
+                    <Button mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+                </children>
+            </HBox>
+            <Label text="StackOrigami">
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
+            </Label>
+        </children>
+    </VBox>
+</children>
+</AnchorPane>

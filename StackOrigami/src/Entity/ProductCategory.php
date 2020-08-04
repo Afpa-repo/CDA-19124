@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductCategoryRepository")
+ * @ApiResource
  */
 class ProductCategory
 {
@@ -15,11 +18,13 @@ class ProductCategory
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("Api:Product")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("Api:Product")
      */
     private $name;
 
@@ -35,6 +40,7 @@ class ProductCategory
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("Api:Product")
      */
     private $Picture;
 

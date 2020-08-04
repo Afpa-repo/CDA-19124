@@ -33,7 +33,8 @@
         "symfony/web-link": "5.0.*",
         "symfony/serializer": "5.0.*",
         "beberlei/doctrineextensions": "^1.2",
-        "cmen/google-charts-bundle": "^3.2"
+        "cmen/google-charts-bundle": "^3.2",
+        "api-platform/api-pack": "^1.2"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

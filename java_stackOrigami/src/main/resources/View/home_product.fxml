@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="642.0" stylesheets="@../Css/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeProductController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="400.0" prefWidth="642.0" AnchorPane.leftAnchor="-1.0">
+         <children>
+            <HBox prefHeight="86.0" prefWidth="642.0" style="-fx-background-color: #ffe294;">
+               <children>
+                  <ImageView fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/origami-removebg-preview.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="84.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/name.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="-35.0" right="-20.0" top="-15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="195.0" text="Dashboard Produits">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="-15.0" top="55.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#user" prefHeight="35.0" prefWidth="127.0" text="Utilisateurs &gt;&gt;&gt;">
+                     <HBox.margin>
+                        <Insets left="10.0" top="27.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="310.0" prefWidth="642.0">
+               <children>
+                  <TabPane prefHeight="310.0" prefWidth="490.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Produits">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="607.0">
+                                 <children>
+                                    <TableView fx:id="table_product" prefHeight="282.0" prefWidth="490.0">
+                                       <columns>
+                                          <TableColumn fx:id="libelle" prefWidth="123.0" text="Libellé" />
+                                          <TableColumn fx:id="color" prefWidth="100.0" text="Couleur" />
+                                          <TableColumn fx:id="price" prefWidth="101.0" text="Prix" />
+                                          <TableColumn fx:id="stock" prefWidth="72.0" text="Stock" />
+                                          <TableColumn fx:id="category" prefWidth="93.0" text="Catégorie" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <VBox id="vbox_table" prefHeight="310.0" prefWidth="152.0" spacing="15.0" style="-fx-background-color: #ffe294;">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#details" prefHeight="35.0" prefWidth="115.0" text="Détails" />
+                        <Button mnemonicParsing="false" onAction="#add" prefHeight="35.0" prefWidth="115.0" text="Ajouter">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#update" prefHeight="35.0" prefWidth="115.0" text="Modifier" />
+                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="35.0" prefWidth="115.0" text="Supprimer" />
+                        <Button mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="115.0" text="Quitter" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="18.0" top="38.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox id="vbox_detail" fx:id="fiche_product" layoutX="225.0" prefHeight="270.0" prefWidth="441.0" spacing="10.0" style="-fx-background-color: white;" visible="false" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="60.0">
+         <effect>
+            <DropShadow height="109.95" radius="52.9925" width="104.02" />
+         </effect>
+         <children>
+            <Label text="Fiche produit">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="185.0" prefWidth="361.0">
+               <children>
+                  <VBox prefHeight="168.0" prefWidth="182.0" spacing="10.0">
+                     <children>
+                        <Label text="Libelle :" />
+                        <Label text="Couleur :" />
+                        <Label text="Prix :" />
+                        <Label text="Stock :" />
+                        <Label text="Catégorie :" />
+                        <Label text="Description :" />
+                        <Label text="Date d'ajout" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="168.0" prefWidth="177.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="val_libelle" text="libelle" />
+                        <Label fx:id="val_color" text="couleur" />
+                        <Label fx:id="val_price" text="prix" />
+                        <Label fx:id="val_stock" text="stock" />
+                        <Label fx:id="val_category" text="categorie" />
+                        <Label fx:id="val_description" text="description" />
+                        <Label fx:id="val_date" text="date" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#ok" text="OK">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="310.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

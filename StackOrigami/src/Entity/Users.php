@@ -7,10 +7,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @ApiResource
  * @UniqueEntity(
  *     fields={"mail"},
  *     message= "L'email que vous avez rentré est déjà utilisé"
@@ -22,6 +25,7 @@ class Users implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("Api:Client")
      */
     private $id;
 
@@ -33,6 +37,7 @@ class Users implements UserInterface
      * @Assert\Email(
      *      message="Veuillez rentrer un e-mail valide"
      * )
+     * @Groups("Api:Client")
      */
     private $mail;
 
@@ -42,7 +47,7 @@ class Users implements UserInterface
      *      message="Veuillez rentrer un mot de passe"
      * )
      * @Assert\Length(
-     *      min="8", 
+     *      min="8",
      *      minMessage="Veuillez rentrer au moins 8 caractères",
      *      max=255,
      *      maxMessage="Veuillez rentrer moins de 255 caractères"
@@ -59,6 +64,7 @@ class Users implements UserInterface
      *      max=255,
      *      maxMessage="Veuillez rentrer moins de 255 caractères"
      * )
+     * @Groups("Api:Client")
      */
     private $surname;
 
@@ -71,44 +77,52 @@ class Users implements UserInterface
      *      max=255,
      *      maxMessage="Veuillez rentrer moins de 255 caractères"
      * )
+     * @Groups("Api:Client")
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(
      *      message="Veuillez rentrer un numéro"
      * )
+     * @Groups("Api:Client")
      */
-    private $phone_number;
+    private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("Api:Client")
      */
-    private $address_fact;
+    private $addressFact;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups("Api:Client")
      */
     private $coefficient;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("Api:Client")
      */
     private $type;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
+     * @Groups("Api:Client")
      */
     private $role;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("Api:Client")
      */
     private $siret;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="clients")
+     * @Groups("Api:Client")
      */
     private $commercial;
 
@@ -166,24 +180,24 @@ class Users implements UserInterface
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(string $phone_number): self
+    public function setPhoneNumber(string $phoneNumber): self
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
@@ -224,12 +238,12 @@ class Users implements UserInterface
 
     public function getAddressFact(): ?string
     {
-        return $this->address_fact;
+        return $this->addressFact;
     }
 
-    public function setAddressFact(?string $address_fact): self
+    public function setAddressFact(?string $addressFact): self
     {
-        $this->address_fact = $address_fact;
+        $this->addressFact = $addressFact;
 
         return $this;
     }

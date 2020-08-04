@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.beryx.runtime' version '1.11.2'
+}
+
+group 'org.StackOrigami'
+version '1.0'
+
+sourceSets.main.resources.srcDirs("src/main/java").includes.addAll(["**/*.fxml", "**/*.css","**/*.png"])
+sourceSets.main.resources.srcDirs("src/main/resources").includes.addAll(["**/*.*"])
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'mysql:mysql-connector-java:8.0.19' //
+    compile 'com.jolbox:bonecp:0.8.0.RELEASE'
+    compile 'org.mindrot:jbcrypt:0.4'
+}
+
+javafx {
+    version ="14"
+    modules = ["javafx.controls","javafx.base","javafx.graphics","javafx.fxml"]
+}
+
+runtime {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    modules = ['java.naming', 'java.xml','java.scripting','java.sql', 'java.management','jdk.unsupported']
+
+
+    jpackage {
+        outputDir = '/out'
+        imageName = 'StackOrigami'
+        imageOptions = ['--win-console']
+        skipInstaller = false
+        installerName = 'StackOrigamiSetup'
+        installerType = 'msi'
+        installerOptions = ['--win-menu', '--win-shortcut']
+        mainClass = "Main"
+    }
+}
+
+mainClassName = 'Main'
