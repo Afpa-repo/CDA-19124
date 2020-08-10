@@ -18,8 +18,10 @@ class ApiControllerUsers extends AbstractController
      */
     public function list(UsersRepository $usersRepository)
     {
-        return $this->json($usersRepository->findAll() , 200, [], ['groups' => 'Api:Client']);
+        return $this->json($usersRepository->findall() , 200, [], ['groups' => 'Api:Client']);
     }
+
+
 
     /**
      * @Route("/api/addUser", name="api_post_client", methods={"POST"})

@@ -272,12 +272,12 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getRole(): ?int
+    public function getRole(): ?string
     {
         return $this->role;
     }
 
-    public function setRole(?int $role): self
+    public function setRole(?string $role): self
     {
         $this->role = $role;
 
