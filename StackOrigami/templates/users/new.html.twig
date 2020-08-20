@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container text-center">
     {% if app.user %}
-    {% if app.user.role == 1 %}
+    {% if app.user.role == "admin" %}
     <h1>Ajouter un utilisateur</h1>
 
     {{ include('users/_form_new.html.twig', {'button_label': 'Ajouter'}) }}

@@ -56,33 +56,45 @@ class ProductController extends AbstractController {
     /**
      * @Route("/{id}", name="product_show", methods={"GET"})
      */
-    /* Fonction d'affichage des catégories  */
+    /* Fonction d'affichage des produits  */
     public function show(Product $product, OrderDetailsRepository $orderdetails): Response {
         $productSells=$orderdetails->findMonthlySales($product->getId());
     //dd($productSells);
 
 
         $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\LineChart();
-        $chart->getData()->setArrayToDataTable([
+		
+		$arrayToDataTable = [
             ['Mois','Nombre de ventes'],
-            ["0",0],
-            [$productSells[0]['Mois'],intval($productSells[0]['Total'])],
-            [$productSells[1]['Mois'],$productSells[1]['Total']],
+            [0,0]];
+		if (isset($productSells[0]['Mois'])){
+			$new_array = [];
+			array_push($new_array,$productSells[0]['Mois']);
+				array_push($new_array, intval($productSells[0]['Mois']));
+				//$arrayToDataTable.push($productSells[0]['Mois']);
+				array_push($arrayToDataTable,$new_array);
+			}
+       $chart->getData()->setArrayToDataTable($arrayToDataTable);
+			
+			
+            //[$productSells[0]['Mois'],intval($productSells[0]['Total'])]
+            //[$productSells[1]['Mois'],$productSells[1]['Total']],
             //[$productSells[2]['Mois'],$productSells[2]['Total']]
-            ]);
-            $chart->getOptions()->getChart()
-            ->setTitle('Nombre de ventes par mois');
+            //]);
+              //->setTitle('Nombre de ventes par mois')
         $chart->getOptions()
-            ->setHeight(400)
-            ->setWidth(600);
-    //$chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
-        //->setColors('#1b9e77','#d95f02','#7570b3')
+          ->setHeight(400)
+           ->setWidth(600)
+		   ->setTitle('Nombre de ventes par mois');
+    $chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
+		//->setColors('#1b9e77','#d95f02','#7570b3')
     $chart->getOptions()->getVAxis()->setMinValue(0);
-        
+        //dd($chart);
+		
         return $this->render('product/show.html.twig', [
                     'product' => $product,
                     'monthlysales' => $orderdetails->findMonthlySales($product->getId()),
-                    'chart' => $chart,
+					'chart' => $chart
         ]);
     }
 

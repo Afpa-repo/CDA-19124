@@ -6,7 +6,7 @@
 
 <div class="container text-center">
     {% if app.user %}    
-        {% if app.user.role == 1 %}
+        {% if app.user.role == "admin" %}
             <h1>Administration</h1>
 
             <ul class="list-group">

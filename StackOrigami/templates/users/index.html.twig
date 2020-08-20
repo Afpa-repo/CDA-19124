@@ -11,7 +11,7 @@
         </div>
         <a href="{{ path('security_login')}}" class="btn-profil">Connexion</a>
     {% else %}
-    {% if app.user.role == 1 %}
+    {% if app.user.role == "admin" %}
         <h1>Liste des utilisateurs</h1>
 
         <div class="table-responsive">

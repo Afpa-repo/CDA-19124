@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 
+
 class ApiControllerUsers extends AbstractController
 {
     /**
@@ -122,4 +123,11 @@ class ApiControllerUsers extends AbstractController
 
         return $this->json($user, $status, [], ['groups' => 'Api:Client']);
     }
+	
+	/**
+	* @Route("/api/login", name="api_login", methods={"POST"})
+	*/
+	public function login(){
+	return $this->json(['result' => true]);
+	}
 }

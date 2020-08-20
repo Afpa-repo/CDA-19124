@@ -6,7 +6,7 @@
 {% block body %}
     <div class="container text-center">
     {% if app.user %}
-        {% if app.user.role == 1%}
+        {% if app.user.role == "admin"%}
             <h1>Modification du profil</h1>
 
             {{ include('users/_form_admin.html.twig', {'button_label': 'Enregistrer'}) }}

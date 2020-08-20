@@ -52,6 +52,7 @@ class Users implements UserInterface
      *      max=255,
      *      maxMessage="Veuillez rentrer moins de 255 caractères"
      * )
+	 * @Groups("Api:Client")
      */
     private $password;
 
