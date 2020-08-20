@@ -1,215 +1,321 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}StackOrigami{% endblock %}</title>
-    {% block stylesheets %}
-        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-        <link rel="icon" type="image/png" href="{{asset('images/StackOrigami-logo.png')}}"/>
-    {% endblock %}
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}StackOrigami{% endblock %}</title>
+        {% block stylesheets %}
+            <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+            <link rel="icon" type="image/png" href="{{asset('images/StackOrigami-logo.png')}}"/>
+        {% endblock %}
+    </head>
 
-<body>
-<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a id="logo_text" href="{{ path('home') }}"><img src="{{ asset('images/name-logo.png') }}" alt="Nom StackOrigami" height="70" width="100" ></a>
-        <ul class="lg-pl-5 navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item  ">
-                <a class="nav-link" href="{{ path('home') }}">Accueil</a> <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item  ">
-                <a class="nav-link" href="{{ path('catalog') }}">Catalogue</a> <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="lg-pl-5 nav-item  ">
-                <a class="nav-link" href="{{ path('about_us') }}">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="lg-pl-5 nav-item  ">
-                <a class="nav-link" href="{{ path('contact_new') }}">Contact <span class="sr-only">(current)</span></a>
-            </li>
-
-            <!-- Condition d'affichage connexion/déconnexion -->
-            {% if not app.user %}
-                <li class="lg-pl-5 nav-item  ">
-                    <a class="nav-link" href="{{ path('security_login') }}">Connexion <span class="sr-only">(current)</span></a>
-                </li>
-            {% endif %}
-        </ul>
-        <!-- Logo recherche -->
-        <form class="lg-pl-5 form-inline my-2 my-lg-0">
-
-            <!-- Condition d'apparition logo profil -->
-            {% if not app.user %}
-            {% else %}
-                <!-- Logo profil -->
-                <a href="{{ path('profil') }}" class="mr-1">
-                    <div class="row">
-                    <div class="typewriter">
-                        <p>Bonjour {{ app.user.surname }} {{ app.user.firstName }}</p>
+    <body>
+        <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a id="logo_text" href="{{ path('home') }}"><img src="{{ asset('images/name-logo.png') }}" alt="Nom StackOrigami" height="70" width="100" ></a>
+                <ul class="lg-pl-5 navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item  ">
+                        <a class="nav-link" href="{{ path('home') }}">Accueil</a> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a class="nav-link" href="{{ path('catalog') }}">Catalogue</a> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="lg-pl-5 nav-item  ">
+                        <a class="nav-link" href="{{ path('about_us') }}">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="lg-pl-5 nav-item  ">
+                        <a class="nav-link" href="{{ path('contact_new') }}">Contact <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <!-- Condition d'affichage connexion/déconnexion -->
+                {% if not app.user %}
+                    <div class="lg-pl-5 nav-item ">
+                        <a class="nav-link" href="{{ path('security_login') }}">Connexion <span class="sr-only">(current)</span></a>
                     </div>
+                {% endif %}
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
-                        <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M18,20.25A10.125,10.125,0,1,0,7.875,10.125,10.128,10.128,0,0,0,18,20.25Zm9,2.25H23.126a12.24,12.24,0,0,1-10.252,0H9a9,9,0,0,0-9,9v1.125A3.376,3.376,0,0,0,3.375,36h29.25A3.376,3.376,0,0,0,36,32.625V31.5A9,9,0,0,0,27,22.5Z" fill="#e9e9e9"/>
-                    </svg>
-                    </div>
-                </a>
+                <!-- Logo recherche -->
+                <form class="lg-pl-5 form-inline my-2 my-lg-0">
+
+                    <!-- Condition d'apparition logo profil -->
+                    {% if not app.user %}
+                    {% else %}
+                        <div class="typewriter">
+                            <p id="hello_user" >Bonjour {{ app.user.firstName }} !</p>
+                        </div>
+                        <!-- Logo profil -->
+                        <a href="{{ path('profil') }}" class="mr-1">
+                            <div class="row">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px width="36" height="31.5"
+                                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256" y1="514" x2="256" y2="2" gradientTransform="matrix(1 0 0 -1 0 514)">
+                                <stop  offset="0" style="stop-color:#2AF598"/>
+                                <stop  offset="1" style="stop-color:#009EFD"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_1_);" d="M437.02,330.98c-27.883-27.882-61.071-48.523-97.281-61.018
+                                      C378.521,243.251,404,198.548,404,148C404,66.393,337.607,0,256,0S108,66.393,108,148c0,50.548,25.479,95.251,64.262,121.962
+                                      c-36.21,12.495-69.398,33.136-97.281,61.018C26.629,379.333,0,443.62,0,512h40c0-119.103,96.897-216,216-216s216,96.897,216,216h40
+                                      C512,443.62,485.371,379.333,437.02,330.98z M148,148c0-59.552,48.449-108,108-108s108,48.448,108,108s-48.449,108-108,108
+                                      S148,207.552,148,148z"/>
+                                <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+                            </div>
+                        </a>
 
 
-                <a href="{{ path('security_logout') }}" class="mr-1 ml-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="31.5" viewBox="0 0 36 31.5">
-                        <path id="Icon_open-account-logout" data-name="Icon open-account-logout" d="M13.5,0V4.5h18V27h-18v4.5H36V0ZM9,9,0,15.75,9,22.5V18H27V13.5H9Z" fill="#e9e9e9"/>
-                    </svg>
+                        <a href="{{ path('security_logout') }}" class="logo mr-1 ml-3">
+                            <svg viewBox="0 0 512 511" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="31.5">
+                            <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1=".5002" y2="511.7238">
+                            <stop offset="0" stop-color="#2af598"/>
+                            <stop offset="1" stop-color="#009efd"/></linearGradient>
+                            <path d="m200 255.222656c0 10.769532-8.730469 19.5-19.5 19.5s-19.5-8.730468-19.5-19.5c0-10.769531 8.730469-19.5 19.5-19.5s19.5 8.730469 19.5 19.5zm312 216.5v40h-512v-469.222656l280-42v40.222656h81v155h-40v-115h-41v391h41v-154h40v154zm-272 0v-424.777344l-200 30v394.777344zm81-236v40h113.714844l-46 46 28.285156 28.285156 94.285156-94.285156-94.285156-94.28125-28.285156 28.28125 46 46zm0 0" fill="url(#a)"/></svg>
 
 
-                </a>
+                        </a>
 
                         {% if app.user.role == "admin" %}
-                        <a href="{{path('administration')}}" class="">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="31.5" viewBox="0 0 40 31.5">
-  <path id="Icon_material-settings" data-name="Icon material-settings" d="M38.687,20.294a9.459,9.459,0,0,0,.144-1.543,9.459,9.459,0,0,0-.144-1.543l4.338-2.6a.677.677,0,0,0,.247-1.008L39.16,8.15A1.2,1.2,0,0,0,37.906,7.8l-5.12,1.575a16.61,16.61,0,0,0-3.475-1.544L28.53,3.662A.956.956,0,0,0,27.523,3H19.3a.956.956,0,0,0-1.007.662L17.51,7.835a17.467,17.467,0,0,0-3.475,1.543L8.915,7.8a1.16,1.16,0,0,0-1.254.346L3.549,13.6A.664.664,0,0,0,3.8,14.608l4.338,2.6A9.626,9.626,0,0,0,7.99,18.75a9.626,9.626,0,0,0,.144,1.543L3.8,22.892A.677.677,0,0,0,3.549,23.9l4.112,5.45a1.2,1.2,0,0,0,1.254.347l5.12-1.575a16.609,16.609,0,0,0,3.475,1.544l.781,4.174A.956.956,0,0,0,19.3,34.5h8.224a.956.956,0,0,0,1.007-.661l.781-4.174a17.468,17.468,0,0,0,3.475-1.544l5.12,1.575a1.16,1.16,0,0,0,1.254-.347l4.112-5.45a.677.677,0,0,0-.247-1.008l-4.338-2.6ZM23.411,24.263c-3.968,0-7.2-2.473-7.2-5.513s3.228-5.513,7.2-5.513,7.2,2.473,7.2,5.513S27.379,24.263,23.411,24.263Z" transform="translate(-3.406 -3)" fill="#fff"/>
-</svg>
+                            <a href="{{path('administration')}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="31.5" viewBox="0 0 40 31.5">
+                                <path id="Icon_material-settings" data-name="Icon material-settings" d="M38.687,20.294a9.459,9.459,0,0,0,.144-1.543,9.459,9.459,0,0,0-.144-1.543l4.338-2.6a.677.677,0,0,0,.247-1.008L39.16,8.15A1.2,1.2,0,0,0,37.906,7.8l-5.12,1.575a16.61,16.61,0,0,0-3.475-1.544L28.53,3.662A.956.956,0,0,0,27.523,3H19.3a.956.956,0,0,0-1.007.662L17.51,7.835a17.467,17.467,0,0,0-3.475,1.543L8.915,7.8a1.16,1.16,0,0,0-1.254.346L3.549,13.6A.664.664,0,0,0,3.8,14.608l4.338,2.6A9.626,9.626,0,0,0,7.99,18.75a9.626,9.626,0,0,0,.144,1.543L3.8,22.892A.677.677,0,0,0,3.549,23.9l4.112,5.45a1.2,1.2,0,0,0,1.254.347l5.12-1.575a16.609,16.609,0,0,0,3.475,1.544l.781,4.174A.956.956,0,0,0,19.3,34.5h8.224a.956.956,0,0,0,1.007-.661l.781-4.174a17.468,17.468,0,0,0,3.475-1.544l5.12,1.575a1.16,1.16,0,0,0,1.254-.347l4.112-5.45a.677.677,0,0,0-.247-1.008l-4.338-2.6ZM23.411,24.263c-3.968,0-7.2-2.473-7.2-5.513s3.228-5.513,7.2-5.513,7.2,2.473,7.2,5.513S27.379,24.263,23.411,24.263Z" transform="translate(-3.406 -3)" fill="#6b6b5b"/>
+                                </svg>
 
 
-</a>
+                            </a>
                         {%endif%}
 
-            {% endif %}
+                    {% endif %}
 
 
-                <!-- Logo panier -->
-                <a href="{{ path('cart_index') }}" class="mr-1 ml-3">
-                    <span class="basket" id="basket">{{ app.session.get('Fcount') }}</span>
+                    <!-- Logo panier -->
+                    <a href="{{ path('cart_index') }}" class="mr-1 ml-3">
+                        <span class="basket" id="basket">{{ app.session.get('Fcount') }}</span>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40.5" height="31.5" viewBox="0 0 40.5 31.5">
-                            <path id="Icon_awesome-shopping-basket" data-name="Icon awesome-shopping-basket" d="M40.5,15.188v1.125A1.687,1.687,0,0,1,38.813,18H38.25L36.414,30.852a3.375,3.375,0,0,1-3.341,2.9H7.427a3.375,3.375,0,0,1-3.341-2.9L2.25,18H1.688A1.687,1.687,0,0,1,0,16.313V15.188A1.687,1.687,0,0,1,1.688,13.5H6.422L13.93,3.177A2.25,2.25,0,1,1,17.57,5.823L11.987,13.5H28.513L22.93,5.823A2.25,2.25,0,0,1,26.57,3.177L34.078,13.5h4.735A1.687,1.687,0,0,1,40.5,15.188ZM21.938,27.563V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm7.875,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Zm-15.75,0V19.688a1.688,1.688,0,0,0-3.375,0v7.875a1.688,1.688,0,0,0,3.375,0Z" transform="translate(0 -2.25)" fill="#6B6B5B"/>
-                        </svg>
+                        <svg viewBox="-1 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="31.5">
+                        <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="255.118" x2="255.118" y1="0" y2="512">
+                        <stop offset="0" stop-color="#2af598"/>
+                        <stop offset="1" stop-color="#009efd"/></linearGradient>
+                        <path d="m357.3125 205-88-205h-28.300781l-89 205h-152.011719l34.941406 239.3125.113282.703125c3.492187 19.101563 14.910156 36.5 32.148437 48.988281 16.03125 11.605469 35.632813 17.996094 55.195313 17.996094h265.734374c19.542969 0 39.113282-6.398438 55.113282-18.015625 17.113281-12.421875 28.546875-29.753906 32.199218-48.800781l34.789063-240.183594zm106.175781 43.726562-37.855469 37.855469-41.582031-41.582031h79.976563zm-208.355469 208.355469-57.03125-57.03125 56.898438-56.898437 57.03125 57.03125zm85.183594-28.613281 43.53125 43.53125h-87.066406zm-126.835937 43.53125h-87.332031l43.667968-43.664062zm13.234375-157.132812-56.898438 56.898437-57.402344-57.398437 56.902344-56.898438zm-13.296875-69.867188h83.164062l-41.582031 41.582031zm69.863281 69.867188 57.035156-57.03125 57.03125 57.03125-57.03125 57.03125zm-28.246094-246.722657 58.746094 136.855469h-118.164062zm-129.820312 176.855469-41.082032 41.082031-37.316406-37.316406-.550781-3.765625zm-61.6875 118.253906 20.605468-20.601562 57.398438 57.398437-56.679688 56.675781c-5.324218-5.335937-9.0625-11.722656-10.390624-18.59375zm372.554687 74.792969c-1.433593 6.980469-5.300781 13.46875-10.757812 18.859375l-56.722657-56.722656 57.03125-57.03125 21.128907 21.128906zm0 0" fill="url(#a)"/></svg>
 
                     </a>
-                    
-                    
-        </form>
-    </div>            
-</nav>
 
-{% block body %}
 
-{% endblock %}
+                </form>
+            </div>            
+        </nav>
 
-{% block footer %}
+        {% block body %}
 
-    <div class="footer text-center col-12 mt-4">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="link_footer">Origami, simplement étonnant.</h3>
-            </div>
-        </div>
-        <!-- Inscription a la newsletter -->
-        <div class="row">
-            <div id="register_newletters pl-0" class="col-6">
-                <p class="link_footer font-weight-bold">Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
-            </div>
-            <!-- Logos réseaux sociaux -->
-            <div id="follow_us" class="col-4">
-                <p class="link_footer font-weight-bold">Suivez nous</p
-                        <!-- Logo facebook -->
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
-                        <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M34.316,19.688l1.815-6.334H24.783V9.243c0-1.733,1.585-3.422,6.668-3.422h5.159V.428S31.928,0,27.452,0C18.106,0,12,3.034,12,8.526v4.828H1.609v6.334H12V35H24.783V19.688Z" transform="translate(-1.609)"/>
-                    </svg>
-                </a>
-                <!-- Logo twitter -->
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
-                        <path id="Icon_awesome-twitter" data-name="Icon awesome-twitter" d="M31.4,12.1c.022.383.022.766.022,1.148,0,11.676-7.218,25.129-20.409,25.129A17.625,17.625,0,0,1,0,34.416a12.082,12.082,0,0,0,1.732.109,12.766,12.766,0,0,0,8.905-3.773c-3.154-.082-5.8-2.625-6.707-6.125a7.39,7.39,0,0,0,1.355.137,6.253,6.253,0,0,0,1.888-.3c-3.287-.82-5.752-4.375-5.752-8.668v-.109a6.239,6.239,0,0,0,3.242,1.121,9.5,9.5,0,0,1-3.2-7.355,10.358,10.358,0,0,1,.977-4.457c3.531,5.359,8.839,8.859,14.791,9.242a12.193,12.193,0,0,1-.178-2.023c0-4.867,3.2-8.832,7.173-8.832A6.615,6.615,0,0,1,29.47,6.17a12.643,12.643,0,0,0,4.553-2.133A8.719,8.719,0,0,1,30.869,8.9,12.323,12.323,0,0,0,35,7.537,17.824,17.824,0,0,1,31.4,12.1Z" transform="translate(0 -3.381)"/>
-                    </svg>
-                </a>
-                <!-- Logo instagram -->
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
-                        <path id="Icon_awesome-instagram" data-name="Icon awesome-instagram" d="M17.5,10.764a8.974,8.974,0,1,0,8.972,8.974A8.958,8.958,0,0,0,17.5,10.764Zm0,14.808a5.834,5.834,0,1,1,5.833-5.834A5.844,5.844,0,0,1,17.5,25.572ZM28.93,10.4A2.093,2.093,0,1,1,26.837,8.3,2.088,2.088,0,0,1,28.93,10.4Zm5.942,2.124c-.133-2.8-.773-5.287-2.827-7.333S27.516,2.5,24.713,2.361c-2.889-.164-11.548-.164-14.437,0C7.481,2.493,5,3.134,2.944,5.18S.258,9.71.118,12.514c-.164,2.89-.164,11.551,0,14.44.133,2.8.773,5.287,2.827,7.333s4.529,2.687,7.332,2.827c2.889.164,11.548.164,14.437,0,2.8-.133,5.286-.773,7.332-2.827s2.686-4.53,2.827-7.333c.164-2.89.164-11.543,0-14.433ZM31.139,30.055a5.906,5.906,0,0,1-3.326,3.327c-2.3.914-7.769.7-10.315.7s-8.019.2-10.315-.7a5.906,5.906,0,0,1-3.326-3.327c-.914-2.3-.7-7.771-.7-10.317s-.2-8.021.7-10.317A5.906,5.906,0,0,1,7.184,6.094c2.3-.914,7.769-.7,10.315-.7s8.019-.2,10.315.7a5.906,5.906,0,0,1,3.326,3.327c.914,2.3.7,7.771.7,10.317S32.053,27.758,31.139,30.055Z" transform="translate(0.005 -2.238)"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        <!-- Moyens de paiement -->
-        <div class="paiement_methods ">
-            <div class="row">
-                <div class="col-6">
-                    <p class="link_footer" >Moyens de paiements acceptés :
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30.849 13.197">
-                            <path id="Icon_payment-cb" data-name="Icon payment-cb" d="M10.572,24.06h8.166a6.175,6.175,0,0,1-1.98,5.031q-1.98,1.568-6.1,1.567-4.289,0-6.186-1.567a6.308,6.308,0,0,1-1.9-5.031q0-3.3,1.485-4.7,1.98-1.9,6.6-1.9,4.288,0,6.351,1.732a5.322,5.322,0,0,1,1.65,4.289H10.572v.577Zm20.043-.578H19.232V17.708H30.368A2.959,2.959,0,0,1,33.255,20.6a2.853,2.853,0,0,1-.742,1.98,2.71,2.71,0,0,1-1.9.908Zm-.082.578a3.028,3.028,0,0,1,2.021.99,3.106,3.106,0,0,1,.866,2.227,2.864,2.864,0,0,1-.866,2.1,3.1,3.1,0,0,1-2.021.949h-11.3V24.06h11.3Z" transform="translate(-2.571 -17.461)"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35.515 36">
-                            <path id="Icon_simple-paypal" data-name="Icon simple-paypal" d="M10.362,36H5.706a1.381,1.381,0,0,1-1.4-1.77l.223-1.011H7.632a2.394,2.394,0,0,0,2.223-1.773l1.6-6.888a2.4,2.4,0,0,1,2.22-1.77H15q8.525,0,13.26-3.51a10.923,10.923,0,0,0,4.74-9.2,8.809,8.809,0,0,0-.882-4.183c0-.024-.024-.047-.024-.069l.2.113a6.935,6.935,0,0,1,2.567,2.721,8.746,8.746,0,0,1,.9,4.187,10.9,10.9,0,0,1-4.746,9.2c-3.15,2.318-7.583,3.486-13.251,3.486h-1.35a2.4,2.4,0,0,0-2.226,1.779l-1.6,6.908a2.376,2.376,0,0,1-2.2,1.755ZM6.347,31.958H1.689a1.383,1.383,0,0,1-1.4-1.77L6.845,1.773A2.393,2.393,0,0,1,9.066,0h9.7a30.555,30.555,0,0,1,5.472.433,11.5,11.5,0,0,1,4.026,1.485,6.914,6.914,0,0,1,2.545,2.727,9.029,9.029,0,0,1,.876,4.2,10.831,10.831,0,0,1-4.746,9.179c-3.15,2.341-7.584,3.489-13.254,3.489H12.359a2.391,2.391,0,0,0-2.217,1.753L8.55,30.146A2.393,2.393,0,0,1,6.323,31.9ZM17.515,5.9H15.994a2.388,2.388,0,0,0-2.22,1.767L12.379,13.7a1.379,1.379,0,0,0,1.4,1.769h1.149a9.8,9.8,0,0,0,5.85-1.531A5.107,5.107,0,0,0,22.866,9.57a3.076,3.076,0,0,0-1.35-2.76A7.275,7.275,0,0,0,17.487,5.9l.028,0Z" transform="translate(-0.241)"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40.5 31.5">
-                            <path id="Icon_awesome-cc-visa" data-name="Icon awesome-cc-visa" d="M33.054,16.263s.534,2.616.654,3.164H31.359c.232-.626,1.125-3.059,1.125-3.059-.014.021.232-.64.373-1.048l.2.942ZM40.5,5.625v24.75a3.376,3.376,0,0,1-3.375,3.375H3.375A3.376,3.376,0,0,1,0,30.375V5.625A3.376,3.376,0,0,1,3.375,2.25h33.75A3.376,3.376,0,0,1,40.5,5.625ZM10.723,23.288l4.444-10.913H12.178L9.415,19.828l-.3-1.512L8.128,13.3a1.176,1.176,0,0,0-1.28-.921H2.3l-.049.218a11.158,11.158,0,0,1,2.967,1.2l2.517,9.492Zm6.638.014,1.772-10.927H16.305L14.541,23.3h2.82ZM27.2,19.73c.014-1.245-.745-2.194-2.37-2.974-.991-.5-1.6-.837-1.6-1.35.014-.464.513-.942,1.624-.942a4.845,4.845,0,0,1,2.1.415l.253.12.387-2.363a7.022,7.022,0,0,0-2.531-.464c-2.791,0-4.753,1.491-4.767,3.614-.021,1.568,1.406,2.44,2.475,2.967,1.09.534,1.462.886,1.462,1.357-.014.731-.886,1.069-1.695,1.069a5.632,5.632,0,0,1-2.651-.584l-.373-.176-.394,2.454a8.628,8.628,0,0,0,3.15.584C25.242,23.463,27.176,21.994,27.2,19.73ZM37.125,23.3,34.847,12.375H32.66a1.391,1.391,0,0,0-1.477.907l-4.2,10.02h2.967s.485-1.35.591-1.638h3.628c.084.387.338,1.638.338,1.638Z" transform="translate(0 -2.25)"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40.5 31.5">
-                            <path id="Icon_awesome-cc-mastercard" data-name="Icon awesome-cc-mastercard" d="M33.954,28.849a.788.788,0,1,1-.787-.823A.786.786,0,0,1,33.954,28.849ZM12.1,28.027a.825.825,0,1,0,.766.823A.778.778,0,0,0,12.1,28.027Zm8.262-.021a.652.652,0,0,0-.668.612h1.343A.646.646,0,0,0,20.363,28.005Zm7.58.021a.823.823,0,1,0,.788.823A.778.778,0,0,0,27.942,28.027Zm7.446,1.835c0,.021.021.035.021.077,0,.021-.021.035-.021.077a.247.247,0,0,0-.035.056.091.091,0,0,1-.077.035c-.021.021-.035.021-.077.021a.139.139,0,0,1-.077-.021c-.021,0-.035-.021-.056-.035s-.035-.035-.035-.056a.128.128,0,0,1-.021-.077c0-.035,0-.056.021-.077a.132.132,0,0,1,.035-.077.247.247,0,0,1,.056-.035.128.128,0,0,1,.077-.021c.035,0,.056,0,.077.021s.056.021.077.035S35.367,29.827,35.388,29.862Zm-.155.1c.035,0,.035-.021.056-.021a.086.086,0,0,0,0-.112c-.021,0-.035-.021-.077-.021H35.1v.246h.056v-.1h.021l.077.1h.056l-.077-.091ZM40.5,5.7v24.75a3.376,3.376,0,0,1-3.375,3.375H3.375A3.376,3.376,0,0,1,0,30.445V5.7A3.376,3.376,0,0,1,3.375,2.32h33.75A3.376,3.376,0,0,1,40.5,5.7Zm-36,9.816a9.734,9.734,0,0,0,15.117,8.114,10.486,10.486,0,0,1,0-16.207A9.734,9.734,0,0,0,4.5,15.511Zm15.75,7.65a9.735,9.735,0,0,0,0-15.293A9.735,9.735,0,0,0,20.25,23.161ZM10.245,28.526a.985.985,0,0,0-1.034-1.034,1,1,0,0,0-.9.457.932.932,0,0,0-.858-.457.893.893,0,0,0-.745.38v-.309H6.131v2.58h.577c0-1.329-.176-2.123.633-2.123.717,0,.577.717.577,2.123h.555c0-1.287-.176-2.123.633-2.123.717,0,.577.7.577,2.123h.577V28.526Zm3.157-.963h-.555v.309a1.013,1.013,0,0,0-.823-.38,1.359,1.359,0,0,0,0,2.714.975.975,0,0,0,.823-.38v.323H13.4Zm2.848,1.8c0-1.055-1.61-.577-1.61-1.069,0-.4.837-.337,1.3-.077l.232-.457c-.661-.429-2.123-.422-2.123.577s1.61.584,1.61,1.055c0,.443-.949.408-1.455.056l-.246.443C14.745,30.424,16.249,30.312,16.249,29.362Zm2.489.654-.155-.478c-.267.148-.858.309-.858-.288V28.083h.921v-.52h-.921v-.788h-.577v.788h-.534v.513h.534V29.25c0,1.237,1.216,1.013,1.589.766Zm.935-.942h1.934c0-1.139-.52-1.589-1.223-1.589a1.266,1.266,0,0,0-1.28,1.357,1.4,1.4,0,0,0,2.377,1l-.267-.422c-.548.45-1.378.408-1.54-.345Zm4.155-1.512a.825.825,0,0,0-1.069.309v-.309h-.577v2.58h.577V28.688a.587.587,0,0,1,.9-.591l.169-.534Zm.745,1.287c0-.8.816-1.062,1.455-.591L26.3,27.8a1.392,1.392,0,1,0,0,2.109l-.267-.457C25.383,29.911,24.574,29.637,24.574,28.849Zm4.69-1.287h-.577v.309a1.278,1.278,0,1,0,0,1.955v.323h.577V27.563Zm2.37,0a.845.845,0,0,0-1.069.309v-.309h-.555v2.58h.555V28.688a.59.59,0,0,1,.9-.591l.169-.534Zm2.834-1.048h-.555v1.357a1.278,1.278,0,1,0,0,1.955v.323h.555ZM35,21.234v.323h.056v-.323h.134v-.056h-.323v.056H35Zm.464,8.7a.214.214,0,0,0-.021-.112c-.021-.021-.035-.056-.056-.077s-.056-.035-.077-.056c-.035,0-.077-.021-.112-.021a.747.747,0,0,1-.1.021.367.367,0,0,0-.077.056.11.11,0,0,0-.056.077.214.214,0,0,0-.021.112.2.2,0,0,0,.021.1.11.11,0,0,0,.056.077.244.244,0,0,0,.077.056.191.191,0,0,0,.1.021.214.214,0,0,0,.112-.021c.021-.021.056-.035.077-.056s.035-.056.056-.077A.2.2,0,0,0,35.466,29.939Zm.225-8.768h-.1l-.112.246-.112-.246h-.1v.38h.056v-.288l.112.246h.077l.1-.246v.288h.077ZM36,15.511a9.734,9.734,0,0,0-15.117-8.1,10.486,10.486,0,0,1,0,16.207A9.734,9.734,0,0,0,36,15.511Z" transform="translate(0 -2.32)"/>
-                        </svg>
-                    </p>
+        {% endblock %}
+
+        {% block footer %}
+
+            <div class="footer text-center col-12 mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="link_footer">Origami, simplement étonnant.</h3>
+                    </div>
+                </div>
+                <!-- Inscription a la newsletter -->
+                <div class="row">
+                    <div id="register_newletters pl-0 text-center" class="col-12">
+                        <p class="link_footer font-weight-bold ">Inscrivez-vous à notre newletters pour recevoir nos offres exclusives</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="text-center">
+                        <ul>
+                            <li>
+                                <!-- Logos réseaux sociaux -->
+                                <div id="follow_us">
+                                    <p class="link_footer font-weight-bold">Suivez nous</p>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- Logo facebook -->
+                                <a href="">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="30" height="30">
+                                    <g>
+                                    <g>
+                                    <path style=fill:#1976D2;" d="M452,0H60C26.916,0,0,26.916,0,60v392c0,33.084,26.916,60,60,60h392c33.084,0,60-26.916,60-60V60
+                                          C512,26.916,485.084,0,452,0z M472,452c0,11.028-8.972,20-20,20H338V309h61.79L410,247h-72v-43c0-16.975,13.025-30,30-30h41v-62
+                                          h-41c-50.923,0-91.978,41.25-91.978,92.174V247H216v62h60.022v163H60c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h392
+                                          c11.028,0,20,8.972,20,20V452z"/>
+                                    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                    </svg>
+                                </a>
+                                <!-- Logo twitter -->
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
+                                    <path fill="#00acee" id="Icon_awesome-twitter" data-name="Icon awesome-twitter" d="M31.4,12.1c.022.383.022.766.022,1.148,0,11.676-7.218,25.129-20.409,25.129A17.625,17.625,0,0,1,0,34.416a12.082,12.082,0,0,0,1.732.109,12.766,12.766,0,0,0,8.905-3.773c-3.154-.082-5.8-2.625-6.707-6.125a7.39,7.39,0,0,0,1.355.137,6.253,6.253,0,0,0,1.888-.3c-3.287-.82-5.752-4.375-5.752-8.668v-.109a6.239,6.239,0,0,0,3.242,1.121,9.5,9.5,0,0,1-3.2-7.355,10.358,10.358,0,0,1,.977-4.457c3.531,5.359,8.839,8.859,14.791,9.242a12.193,12.193,0,0,1-.178-2.023c0-4.867,3.2-8.832,7.173-8.832A6.615,6.615,0,0,1,29.47,6.17a12.643,12.643,0,0,0,4.553-2.133A8.719,8.719,0,0,1,30.869,8.9,12.323,12.323,0,0,0,35,7.537,17.824,17.824,0,0,1,31.4,12.1Z" transform="translate(0 -3.381)"/>
+                                    </svg>
+                                </a>
+                                <!-- Logo instagram -->
+                                <a href="">
+                                    <svg height="30" viewBox="0 0 512 512" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <linearGradient id="c1" gradientUnits="userSpaceOnUse" x1="42.966156268" x2="469.0337477" y1="469.0296477168" y2="42.9620562848">
+                                    <stop offset="0" stop-color="#ffd600"/><stop offset=".5" stop-color="#ff0100"/><stop offset="1" stop-color="#d800b9"/></linearGradient>
+                                    <linearGradient id="c2" gradientUnits="userSpaceOnUse" x1="163.0429956456" x2="348.9539083464" y1="348.9538083312" y2="163.0428956304">
+                                    <stop offset="0" stop-color="#ff6400"/><stop offset=".5" stop-color="#ff0100"/><stop offset="1" stop-color="#fd0056"/></linearGradient>
+                                    <linearGradient id="c3" gradientUnits="userSpaceOnUse" x1="370.9291325432" x2="414.3727849912" y1="141.0676714336" y2="97.6240189856">
+                                    <stop offset="0" stop-color="#f30072"/><stop offset="1" stop-color="#e50097"/></linearGradient>
+                                    <path fill="url(#c1)" d="m510.460938 150.453125c-1.246094-27.25-5.574219-45.859375-11.902344-62.140625-6.425782-17.082031-16.503906-32.554688-29.527344-45.34375-12.785156-13.023438-28.261719-23.105469-45.34375-29.535156-16.285156-6.324219-34.890625-10.648438-62.140625-11.886719-27.300781-1.25-36.023437-1.546875-105.546875-1.546875s-78.246094.296875-105.546875 1.539062c-27.25 1.246094-45.855469 5.574219-62.140625 11.902344-17.082031 6.425782-32.554688 16.503906-45.34375 29.527344-13.023438 12.785156-23.105469 28.257812-29.535156 45.339844-6.324219 16.285156-10.648438 34.894531-11.886719 62.140625-1.25 27.304687-1.546875 36.023437-1.546875 105.546875 0 69.527344.296875 78.25 1.546875 105.550781 1.242187 27.246094 5.570313 45.855469 11.898437 62.140625 6.425782 17.078125 16.503907 32.554688 29.527344 45.339844 12.785156 13.023437 28.261719 23.101562 45.34375 29.527344 16.28125 6.332031 34.890625 10.65625 62.140625 11.902343 27.304688 1.246094 36.023438 1.539063 105.546875 1.539063 69.523438 0 78.246094-.292969 105.546875-1.539063 27.25-1.246093 45.855469-5.570312 62.140625-11.902343 34.386719-13.296876 61.570313-40.480469 74.867188-74.867188 6.332031-16.285156 10.65625-34.894531 11.902344-62.140625 1.242187-27.304687 1.539062-36.023437 1.539062-105.546875 0-69.527344-.296875-78.246094-1.539062-105.546875zm-46.082032 208.996094c-1.136718 24.960937-5.308594 38.515625-8.8125 47.535156-8.613281 22.328125-26.257812 39.972656-48.585937 48.585937-9.019531 3.503907-22.574219 7.675782-47.535157 8.8125-26.988281 1.234376-35.085937 1.492188-103.445312 1.492188-68.363281 0-76.457031-.257812-103.449219-1.492188-24.957031-1.136718-38.511719-5.308593-47.535156-8.8125-11.117187-4.105468-21.175781-10.648437-29.433594-19.152343-8.503906-8.257813-15.046875-18.3125-19.152343-29.433594-3.503907-9.019531-7.675782-22.574219-8.8125-47.535156-1.230469-26.992188-1.492188-35.089844-1.492188-103.445313 0-68.359375.261719-76.453125 1.492188-103.449218 1.140624-24.960938 5.308593-38.515626 8.8125-47.535157 4.105468-11.121093 10.652343-21.179687 19.152343-29.4375 8.257813-8.503906 18.316407-15.046875 29.4375-19.148437 9.019531-3.507813 22.574219-7.675782 47.535157-8.816406 26.992187-1.230469 35.089843-1.492188 103.445312-1.492188h-.003906c68.355468 0 76.453125.261719 103.449218 1.496094 24.960938 1.136718 38.511719 5.308594 47.535157 8.8125 11.117187 4.105468 21.175781 10.648437 29.433593 19.148437 8.503907 8.257813 15.046876 18.316407 19.148438 29.4375 3.507812 9.019531 7.679688 22.574219 8.816406 47.535157 1.230469 26.992187 1.492188 35.089843 1.492188 103.445312 0 68.359375-.257813 76.453125-1.492188 103.449219zm0 0"/>
+                                    <path fill="url(#c2)" d="m255.996094 124.539062c-72.601563 0-131.457032 58.859376-131.457032 131.460938s58.855469 131.457031 131.457032 131.457031c72.605468 0 131.460937-58.855469 131.460937-131.457031s-58.855469-131.460938-131.460937-131.460938zm0 216.792969c-47.125-.003906-85.332032-38.207031-85.328125-85.335937 0-47.125 38.203125-85.332032 85.332031-85.332032 47.128906.003907 85.332031 38.207032 85.332031 85.332032 0 47.128906-38.207031 85.335937-85.335937 85.335937zm0 0"/>
+                                    <path fill="url(#c3)" d="m423.371094 119.347656c0 16.964844-13.753906 30.71875-30.71875 30.71875-16.96875 0-30.722656-13.753906-30.722656-30.71875 0-16.96875 13.753906-30.722656 30.722656-30.722656 16.964844 0 30.71875 13.753906 30.71875 30.722656zm0 0"/></svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Moyens de paiement -->
+                    <div class="paiement_methods ">
+                        <div class="text-center">
+                            <ul>
+                                <li>
+                                    <p class="link_footer font-weight-bold">Moyens de paiements acceptés</p>
+                                </li>
+                                <li>
+                                    <!-- Logo CB -->                                    
+                                    <svg width="40" height="20" viewBox="0 0 376 181" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <rect x="-62" y="-91" width="500" height="357" fill="url(#pattern0)"/>
+                                    <defs>
+                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0" transform="scale(0.002 0.00280112)"/>
+                                </pattern>
+                                <image id="image0" width="500" height="357" xlink:href="data:image/png;base64,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"/>
+                                </defs>
+                                </svg>
+
+                                <!-- Logo Paypal-->
+
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="25" height="25">
+                                <path style="fill:#03A9F4;" d="M425.457,117.739c-3.121-1.838-6.961-1.966-10.197-0.341c-3.231,1.629-5.416,4.786-5.803,8.384
+                                      c-0.384,3.499-0.981,6.997-1.728,10.667c-20.885,94.784-62.827,140.885-128.256,140.885h-96c-5.062,0.009-9.42,3.574-10.432,8.533
+                                      l-32,149.995l-5.717,38.187c-3.287,17.365,8.125,34.107,25.489,37.394c1.915,0.362,3.858,0.549,5.807,0.558h64.213
+                                      c14.718,0.045,27.55-10,31.04-24.299l25.941-103.701h55.659c65.685,0,111.083-52.373,127.829-147.477l0,0
+                                      C482.356,191.238,464.068,143.856,425.457,117.739z"/>
+                                <path style="fill:#283593;" d="M405.339,38.017c-21.078-23.909-51.327-37.731-83.2-38.016h-176.64
+                                      C119.064-0.141,96.558,19.2,92.721,45.355L37.873,411.243c-2.627,17.477,9.41,33.774,26.887,36.402
+                                      c1.586,0.239,3.189,0.357,4.793,0.356h81.92c5.062-0.009,9.42-3.574,10.432-8.533l30.187-140.8h87.467
+                                      c75.904,0,126.059-53.056,149.099-157.867c0.926-4.178,1.638-8.4,2.133-12.651C436.139,95.815,426.81,62.778,405.339,38.017z"/>
+                                <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+
+                                <!-- Logo Visa -->
+
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 504 504" style="enable-background:new 0 0 504 504;" xml:space="preserve" width="40" height="40">
+                                <polygon style="fill:#3C58BF;" points="184.8,324.4 210.4,180.4 250.4,180.4 225.6,324.4 "/>
+                                <polygon style="fill:#293688;" points="184.8,324.4 217.6,180.4 250.4,180.4 225.6,324.4 "/>
+                                <path style="fill:#3C58BF;" d="M370.4,182c-8-3.2-20.8-6.4-36.8-6.4c-40,0-68.8,20-68.8,48.8c0,21.6,20,32.8,36,40
+                                      s20.8,12,20.8,18.4c0,9.6-12.8,14.4-24,14.4c-16,0-24.8-2.4-38.4-8l-5.6-2.4l-5.6,32.8c9.6,4,27.2,8,45.6,8
+                                      c42.4,0,70.4-20,70.4-50.4c0-16.8-10.4-29.6-34.4-40c-14.4-7.2-23.2-11.2-23.2-18.4c0-6.4,7.2-12.8,23.2-12.8
+                                      c13.6,0,23.2,2.4,30.4,5.6l4,1.6L370.4,182L370.4,182z"/>
+                                <path style="fill:#293688;" d="M370.4,182c-8-3.2-20.8-6.4-36.8-6.4c-40,0-61.6,20-61.6,48.8c0,21.6,12.8,32.8,28.8,40
+                                      s20.8,12,20.8,18.4c0,9.6-12.8,14.4-24,14.4c-16,0-24.8-2.4-38.4-8l-5.6-2.4l-5.6,32.8c9.6,4,27.2,8,45.6,8
+                                      c42.4,0,70.4-20,70.4-50.4c0-16.8-10.4-29.6-34.4-40c-14.4-7.2-23.2-11.2-23.2-18.4c0-6.4,7.2-12.8,23.2-12.8
+                                      c13.6,0,23.2,2.4,30.4,5.6l4,1.6L370.4,182L370.4,182z"/>
+                                <path style="fill:#3C58BF;" d="M439.2,180.4c-9.6,0-16.8,0.8-20.8,10.4l-60,133.6h43.2l8-24h51.2l4.8,24H504l-33.6-144H439.2z
+                                      M420.8,276.4c2.4-7.2,16-42.4,16-42.4s3.2-8.8,5.6-14.4l2.4,13.6c0,0,8,36,9.6,44h-33.6V276.4z"/>
+                                <path style="fill:#293688;" d="M448.8,180.4c-9.6,0-16.8,0.8-20.8,10.4l-69.6,133.6h43.2l8-24h51.2l4.8,24H504l-33.6-144H448.8z
+                                      M420.8,276.4c3.2-8,16-42.4,16-42.4s3.2-8.8,5.6-14.4l2.4,13.6c0,0,8,36,9.6,44h-33.6V276.4z"/>
+                                <path style="fill:#3C58BF;" d="M111.2,281.2l-4-20.8c-7.2-24-30.4-50.4-56-63.2l36,128h43.2l64.8-144H152L111.2,281.2z"/>
+                                <path style="fill:#293688;" d="M111.2,281.2l-4-20.8c-7.2-24-30.4-50.4-56-63.2l36,128h43.2l64.8-144H160L111.2,281.2z"/>
+                                <path style="fill:#FFBC00;" d="M0,180.4l7.2,1.6c51.2,12,86.4,42.4,100,78.4l-14.4-68c-2.4-9.6-9.6-12-18.4-12H0z"/>
+                                <path style="fill:#F7981D;" d="M0,180.4L0,180.4c51.2,12,93.6,43.2,107.2,79.2l-13.6-56.8c-2.4-9.6-10.4-15.2-19.2-15.2L0,180.4z"/>
+                                <path style="fill:#ED7C00;" d="M0,180.4L0,180.4c51.2,12,93.6,43.2,107.2,79.2l-9.6-31.2c-2.4-9.6-5.6-19.2-16.8-23.2L0,180.4z"/>
+                                <g>
+                                <path style="fill:#051244;" d="M151.2,276.4L124,249.2l-12.8,30.4l-3.2-20c-7.2-24-30.4-50.4-56-63.2l36,128h43.2L151.2,276.4z"/>
+                                <polygon style="fill:#051244;" points="225.6,324.4 191.2,289.2 184.8,324.4 	"/>
+                                <path style="fill:#051244;" d="M317.6,274.8L317.6,274.8c3.2,3.2,4.8,5.6,4,8.8c0,9.6-12.8,14.4-24,14.4c-16,0-24.8-2.4-38.4-8
+                                      l-5.6-2.4l-5.6,32.8c9.6,4,27.2,8,45.6,8c25.6,0,46.4-7.2,58.4-20L317.6,274.8z"/>
+                                <path style="fill:#051244;" d="M364,324.4h37.6l8-24h51.2l4.8,24H504L490.4,266l-48-46.4l2.4,12.8c0,0,8,36,9.6,44h-33.6
+                                      c3.2-8,16-42.4,16-42.4s3.2-8.8,5.6-14.4"/>
+                                </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+
+
+                                <!-- Logo Mastercard -->
+
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 291.791 291.791" style="enable-background:new 0 0 291.791 291.791;" xml:space="preserve" width="40" height="40">
+                                <g>
+                                <path style="fill:#E2574C;" d="M182.298,145.895c0,50.366-40.801,91.176-91.149,91.176S0,196.252,0,145.895
+                                      s40.811-91.176,91.149-91.176S182.298,95.538,182.298,145.895z"/>
+                                <path style="fill:#F4B459;" d="M200.616,54.719c-20.442,0-39.261,6.811-54.469,18.181l0.073,0.009
+                                      c2.991,2.89,6.291,4.924,8.835,8.251l-18.965,0.301c-2.972,3-5.68,6.264-8.233,9.656H161.3c2.544,3.054,4.896,5.708,7.03,9.081
+                                      h-46.536c-1.705,2.936-3.282,5.954-4.659,9.09h56.493c1.477,3.127,2.799,5.489,3.921,8.799h-63.76
+                                      c-1.012,3.146-1.878,6.364-2.535,9.646h68.966c0.675,3.155,1.194,6.072,1.55,9.045h-71.884c-0.301,3-0.456,6.045-0.456,9.118
+                                      h72.859c0,3.228-0.228,6.218-0.556,9.118h-71.847c0.31,3.091,0.766,6.127,1.368,9.118h68.856c-0.711,2.954-1.532,5.926-2.562,9.008
+                                      h-63.969c0.966,3.118,2.143,6.145,3.428,9.099h56.621c-1.568,3.319-3.346,5.972-5.306,9.081h-46.691
+                                      c1.842,3.191,3.875,6.236,6.081,9.154l33.589,0.501c-2.863,3.437-6.537,5.507-9.884,8.516c0.182,0.146-5.352-0.018-16.248-0.191
+                                      c16.576,17.105,39.744,27.772,65.446,27.772c50.357,0,91.176-40.82,91.176-91.176S250.981,54.719,200.616,54.719z"/>
+                                </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Liens footer -->
+                <div class=" links_footer">
+                    <div class="d-flex justify-content-around">
+
+                        <div class="text-left">
+                            <ul>
+                                <li><a class="link_footer" href="">FAQ</a></li>
+                                <li><a class="link_footer" href="">Le blog de StackOrigami</a></li>
+                                <li><a class="link_footer" href="">Qui sommes-nous ?</a></li>
+                            </ul>
+                        </div>
+                        <div class="text-left">
+                            <ul>
+                                <li><a class="link_footer" href="">Recrutement</a></li>
+                                <li><a class="link_footer" href="">Nos boutiques</a></li>
+                                <li><a class="link_footer" href="">Plan du site</a></li>
+                            </ul>
+                        </div>
+                        <div class="text-left">
+                            <ul>
+                                <li><a class="link_footer" href="">Mentions légales</a></li>
+                                <li><a class="link_footer" href="">Contact</a></li>
+                                <li><a class="link_footer" href="">CGU / CGV</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyrights text-center">
+                    <p id="stack">StackOrigami est une entreprise 100% made in France.</p>
+                    <p class="font-weight-bold">Copyright 2020 StackOrigami tous droits réservés.</p>
                 </div>
             </div>
-        </div>
-        <!-- Liens footer -->
-        <div class="links_footer">
-            <div class="row">
-                <div class="col-4 padding-left-0">
-                    <ul>
-                        <li><a class="link_footer" href="">Mentions légales</a></li>
-                        <li><a class="link_footer" href="">Contact</a></li>
-                        <li><a  class="link_footer" href="">CGU / CGV</a></li>
-                        <li><a  class="link_footer" href="">Plan du site</a></li>
-                    </ul>
-                </div>
-                <div class="col-4">
-                    <ul>
-                        <li><a  class="link_footer" href="">Recrutement</a></li>
-                        <li><a class="link_footer" href="">Nos boutiques</a></li>
 
-                    </ul>
-                </div>
-                <div class="col-4">
-                    <ul>
-                        <li><a class="link_footer" href="">Qui sommes-nous ?</a></li>
-                        <li><a class="link_footer" href="">FAQ</a></li>
-                        <li><a class="link_footer" href="">Le blog de StackOrigami</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="copyrights">
-            <p id="stack">StackOrigami est une entreprise 100% made in France.</p>
-            <p class="font-weight-bold">Copyright 2020 StockOrigami tous droits réservés.</p>
-        </div>
-    </div>
+        {% endblock %}
 
-{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/basket.js') }}"></script>
 
-{% block javascripts %}
-    <script src="{{ asset('js/basket.js') }}"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="../public/js/test.js"></script>
 
-    <script src="../public/js/test.js"></script>
 
-    
-    <!-- Swiper JS -->
-    <script src="../package/js/swiper.min.js"></script>
-    <!-- Initialize Swiper -->
-    <script src="../public/js/swiperScript.js"></script>
-    
-    <script src="{{ asset('js/form_user.js') }}"></script>
-{% endblock %}
+            <!-- Swiper JS -->
+            <script src="../package/js/swiper.min.js"></script>
+            <!-- Initialize Swiper -->
+            <script src="../public/js/swiperScript.js"></script>
 
-</body>
+            <script src="{{ asset('js/form_user.js') }}"></script>
+        {% endblock %}
+
+    </body>
 
 </html>

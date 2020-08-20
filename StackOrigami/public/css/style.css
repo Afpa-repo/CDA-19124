@@ -10,14 +10,48 @@ Start header
     color : white;
 }
 #logo_text {
+    height: 50px ;
+    width: 120px ;
     margin-bottom:10px;
 }
 
 
 #nav {
     background-color : #ffe294 !important;
-    height : auto;
+    height: auto;
 }
+
+/* start welcome user */
+#hello_user{
+    margin-right: 50px;
+    margin-top: 15px;
+    color: #6B6B5B;
+    font-size: 19.2px;
+}
+
+.typewriter p {
+    color: black;
+    font-family: Arial ;
+    overflow: hidden;
+    border-right: .15em solid;
+    white-space: nowrap;
+    animation:
+        typing 1.0s steps(300, end),
+        blink-caret .5s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 75% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: transparent }
+}
+
+/* end welcome user */
+
 #slogan {
     color : #6B6B5B;
 }
@@ -44,7 +78,7 @@ body {
     width: 30vw;
 }
 
-/* start footer */
+/* start FOOTER */
 
 footer  p {
     color : #6B6B5B !important;
@@ -62,6 +96,10 @@ footer  p {
 
 .link_footer{
     color : #6B6B5B;
+}
+
+.test{
+    align-items: center;
 }
 
 .link_notif {
@@ -87,7 +125,7 @@ footer  p {
     background-color : #ffe294;
 }
 
- a {
+a {
     color : black;
     text-decoration: none;
     font-size: 1.2em;
@@ -105,7 +143,11 @@ a:hover {
     color :red;
 
 }
-/* end footer */
+
+.paiement_methods{
+
+}
+/* end FOOTER */
 
 
 #stack {
@@ -128,7 +170,7 @@ ul {
 
 
 
-/* start slider */
+/* start SLIDER */
 .swiper-container {
     width: 100%;
     height: 90%;
@@ -214,15 +256,34 @@ ul {
     color : white;
     border-radius : 5px;
 }
+
 .btn-profil:hover {
     background-color:transparent ;
-    color : black;
+    color : #6B6B5B;
     border : 2px solid #6B6B5B;
     text-decoration: none;
 }
 .btn-profil:active {
 
     color : #D3BE00;
+}
+
+.btn-disc{
+    background-color:#FF5E5E;
+    padding: 15px;
+    color : white;
+    border-radius : 5px;
+}
+
+.btn-disc:hover {
+    background-color:transparent ;
+    color : #FF5E5E;
+    border : 2px solid #FF5E5E;
+    text-decoration: none;
+}
+.btn-disc:active {
+
+    color : #FF5E5E;
 }
 
 .top_filter {
@@ -336,12 +397,6 @@ ul {
 
 .jumbotron {
     background-color: transparent !important;
-}
-
-.basket {
-    color : #F5871F;
-    font-weight: bold;
-    font-size: large;
 }
 
 
@@ -481,25 +536,3 @@ mark {
     color : white;
 }
 
-
-.typewriter p {
-    color: #fff;
-    font-family: monospace;
-    overflow: hidden;
-    border-right: .15em solid orange;
-    white-space: nowrap;
-    letter-spacing: .15em;
-    animation:
-            typing 3.5s steps(30, end),
-            blink-caret .5s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange }
-}

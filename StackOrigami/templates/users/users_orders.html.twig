@@ -8,16 +8,37 @@
         </div>
     {% else %}
         <div class="container">
-            <h1>Historique des commandes</h1>
+            
             {% if orders | length == 0 %}
+                <h1>Historique des commandes</h1>
                 <p>Vous n'avez aucun historique</p> 
             {% else %}
-                {% for order in orders %}
-                    <p> Commande numéro {{order.id}}<p>
-                    
-                {% endfor %}
+                <h1>Historique des commandes ({{ allbills|length }})</h1>
+                <div class="table-responsive">
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>Date de commande</th>
+                                <th>Numéro de commande</th>
+                                <th>Statut</th>
+                                <th>Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{ order.date| date('d/m/Y') }}</td>
+                                    <td>{{ order.id }}</td>
+                                    <td>{{ order.status }}</td>                                    
+                                    <td>{{ order.total }} €</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>    
             {% endif %}
-            <a href="{{ path('profil') }}">Retour</a>
-        </div>
-    {% endif %}
+        {% endif %}
+        <a href="{{ path('profil') }}">Retour</a>
+    </div>
+
 {% endblock %}
