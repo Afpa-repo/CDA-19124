@@ -19,6 +19,7 @@ Start header
 #nav {
     background-color : #ffe294 !important;
     height: auto;
+    padding-bottom : 13px;
 }
 
 /* start welcome user */
