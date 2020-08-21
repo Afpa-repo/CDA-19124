@@ -84,28 +84,40 @@ class BoutiqueController extends AbstractController {
         
         /* Implementation du graphique */
         /* recupère les meilleurs ventes */     
-         $jeej=$orderdetails->findBestSales();
-        //dd($jeej[1]["Total"]);
+         $sales = array_reverse($orderdetails->findBestSales());
+        
+        //  dd($sales);
 
-         /* Création de graphique */
-        $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
-        $chart->getData()->setArrayToDataTable([
-            ['Produit', 'Vents total',[ 'role' => 'style' ]],
-            [$jeej[2]["ProductName"], $jeej[2]["Total"],["color: d95f02"]],
-            [$jeej[1]["ProductName"], $jeej[1]["Total"],"#7570b3"],
-            [$jeej[0]["ProductName"], $jeej[0]["Total"],"#1b9e77"],
-        ]);
+        if(!empty($sales)){
 
-    $chart->getOptions()->getChart()
-        ->setTitle('Meilleurs ventes')
-        ->setSubtitle('');
-    $chart->getOptions()
-        ->setBars('vertical')
-        ->setHeight(400)
-        ->setWidth(600)
-        //->setColors('#1b9e77','#d95f02','#7570b3')
-        ->getVAxis()
-        ->setFormat('decimal');
+        
+            /* Création de graphique */
+            $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
+
+
+            $dataToChart = array(array('Produit', 'Ventes total',[ 'role' => 'style' ]));
+
+            foreach($sales as $sale){
+                array_push($dataToChart, [ $sale['ProductName'],$sale['Total'], ["color: d95f02"]]);
+            }
+
+            $chart->getData()->setArrayToDataTable($dataToChart);
+
+            $chart->getOptions()->getChart()
+                ->setTitle('Meilleurs ventes')
+                ->setSubtitle('');
+            $chart->getOptions()
+                ->setBars('vertical')
+                ->setHeight(400)
+                ->setWidth(600)
+                //->setColors('#1b9e77','#d95f02','#7570b3')
+                ->getVAxis()
+                ->setFormat('decimal');
+
+
+        }else{
+            $chart = null;
+        }
     
         /* renvoie la fonction de recherche et de création sur la vue */
         return $this->render('product/index.html.twig', [

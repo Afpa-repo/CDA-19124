@@ -154,16 +154,6 @@ class CartController extends AbstractController {
             $entityManager->flush();    //On le rajoute dans la base de donnée
             }
             
-            //Rajoute toute les Commandes au fichier JSON
-            $encoders = array(new JsonEncoder());  //crée l'encoder (format Array => json) 
-            $normalizers = array(new ObjectNormalizer());   //crée le normalizer (format Objet => Array)
-            $serializer = new Serializer($normalizers, $encoders);  //crée le serializer (format objet => json)
-            $listOrders=$listOrders->findAll(); //récupère toute les commandes
-            $jsonOrders= $serializer->serialize($listOrders, 'json');   //les met en format json
-            $fileOrders=fopen('../public/json/orders.json','w+');   //ouvre le fichier orders.json en mode écriture
-            fputs($fileOrders,$jsonOrders);   //écrit le resultat dans le fichier
-            fclose($fileOrders);    //ferme le fichier
-            
             $session->set('Validate',"true");
         return $this->redirectToRoute("cart_index");    //redirige vers le profil
     }

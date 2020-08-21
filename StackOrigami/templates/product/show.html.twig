@@ -132,7 +132,10 @@
 
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    {% if chart != null %}
                     <script type="text/javascript">
                         {{ gc_draw(chart, 'div_chart') }}
                     </script>
+    {% endif %}
 {% endblock %}

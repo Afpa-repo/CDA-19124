@@ -63,33 +63,36 @@ class ProductController extends AbstractController {
 
 
         $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\LineChart();
-		
+        
+        if (!empty($productSells)){
+
+
+
 		$arrayToDataTable = [
             ['Mois','Nombre de ventes'],
             [0,0]];
-		if (isset($productSells[0]['Mois'])){
-			$new_array = [];
-			array_push($new_array,$productSells[0]['Mois']);
-				array_push($new_array, intval($productSells[0]['Mois']));
-				//$arrayToDataTable.push($productSells[0]['Mois']);
-				array_push($arrayToDataTable,$new_array);
-			}
+
+            foreach($productSells as $key => $month){
+                $new_array = [];
+                
+                
+                array_push($new_array,$month['Mois']);
+                array_push($new_array, intval($month['Total']));
+                
+                array_push($arrayToDataTable,$new_array);
+        }
        $chart->getData()->setArrayToDataTable($arrayToDataTable);
-			
-			
-            //[$productSells[0]['Mois'],intval($productSells[0]['Total'])]
-            //[$productSells[1]['Mois'],$productSells[1]['Total']],
-            //[$productSells[2]['Mois'],$productSells[2]['Total']]
-            //]);
-              //->setTitle('Nombre de ventes par mois')
         $chart->getOptions()
           ->setHeight(400)
            ->setWidth(600)
 		   ->setTitle('Nombre de ventes par mois');
-    $chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
-		//->setColors('#1b9e77','#d95f02','#7570b3')
-    $chart->getOptions()->getVAxis()->setMinValue(0);
-        //dd($chart);
+        $chart->getOptions()->getHAxis()->setTitle('Nombre de ventes');
+        $chart->getOptions()->getVAxis()->setMinValue(0);
+
+
+        }else{
+            $chart = null;
+        }
 		
         return $this->render('product/show.html.twig', [
                     'product' => $product,
