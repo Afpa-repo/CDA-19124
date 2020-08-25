@@ -11,9 +11,9 @@
 
 
         <div class="container">
-            <div class="row mt-5">
-                <div class="col-sm-12">
-                    <div class="back_my_detail p-5">
+            <div class="back_my_detail p-5">
+                <div class="row">
+                    <div class="col-lg-6">
                         <h2>
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="33" height="33"
                                  viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
@@ -33,7 +33,6 @@
                                 <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                             </svg>
                             Mes informations</h2>
-                        <p>{{ app.user.surname }} {{ app.user.firstName }}</p>
                         <p class="font-weight-bold">
                             <svg  viewBox="0 -1 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20">
                                 <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256.0002597504" x2="256.0002597504" y1=".0001997504" y2="510.7493837504">
@@ -70,7 +69,11 @@
                             </svg>
                             Adresse email</p>
                         <p class="mb-5">{{ app.user.mail }}</p>
-                        <p class="mb-5">
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <p class="mb-5 text-center">
                             <a class="link_show_product" href="{{ path('users_orders', {'id': app.user.id}) }}">
                                 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33">
                                     <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1="0" y2="512">
@@ -79,12 +82,15 @@
                                     <path d="m156.507812 359.75 355.492188-31.441406v-219.308594h-391.453125l-23.382813-109h-97.164062v40h64.835938l61.988281 288.972656c-15.609375 10.1875-25.757813 27.746094-25.824219 47.667969-.050781 15.304687 5.871094 29.707031 16.675781 40.546875 10.804688 10.839844 25.183594 16.8125 40.488281 16.8125h13.992188c-2.035156 5.96875-3.15625 12.351562-3.15625 19 0 32.53125 26.46875 59 59 59s59-26.46875 59-59c0-6.648438-1.121094-13.03125-3.15625-19h84.3125c-2.035156 5.96875-3.15625 12.351562-3.15625 19 0 32.53125 26.46875 59 59 59s59-26.46875 59-59-26.46875-59-59-59h-265.835938c-4.59375 0-8.910156-1.792969-12.15625-5.046875-3.246093-3.257813-5.023437-7.582031-5.007812-12.175781.03125-8.863282 6.691406-16.171875 15.507812-17.027344zm90.492188 93.25c0 10.476562-8.523438 19-19 19s-19-8.523438-19-19 8.523438-19 19-19 19 8.523438 19 19zm196 0c0 10.476562-8.523438 19-19 19s-19-8.523438-19-19 8.523438-19 19-19 19 8.523438 19 19zm-95-208v57.65625l-80 7.078125v-64.734375zm-80-40v-56h80v56zm-40 108.269531-62.449219 5.523438-15.832031-73.792969h78.28125zm160-14.148437v-54.121094h84v46.691406zm84-94.121094h-84v-56h84zm-244-56v56h-86.859375l-12.015625-56zm0 0" fill="url(#a)"/></svg>
                                 Consulter mes commandes</a>
                         </p>
-                        <div class="col-12 text-center">
-                            <a href="{{ path('users_edit', {'id': app.user.id}) }}" class=" btn-profil">Modifier le profil</a>
+                        <div class="row justify-content-center">
+                            <a href="{{ path('users_edit', {'id': app.user.id}) }}" class="btn-profil">Modifier le profil</a>
+                        </div> 
+                        <div class="row justify-content-center">
                             <a href="{{ path('security_logout')}}" class="btn-disc">Déconnexion</a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     {% endif %}
