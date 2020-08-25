@@ -1,349 +1,538 @@
-<<<<<<< HEAD
--- --------------------------------------------------------
--- Hôte :                        localhost
--- Version du serveur:           8.0.13 - MySQL Community Server - GPL
--- SE du serveur:                Win64
--- HeidiSQL Version:             10.2.0.5599
--- --------------------------------------------------------
+﻿/*
+Start header
+*/
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+* {
+    font-family: Arial;
+}
+::selection{
+    background-color : #ffe294;
+    color : white;
+}
+#logo_text {
+    height: 50px ;
+    width: 120px ;
+    margin-bottom:10px;
+}
 
--- Listage des données de la table fil_rouge.address : ~0 rows (environ)
-DELETE FROM `address`;
-/*!40000 ALTER TABLE `address` DISABLE KEYS */;
-/*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
--- Listage des données de la table fil_rouge.contact : ~3 rows (environ)
-DELETE FROM `contact`;
-/*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` (`id`, `mail`, `subject`, `message`, `date_send`) VALUES
-	(1, 'jeej@hotmail.fr', 'test', 'de la date jeej', '2020-02-11 15:05:32'),
-	(2, 'jeej@hotmail.fr', 'test', 'zertyuio', '2020-02-11 15:20:37'),
-	(3, 'jeej@hotmail.fr', 'test', 'rt', '2020-02-11 15:22:53');
-/*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+#nav {
+    background-color : #ffe294 !important;
+    height: auto;
+}
 
--- Listage des données de la table fil_rouge.newletters : ~0 rows (environ)
-DELETE FROM `newletters`;
-/*!40000 ALTER TABLE `newletters` DISABLE KEYS */;
-/*!40000 ALTER TABLE `newletters` ENABLE KEYS */;
+/* start welcome user */
+#hello_user{
+    margin-right: 50px;
+    margin-top: 15px;
+    color: #6B6B5B;
+    font-size: 19.2px;
+}
 
--- Listage des données de la table fil_rouge.orders : ~38 rows (environ)
-DELETE FROM `orders`;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id`, `date`, `status`, `bill`, `delivery_form`, `users_id_id`, `total`) VALUES
-	(1, '2020-02-21 09:44:35', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(2, '2020-02-21 09:45:31', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(3, '2020-02-21 09:46:14', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(4, '2020-02-21 09:46:39', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(5, '2020-02-21 09:46:52', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(6, '2020-02-21 09:59:36', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(7, '2020-02-21 10:09:25', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(8, '2020-02-21 10:09:57', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(9, '2020-02-21 10:11:37', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(10, '2020-02-21 10:16:22', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(11, '2020-02-21 10:16:41', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(12, '2020-02-21 10:28:13', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(13, '2020-02-21 10:28:32', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(14, '2020-02-21 10:34:11', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(15, '2020-02-21 10:34:56', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(16, '2020-02-21 10:36:38', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(17, '2020-02-21 10:40:32', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(18, '2020-02-21 10:43:17', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(19, '2020-02-21 10:43:40', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(20, '2020-02-21 10:45:47', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(21, '2020-02-21 10:48:52', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(22, '2020-02-21 10:55:40', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(23, '2020-02-21 10:55:56', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(24, '2020-02-21 10:56:31', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(25, '2020-02-21 10:57:53', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(26, '2020-02-21 10:58:57', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(27, '2020-02-21 10:59:23', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(28, '2020-02-21 11:01:06', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(29, '2020-02-21 11:02:32', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(30, '2020-02-24 10:04:49', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(31, '2020-02-24 10:14:41', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(32, '2020-02-24 10:15:42', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(33, '2020-02-24 10:23:13', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(34, '2020-02-24 10:29:41', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(35, '2020-02-24 10:30:27', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(36, '2020-02-24 10:33:30', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(37, '2020-02-24 10:35:58', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(38, '2020-02-24 10:37:01', 'En cours de traitement', 'jeej', 'jeej', 1, 0);
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+.typewriter p {
+    color: black;
+    font-family: Arial ;
+    overflow: hidden;
+    border-right: .15em solid;
+    white-space: nowrap;
+    animation:
+        typing 1.0s steps(300, end),
+        blink-caret .5s step-end infinite;
+}
 
--- Listage des données de la table fil_rouge.order_details : ~46 rows (environ)
-DELETE FROM `order_details`;
-/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-INSERT INTO `order_details` (`id`, `quantity`, `product_id`, `orders_id`) VALUES
-	(1, 2, 4, 16),
-	(2, 32, 5, 16),
-	(3, 1, 6, 16),
-	(4, 2, 4, 17),
-	(5, 32, 5, 17),
-	(6, 1, 6, 17),
-	(7, 2, 4, 18),
-	(8, 32, 5, 18),
-	(9, 1, 6, 18),
-	(10, 2, 4, 19),
-	(11, 32, 5, 19),
-	(12, 1, 6, 19),
-	(13, 2, 4, 20),
-	(14, 32, 5, 20),
-	(15, 1, 6, 20),
-	(16, 2, 4, 21),
-	(17, 32, 5, 21),
-	(18, 1, 6, 21),
-	(19, 2, 4, 22),
-	(20, 32, 5, 22),
-	(21, 1, 6, 22),
-	(22, 2, 4, 23),
-	(23, 32, 5, 23),
-	(24, 1, 6, 23),
-	(25, 2, 4, 24),
-	(26, 32, 5, 24),
-	(27, 1, 6, 24),
-	(28, 2, 4, 25),
-	(29, 32, 5, 25),
-	(30, 1, 6, 25),
-	(31, 2, 4, 26),
-	(32, 32, 5, 26),
-	(33, 1, 6, 26),
-	(34, 1, 5, 27),
-	(35, 1, 5, 28),
-	(36, 14, 5, 29),
-	(37, 1, 4, 29),
-	(38, 3, 5, 30),
-	(39, 3, 5, 31),
-	(40, 9, 4, 32),
-	(41, 4, 7, 33),
-	(42, 6, 4, 34),
-	(43, 3, 5, 35),
-	(44, 1, 4, 36),
-	(45, 9, 6, 37),
-	(46, 19, 4, 38);
-/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+@keyframes typing {
+    from { width: 0 }
+    to { width: 75% }
+}
 
--- Listage des données de la table fil_rouge.partner : ~0 rows (environ)
-DELETE FROM `partner`;
-/*!40000 ALTER TABLE `partner` DISABLE KEYS */;
-/*!40000 ALTER TABLE `partner` ENABLE KEYS */;
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: transparent }
+}
 
--- Listage des données de la table fil_rouge.product : ~5 rows (environ)
-DELETE FROM `product`;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`id`, `libelle`, `description`, `color`, `picture`, `price`, `stock`, `product_category_id`, `stars`, `created_at`) VALUES
-	(4, 'jeej3', 'khtxr', 'Une couleur', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 19.63, 100, 2, NULL, '2020-02-19 12:13:10'),
-	(5, 'jeej', 'Orlane', 'une couleur', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 19.63, 50, 3, NULL, '2020-02-19 12:16:16'),
-	(6, 'jeej2', 'jyxf', 'Une couleur', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 18.96, 9, 1, NULL, '2020-02-19 12:17:32'),
-	(7, 'jeej4', 'tewt', 'tewt', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 19.63, 12, 2, NULL, '2020-02-19 12:23:02'),
-	(8, 'test', 'qsdtg', 'kdlm', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 123, 21, 3, NULL, '2020-08-09 00:00:00');
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+/* end welcome user */
 
--- Listage des données de la table fil_rouge.product_category : ~3 rows (environ)
-DELETE FROM `product_category`;
-/*!40000 ALTER TABLE `product_category` DISABLE KEYS */;
-INSERT INTO `product_category` (`id`, `name`, `picture`) VALUES
-	(1, 'Origami en papier', 'https://i.ytimg.com/vi/rBv_brGcPmk/maxresdefault.jpg'),
-	(2, 'Origami en résine', 'https://www.drawer.fr/47203-thickbox_default/trophee-origami-plastique-mat-present-time-lion.jpg'),
-	(3, 'Origami en serviettes', 'https://lh3.googleusercontent.com/proxy/KmX_0KQl4Yy4Eu6PZR0i5u9S2Mys3u3gNJNiyV-kTKfxerthiKKX9ZU_ayzKebJkMRDXFgvwgYivSbTSRK2-1gPjirk5uD11NJzPgaSQfG1RW7PIK_lunHOSRpKd4-x0CK6t8Vy7wjR6aIGYivd3dE7Iu-sGiw');
-/*!40000 ALTER TABLE `product_category` ENABLE KEYS */;
+#slogan {
+    color : #6B6B5B;
+}
 
--- Listage des données de la table fil_rouge.product_category_productcategory : ~0 rows (environ)
-DELETE FROM `product_category_productcategory`;
-/*!40000 ALTER TABLE `product_category_productcategory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product_category_productcategory` ENABLE KEYS */;
+.nav-link {
+    color : #6B6B5B !important;
+}
 
--- Listage des données de la table fil_rouge.users : ~6 rows (environ)
-DELETE FROM `users`;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `mail`, `password`, `surname`, `first_name`, `phone_number`, `siret`, `address_fact`, `commercial_id`, `coefficient`, `type`, `role`) VALUES
-	(1, 'jeej@hotmail.fr', '$2y$13$KGcZXtAqfjnneyFOnwQeZOpOhlYDgkHvGvcRVhFIxNsU1xeg8A0Wq', 'lomb', 'pelpel', '622726238', 'Avenue de la street perdu', NULL, NULL, 0, 2, 'parcom'),
-	(2, 'jeejs@hotmail.fr', '$2y$13$W274zjSdEW0TNg4R6Pccl.94UNtI5cxeapHOX7od4Eedah6.Ly1NW', 'da', 'ad', '1000000000', NULL, NULL, 1, 0, 1, 'procom'),
-	(3, 'jeej@jeej.fr', '$2a$10$ZwrnTXmLN4Tk7NlhN71WVuwMTC06HlsnFBNs7I5Js6UUMU0QXlOC.', 'jeej', 'jeej', '000000000', NULL, 'jeej', 1, 1, 1, 'client'),
-	(4, 'jeejd@jeejd.frt', '$2a$10$YoIGvXxrxwuAE4.fsg7XluTU02N61AABog79IaMJ2Vs1o211cmnNy', 'jeejdf', 'jeejd', '0000000000', '', 'jeejd', 2, 2, 0, 'admin'),
-	(5, 'azer@azer.azer', '$2a$10$Sn/42jySmO7fX/50GCxLOuOgOqbRhUAhh85WrRYgHek4MS4bwi586', 'test', 'testcothis', '012345678', '', 'azertyuiop', 2, 1, 0, 'client'),
-	(7, 'outlook@outlook.dfr', '$2a$10$WIJgLqtocQDKSz/geafbIeE9HeHbqikKv17wIWt92rfgc4p6v/CMG', 'jyfgjyfjyf', 'hgdhgdf', '000000000', NULL, '222jyfhgdhgf', 1, 1, 1, 'client');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+body { 
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-=======
--- --------------------------------------------------------
--- Hôte :                        localhost
--- Version du serveur:           8.0.13 - MySQL Community Server - GPL
--- SE du serveur:                Win64
--- HeidiSQL Version:             10.2.0.5599
--- --------------------------------------------------------
+    background-color: #E9E9E9 ;
+    padding : 0px;
+    margin : 0px;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+}
 
--- Listage des données de la table fil_rouge.address : ~0 rows (environ)
-DELETE FROM `address`;
-/*!40000 ALTER TABLE `address` DISABLE KEYS */;
-/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+.news_products{
+    height: 50px;
+    border-radius: 11px;
+    margin : 0 auto;
+    text-align: center;
+    vertical-align: center;
+    padding : 0px;
+    width: 30vw;
+}
 
--- Listage des données de la table fil_rouge.contact : ~3 rows (environ)
-DELETE FROM `contact`;
-/*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` (`id`, `mail`, `subject`, `message`, `date_send`) VALUES
-	(1, 'jeej@hotmail.fr', 'test', 'de la date jeej', '2020-02-11 15:05:32'),
-	(2, 'jeej@hotmail.fr', 'test', 'zertyuio', '2020-02-11 15:20:37'),
-	(3, 'jeej@hotmail.fr', 'test', 'rt', '2020-02-11 15:22:53');
-/*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+/* start FOOTER */
 
--- Listage des données de la table fil_rouge.newletters : ~0 rows (environ)
-DELETE FROM `newletters`;
-/*!40000 ALTER TABLE `newletters` DISABLE KEYS */;
-/*!40000 ALTER TABLE `newletters` ENABLE KEYS */;
+footer  p {
+    color : #6B6B5B !important;
+}
+.input_footer {
+    background: #292727;
+    border: 3px solid #fff;
+    height : 30px;
+    width: 280px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    margin-right: 0px;
+    text-indent: 8px;
+    margin-bottom : 15px;
+}
 
--- Listage des données de la table fil_rouge.orders : ~38 rows (environ)
-DELETE FROM `orders`;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id`, `date`, `status`, `bill`, `delivery_form`, `users_id_id`, `total`) VALUES
-	(1, '2020-02-21 09:44:35', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(2, '2020-02-21 09:45:31', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(3, '2020-02-21 09:46:14', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(4, '2020-02-21 09:46:39', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(5, '2020-02-21 09:46:52', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(6, '2020-02-21 09:59:36', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(7, '2020-02-21 10:09:25', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(8, '2020-02-21 10:09:57', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(9, '2020-02-21 10:11:37', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(10, '2020-02-21 10:16:22', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(11, '2020-02-21 10:16:41', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(12, '2020-02-21 10:28:13', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(13, '2020-02-21 10:28:32', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(14, '2020-02-21 10:34:11', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(15, '2020-02-21 10:34:56', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(16, '2020-02-21 10:36:38', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(17, '2020-02-21 10:40:32', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(18, '2020-02-21 10:43:17', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(19, '2020-02-21 10:43:40', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(20, '2020-02-21 10:45:47', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(21, '2020-02-21 10:48:52', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(22, '2020-02-21 10:55:40', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(23, '2020-02-21 10:55:56', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(24, '2020-02-21 10:56:31', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(25, '2020-02-21 10:57:53', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(26, '2020-02-21 10:58:57', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(27, '2020-02-21 10:59:23', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(28, '2020-02-21 11:01:06', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(29, '2020-02-21 11:02:32', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(30, '2020-02-24 10:04:49', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(31, '2020-02-24 10:14:41', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(32, '2020-02-24 10:15:42', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(33, '2020-02-24 10:23:13', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(34, '2020-02-24 10:29:41', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(35, '2020-02-24 10:30:27', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(36, '2020-02-24 10:33:30', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(37, '2020-02-24 10:35:58', 'En cours de traitement', 'jeej', 'jeej', 1, 0),
-	(38, '2020-02-24 10:37:01', 'En cours de traitement', 'jeej', 'jeej', 1, 0);
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+.link_footer{
+    color : #6B6B5B;
+}
 
--- Listage des données de la table fil_rouge.order_details : ~46 rows (environ)
-DELETE FROM `order_details`;
-/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-INSERT INTO `order_details` (`id`, `quantity`, `product_id`, `orders_id`) VALUES
-	(1, 2, 4, 16),
-	(2, 32, 5, 16),
-	(3, 1, 6, 16),
-	(4, 2, 4, 17),
-	(5, 32, 5, 17),
-	(6, 1, 6, 17),
-	(7, 2, 4, 18),
-	(8, 32, 5, 18),
-	(9, 1, 6, 18),
-	(10, 2, 4, 19),
-	(11, 32, 5, 19),
-	(12, 1, 6, 19),
-	(13, 2, 4, 20),
-	(14, 32, 5, 20),
-	(15, 1, 6, 20),
-	(16, 2, 4, 21),
-	(17, 32, 5, 21),
-	(18, 1, 6, 21),
-	(19, 2, 4, 22),
-	(20, 32, 5, 22),
-	(21, 1, 6, 22),
-	(22, 2, 4, 23),
-	(23, 32, 5, 23),
-	(24, 1, 6, 23),
-	(25, 2, 4, 24),
-	(26, 32, 5, 24),
-	(27, 1, 6, 24),
-	(28, 2, 4, 25),
-	(29, 32, 5, 25),
-	(30, 1, 6, 25),
-	(31, 2, 4, 26),
-	(32, 32, 5, 26),
-	(33, 1, 6, 26),
-	(34, 1, 5, 27),
-	(35, 1, 5, 28),
-	(36, 14, 5, 29),
-	(37, 1, 4, 29),
-	(38, 3, 5, 30),
-	(39, 3, 5, 31),
-	(40, 9, 4, 32),
-	(41, 4, 7, 33),
-	(42, 6, 4, 34),
-	(43, 3, 5, 35),
-	(44, 1, 4, 36),
-	(45, 9, 6, 37),
-	(46, 19, 4, 38);
-/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+.test{
+    align-items: center;
+}
 
--- Listage des données de la table fil_rouge.partner : ~0 rows (environ)
-DELETE FROM `partner`;
-/*!40000 ALTER TABLE `partner` DISABLE KEYS */;
-/*!40000 ALTER TABLE `partner` ENABLE KEYS */;
+.link_notif {
+    color : #6B6B5B;
+}
+.link_notif:hover {
+    color : white;
+}
+.lien_card:hover{
+    text-decoration: none;
+    zoom: 120%;
+    box-shadow: #6B6B5B;
+}
+.btn-footer {
+    border : none;
+    height : 30px;
+    margin-left: 0px;
+    background: #fff;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
 
--- Listage des données de la table fil_rouge.product : ~5 rows (environ)
-DELETE FROM `product`;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`id`, `libelle`, `description`, `color`, `picture`, `price`, `stock`, `product_category_id`, `stars`, `created_at`) VALUES
-	(4, 'jeej3', 'khtxr', 'Une couleur', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 19.63, 100, 2, NULL, '2020-02-19 12:13:10'),
-	(5, 'jeej', 'Orlane', 'une couleur', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 19.63, 50, 3, NULL, '2020-02-19 12:16:16'),
-	(6, 'jeej2', 'jyxf', 'Une couleur', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 18.96, 9, 1, NULL, '2020-02-19 12:17:32'),
-	(7, 'jeej4', 'tewt', 'tewt', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 19.63, 12, 2, NULL, '2020-02-19 12:23:02'),
-	(8, 'test', 'qsdtg', 'kdlm', 'https://i.ytimg.com/vi/nX_BVKgUChw/maxresdefault.jpg', 123, 21, 3, NULL, '2020-08-09 00:00:00');
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+}
+.footer {
+    background-color : #ffe294;
+}
 
--- Listage des données de la table fil_rouge.product_category : ~3 rows (environ)
-DELETE FROM `product_category`;
-/*!40000 ALTER TABLE `product_category` DISABLE KEYS */;
-INSERT INTO `product_category` (`id`, `name`, `picture`) VALUES
-	(1, 'Origami en papier', 'https://i.ytimg.com/vi/rBv_brGcPmk/maxresdefault.jpg'),
-	(2, 'Origami en résine', 'https://www.drawer.fr/47203-thickbox_default/trophee-origami-plastique-mat-present-time-lion.jpg'),
-	(3, 'Origami en serviettes', 'https://lh3.googleusercontent.com/proxy/KmX_0KQl4Yy4Eu6PZR0i5u9S2Mys3u3gNJNiyV-kTKfxerthiKKX9ZU_ayzKebJkMRDXFgvwgYivSbTSRK2-1gPjirk5uD11NJzPgaSQfG1RW7PIK_lunHOSRpKd4-x0CK6t8Vy7wjR6aIGYivd3dE7Iu-sGiw');
-/*!40000 ALTER TABLE `product_category` ENABLE KEYS */;
+a {
+    color : black;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+a:hover {
+    color : #6B6B5B;
+    text-decoration: underline;
+}
+.footer a:hover {
+    color : WHITE;
+    text-decoration: underline;
+}
 
--- Listage des données de la table fil_rouge.product_category_productcategory : ~0 rows (environ)
-DELETE FROM `product_category_productcategory`;
-/*!40000 ALTER TABLE `product_category_productcategory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product_category_productcategory` ENABLE KEYS */;
+.hr_footer {
+    color :red;
 
--- Listage des données de la table fil_rouge.users : ~6 rows (environ)
-DELETE FROM `users`;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `mail`, `password`, `surname`, `first_name`, `phone_number`, `siret`, `address_fact`, `commercial_id`, `coefficient`, `type`, `role`) VALUES
-	(1, 'jeej@hotmail.fr', '$2y$13$KGcZXtAqfjnneyFOnwQeZOpOhlYDgkHvGvcRVhFIxNsU1xeg8A0Wq', 'lomb', 'pelpel', '622726238', 'Avenue de la street perdu', NULL, NULL, 0, 2, 'parcom'),
-	(2, 'jeejs@hotmail.fr', '$2y$13$W274zjSdEW0TNg4R6Pccl.94UNtI5cxeapHOX7od4Eedah6.Ly1NW', 'da', 'ad', '1000000000', NULL, NULL, 1, 0, 1, 'procom'),
-	(3, 'jeej@jeej.fr', '$2a$10$ZwrnTXmLN4Tk7NlhN71WVuwMTC06HlsnFBNs7I5Js6UUMU0QXlOC.', 'jeej', 'jeej', '000000000', NULL, 'jeej', 1, 1, 1, 'client'),
-	(4, 'jeejd@jeejd.frt', '$2a$10$YoIGvXxrxwuAE4.fsg7XluTU02N61AABog79IaMJ2Vs1o211cmnNy', 'jeejdf', 'jeejd', '0000000000', '', 'jeejd', 2, 2, 0, 'admin'),
-	(5, 'azer@azer.azer', '$2a$10$Sn/42jySmO7fX/50GCxLOuOgOqbRhUAhh85WrRYgHek4MS4bwi586', 'test', 'testcothis', '012345678', '', 'azertyuiop', 2, 1, 0, 'client'),
-	(7, 'outlook@outlook.dfr', '$2a$10$WIJgLqtocQDKSz/geafbIeE9HeHbqikKv17wIWt92rfgc4p6v/CMG', 'jyfgjyfjyf', 'hgdhgdf', '000000000', NULL, '222jyfhgdhgf', 1, 1, 1, 'client');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+}
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
->>>>>>> 8724b2f6f196794bc905cb3581bcfe5d9ca10c83
+.paiement_methods{
+
+}
+/* end FOOTER */
+
+
+#stack {
+    color : white !important;
+    font-size: 1.2em;
+}
+
+ul {
+    list-style:none;
+    margin-left:0;
+    padding-left:0;
+}
+
+.saler {
+    background-color : white;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+
+
+/* start SLIDER */
+.swiper-container {
+    width: 100%;
+    height: 90%;
+    background: #e9e9e9;
+}
+.swiper-slide {
+    font-size: 18px;
+    color: black;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 40px 60px;
+    text-align: center;
+    margin: 0 auto;
+}
+.parallax-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+.swiper-slide .title {
+    font-size: 41px;
+    font-weight: 300;
+}
+.swiper-slide .subtitle {
+    font-size: 21px;
+}
+.swiper-slide .text {
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.3;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.contain_white {
+    background-color: white;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 0px;
+    /*width: auto;*/
+    text-align: center;
+    margin: 0 auto;
+}
+
+.myButton {
+    box-shadow: 3px 4px 0px 0px black;
+    background:linear-gradient(to bottom, black 5%, black 100%);
+    background-color:black;
+    border-radius:5px;
+    border:1px solid black;
+    display:inline-block;
+    cursor:pointer;
+    color:#D3BE00;
+    font-family:Arial;
+    font-size:17px;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px rgb(15, 15, 15);
+}
+.myButton:hover {
+    background:linear-gradient(to bottom, rgb(15, 15, 15) 5%,rgb(15, 15, 15) 100%);
+    background-color:rgb(15, 15, 15);
+    color : #D3BE00;
+    text-decoration: none;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+    color : #D3BE00;
+}
+
+/* end slider */
+
+.btn-profil {
+    background-color:#6B6B5B ;
+    padding: 15px;
+    color : white;
+    border-radius : 5px;
+}
+
+.btn-profil:hover {
+    background-color:transparent ;
+    color : #6B6B5B;
+    border : 2px solid #6B6B5B;
+    text-decoration: none;
+}
+.btn-profil:active {
+
+    color : #D3BE00;
+}
+
+.btn-disc{
+    background-color:#FF5E5E;
+    padding: 15px;
+    color : white;
+    border-radius : 5px;
+}
+
+.btn-disc:hover {
+    background-color:transparent ;
+    color : #FF5E5E;
+    border : 2px solid #FF5E5E;
+    text-decoration: none;
+}
+.btn-disc:active {
+
+    color : #FF5E5E;
+}
+
+.top_filter {
+    background-color : white;
+    border-radius: 1px;
+    padding : 5px;
+}
+
+.card-product {
+    background-color : white;
+    border-radius: 5px;
+    padding : 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.breadcrumb_stack {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+.card_show {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.badge_product_new {
+    color: #fff;
+    background-color: #6B6B5B;
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.pagination_product {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.list-group-item_show {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+
+/* page show product */
+
+.back {
+    border-radius: 1px;
+    background: #fff;
+}
+
+.link_show_product {
+    font-size: 2em;
+}
+
+.informations_ship {
+    background-color: #6B6B5B;
+    padding-top : 25px;
+    padding-bottom : 25px;
+}
+/* end show product */
+
+.back_my_detail {
+    border-radius: 1px;
+    background: #fff;
+
+}
+
+.modal_login {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #6B6B5B;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+.jumbotron {
+    background-color: transparent !important;
+}
+
+
+
+
+
+.css-typing p {
+    margin : 0 auto;
+    font-family: "Arial";
+    font-size: 35px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    text-underline: #222222;
+}
+.css-typing p:nth-child(1) {
+    width: 7.3em;
+    -webkit-animation: type 2s steps(40, end);
+    animation: type 2s steps(40, end);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.css-typing p:nth-child(2) {
+    width: 11.5em;
+    opacity: 0;
+    -webkit-animation: type2 2s steps(40, end);
+    animation: type2 2s steps(40, end);
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.css-typing p:nth-child(3) {
+    width: 7.3em;
+    opacity: 0;
+    -webkit-animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
+    animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes type {
+    0% {
+        width: 0;
+    }
+    99.9% {
+    }
+    100% {
+        border: none;
+    }
+}
+
+@-webkit-keyframes type {
+    0% {
+        width: 0;
+    }
+    99.9% {
+    }
+    100% {
+        border: none;
+    }
+}
+
+@keyframes type2 {
+    0% {
+        width: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    99.9% {
+    }
+    100% {
+        opacity: 100;
+        border: none;
+    }
+}
+
+@-webkit-keyframes type2 {
+    0% {
+        width: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    99.9% {
+    }
+    100% {
+        opacity: 1;
+        border: none;
+    }
+}
+
+@keyframes type3 {
+    0% {
+        width: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes type3 {
+    0% {
+        width: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+@-webkit-keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+mark {
+    border : 1px solid transparent;
+    border-radius: 10px;
+    background-color: #6B6B5B !important;
+    color : white;
+}
+
