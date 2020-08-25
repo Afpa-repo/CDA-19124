@@ -18,121 +18,166 @@
         <div class="back mt-2 mb-4" >
             <div class="card_show">
                 {# Image de la card #}
+                <div class="card_show">
+                    {# <div class="col-12 text-center">
+                        {% if product.id >= 10 %}
+                            <h1><span class="badge_product_new">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="31.395" viewBox="0 0 33 31.395">
+                                        <path id="Icon_material-new-releases" data-name="Icon material-new-releases" d="M34.5,18l-3.66-4.17.51-5.52L25.935,7.08,23.1,2.31,18,4.5,12.9,2.31,10.065,7.08,4.65,8.3l.51,5.52L1.5,18l3.66,4.17L4.65,27.7l5.415,1.23L12.9,33.7,18,31.5l5.1,2.19,2.835-4.77,5.415-1.23-.51-5.52Zm-15,7.5h-3v-3h3Zm0-6h-3v-9h3Z" transform="translate(-1.5 -2.31)" fill="#fff"/>
+                                    </svg>
 
-            <div class="card_show">
-                <div class="col-12 text-center">
-                    {% if product.id >= 10 %}
-                        <h1><span class="badge_product_new">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="31.395" viewBox="0 0 33 31.395">
-                                <path id="Icon_material-new-releases" data-name="Icon material-new-releases" d="M34.5,18l-3.66-4.17.51-5.52L25.935,7.08,23.1,2.31,18,4.5,12.9,2.31,10.065,7.08,4.65,8.3l.51,5.52L1.5,18l3.66,4.17L4.65,27.7l5.415,1.23L12.9,33.7,18,31.5l5.1,2.19,2.835-4.77,5.415-1.23-.51-5.52Zm-15,7.5h-3v-3h3Zm0-6h-3v-9h3Z" transform="translate(-1.5 -2.31)" fill="#fff"/>
-                            </svg>
-
-                            Nouveau produit </span></h1>
-                    {% endif %}
-                </div>
-
-                <p><img src="{{ product.picture }}"></p>
-                <div class="card-body">
-                    {# Titre de la card #}
-                    <h5 class="card-title">{{ product.libelle }}</h5>
-                    {# Prix de la card #}
-                    <p class="card-text">{{ product.price }}€</p>
-                    {# texte de la card #}
-                    <p class="card-text">Il reste {{ product.stock }} exemplaires</p>
-                    <div class="custom-control custom-checkbox">
-                        {# Option emballage #}
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Emballage cadeau ? (option gratuite)</label>
-                    </div>
-                    {# Bouton ajout au panier #}
-                    <a href="{{ path('cart_add',{'id':product.id}) }}" class="myButton mt-3 mb-3" id="add_basket">Ajouter au panier</a>
-                    <p>
-                        {# Lien description produit #}
-                        <a class="link_show_product" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Description 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 45 45">
-                                <path id="Icon_awesome-arrow-down" data-name="Icon awesome-arrow-down" d="M42.383,21.383l2.288,2.23a2.358,2.358,0,0,1,0,3.4L24.649,46.542a2.508,2.508,0,0,1-3.493,0L1.124,27.017a2.358,2.358,0,0,1,0-3.4l2.288-2.23a2.521,2.521,0,0,1,3.534.04l11.83,12.1V4.66a2.437,2.437,0,0,1,2.473-2.41h3.3a2.437,2.437,0,0,1,2.473,2.41V33.526l11.83-12.1A2.5,2.5,0,0,1,42.383,21.383Z" transform="translate(-0.397 -2.25)"/>
-                            </svg>
-                        </a>
-                    </p>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="collapse mb-3" id="multiCollapseExample1">
-                                {# description de la card #}
-                                <div class="card card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida pharetra laoreet. Pellentesque n
-                                    on scelerisque tortor. Vivamus sit amet velit eget ex porta molestie sed at eros. Sed vulputate eget odio e
-                                    u consectetur. Etiam consequat odio non mauris pharetra, quis tempus elit consequat. Integer efficitur odi
-                                    o eu consectetur congue. Pellentesque et sem quis lacus fringilla mattis. Cras purus libero, cursus at fe
-                                    ugiat ut, vehicula id tortor. In sagittis varius risus vel elementum.
-
-                                    Sed quis lectus auctor, gravida augue quis, condimentum est. Donec eu hendrerit mi. Praesen
-                                    t eget placerat nisi, sit amet iaculis mauris. Phasellus dictum libero sit amet mollis rhoncus. Nulla vene vehi
-                                    {% for produit in monthlysales %}
-                                        {{ produit.Total }}
-                                    {{ produit.ProductName }} {{ produit.Mois }}
-                                        {% endfor %}
+                                    Nouveau produit </span></h1>
+                                {% endif %}
+                    </div> #}
+                    <p><img class="img_product" src="{{ product.picture }}"></p>
+                    <div class="card-body">
+                        {# Titre de la card #}
+                        <h5 class="card-title">{{ product.libelle }}</h5>
+                        {# Prix de la card #}
+                        <p class="card-text">{{ product.price }}€</p>
+                        {# texte de la card #}
+                        <p class="card-text">Il reste {{ product.stock }} exemplaires</p>
+                        {# <div class="custom-control custom-checkbox"> #}
+                            {# Option emballage #}
+                            {# <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Emballage cadeau ? (option gratuite)</label> #}
+                        {# </div> #}
+                        {# Bouton ajout au panier #}
+                        <a href="{{ path('cart_add',{'id':product.id}) }}" class="myButton mt-3 mb-3" id="add_basket">Ajouter au panier</a>
+                        <p>
+                            {# Lien description produit #}
+                            Description
+                            <a class="link_show_product" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                                <svg version="1.1" id="arrow_down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="20" height="20">
+                                    <path style="fill:"#000000";" d="M256.006,385.487c-15.367,0-30.732-5.848-42.433-17.547L5.872,160.67
+                                          c-7.818-7.802-7.831-20.465-0.029-28.284c7.804-7.819,20.466-7.832,28.285-0.029l207.715,207.284
+                                          c7.813,7.812,20.5,7.813,28.299,0.015l207.73-207.299c7.82-7.802,20.482-7.79,28.285,0.029c7.802,7.819,7.789,20.482-0.029,28.284
+                                          L298.411,367.954C286.725,379.641,271.364,385.487,256.006,385.487z"/>
+                                    <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+                                <svg version="1.1" id="arrow_up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 512 512" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve" width="20" height="20">
+                                    <path style="fill:"#000000";" d="M492,385.487c-5.112,0-10.223-1.947-14.127-5.843L270.157,172.359
+                                          c-7.813-7.813-20.501-7.812-28.299-0.015L34.127,379.643c-7.819,7.803-20.482,7.789-28.284-0.029
+                                          c-7.802-7.819-7.789-20.482,0.029-28.284l207.716-207.284c23.38-23.38,61.445-23.379,84.838,0.015l207.701,207.27
+                                          c7.818,7.802,7.832,20.465,0.029,28.284C502.25,383.529,497.125,385.487,492,385.487z"/>
+                                    <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+                            </a>
+                        </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="collapse mb-3" id="multiCollapseExample1">
+                                    {# description de la card #}
+                                    <div class="card card-body">
+                                        {{ product.description }}
                                         <div id="div_chart" class="most_sale col-6 mt-5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# Réseaux sociaux #}
+                        <div class="share">
+                            <p> Partager ce produit</p>
+                            {# Facebook #}
+                            <a href="">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="30" height="30">
+                                    <g>
+                                        <g>
+                                            <path style="fill:#1976D2;" d="M452,0H60C26.916,0,0,26.916,0,60v392c0,33.084,26.916,60,60,60h392c33.084,0,60-26.916,60-60V60
+                                                  C512,26.916,485.084,0,452,0z M472,452c0,11.028-8.972,20-20,20H338V309h61.79L410,247h-72v-43c0-16.975,13.025-30,30-30h41v-62
+                                                  h-41c-50.923,0-91.978,41.25-91.978,92.174V247H216v62h60.022v163H60c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h392
+                                                  c11.028,0,20,8.972,20,20V452z"/>
+                                        </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                </svg>
+                            </a>
+                            {# Twitter #}
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
+                                    <path fill="#00acee" id="Icon_awesome-twitter" data-name="Icon awesome-twitter" d="M31.4,12.1c.022.383.022.766.022,1.148,0,11.676-7.218,25.129-20.409,25.129A17.625,17.625,0,0,1,0,34.416a12.082,12.082,0,0,0,1.732.109,12.766,12.766,0,0,0,8.905-3.773c-3.154-.082-5.8-2.625-6.707-6.125a7.39,7.39,0,0,0,1.355.137,6.253,6.253,0,0,0,1.888-.3c-3.287-.82-5.752-4.375-5.752-8.668v-.109a6.239,6.239,0,0,0,3.242,1.121,9.5,9.5,0,0,1-3.2-7.355,10.358,10.358,0,0,1,.977-4.457c3.531,5.359,8.839,8.859,14.791,9.242a12.193,12.193,0,0,1-.178-2.023c0-4.867,3.2-8.832,7.173-8.832A6.615,6.615,0,0,1,29.47,6.17a12.643,12.643,0,0,0,4.553-2.133A8.719,8.719,0,0,1,30.869,8.9,12.323,12.323,0,0,0,35,7.537,17.824,17.824,0,0,1,31.4,12.1Z" transform="translate(0 -3.381)"/>
+                                </svg>
+                            </a>
+                            {# Instagram #}
+                            <a href="">
+                                <svg height="30" viewBox="0 0 512 512" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <linearGradient id="c1" gradientUnits="userSpaceOnUse" x1="42.966156268" x2="469.0337477" y1="469.0296477168" y2="42.9620562848">
+                                        <stop offset="0" stop-color="#ffd600"/><stop offset=".5" stop-color="#ff0100"/><stop offset="1" stop-color="#d800b9"/></linearGradient>
+                                    <linearGradient id="c2" gradientUnits="userSpaceOnUse" x1="163.0429956456" x2="348.9539083464" y1="348.9538083312" y2="163.0428956304">
+                                        <stop offset="0" stop-color="#ff6400"/><stop offset=".5" stop-color="#ff0100"/><stop offset="1" stop-color="#fd0056"/></linearGradient>
+                                    <linearGradient id="c3" gradientUnits="userSpaceOnUse" x1="370.9291325432" x2="414.3727849912" y1="141.0676714336" y2="97.6240189856">
+                                        <stop offset="0" stop-color="#f30072"/><stop offset="1" stop-color="#e50097"/></linearGradient>
+                                    <path fill="url(#c1)" d="m510.460938 150.453125c-1.246094-27.25-5.574219-45.859375-11.902344-62.140625-6.425782-17.082031-16.503906-32.554688-29.527344-45.34375-12.785156-13.023438-28.261719-23.105469-45.34375-29.535156-16.285156-6.324219-34.890625-10.648438-62.140625-11.886719-27.300781-1.25-36.023437-1.546875-105.546875-1.546875s-78.246094.296875-105.546875 1.539062c-27.25 1.246094-45.855469 5.574219-62.140625 11.902344-17.082031 6.425782-32.554688 16.503906-45.34375 29.527344-13.023438 12.785156-23.105469 28.257812-29.535156 45.339844-6.324219 16.285156-10.648438 34.894531-11.886719 62.140625-1.25 27.304687-1.546875 36.023437-1.546875 105.546875 0 69.527344.296875 78.25 1.546875 105.550781 1.242187 27.246094 5.570313 45.855469 11.898437 62.140625 6.425782 17.078125 16.503907 32.554688 29.527344 45.339844 12.785156 13.023437 28.261719 23.101562 45.34375 29.527344 16.28125 6.332031 34.890625 10.65625 62.140625 11.902343 27.304688 1.246094 36.023438 1.539063 105.546875 1.539063 69.523438 0 78.246094-.292969 105.546875-1.539063 27.25-1.246093 45.855469-5.570312 62.140625-11.902343 34.386719-13.296876 61.570313-40.480469 74.867188-74.867188 6.332031-16.285156 10.65625-34.894531 11.902344-62.140625 1.242187-27.304687 1.539062-36.023437 1.539062-105.546875 0-69.527344-.296875-78.246094-1.539062-105.546875zm-46.082032 208.996094c-1.136718 24.960937-5.308594 38.515625-8.8125 47.535156-8.613281 22.328125-26.257812 39.972656-48.585937 48.585937-9.019531 3.503907-22.574219 7.675782-47.535157 8.8125-26.988281 1.234376-35.085937 1.492188-103.445312 1.492188-68.363281 0-76.457031-.257812-103.449219-1.492188-24.957031-1.136718-38.511719-5.308593-47.535156-8.8125-11.117187-4.105468-21.175781-10.648437-29.433594-19.152343-8.503906-8.257813-15.046875-18.3125-19.152343-29.433594-3.503907-9.019531-7.675782-22.574219-8.8125-47.535156-1.230469-26.992188-1.492188-35.089844-1.492188-103.445313 0-68.359375.261719-76.453125 1.492188-103.449218 1.140624-24.960938 5.308593-38.515626 8.8125-47.535157 4.105468-11.121093 10.652343-21.179687 19.152343-29.4375 8.257813-8.503906 18.316407-15.046875 29.4375-19.148437 9.019531-3.507813 22.574219-7.675782 47.535157-8.816406 26.992187-1.230469 35.089843-1.492188 103.445312-1.492188h-.003906c68.355468 0 76.453125.261719 103.449218 1.496094 24.960938 1.136718 38.511719 5.308594 47.535157 8.8125 11.117187 4.105468 21.175781 10.648437 29.433593 19.148437 8.503907 8.257813 15.046876 18.316407 19.148438 29.4375 3.507812 9.019531 7.679688 22.574219 8.816406 47.535157 1.230469 26.992187 1.492188 35.089843 1.492188 103.445312 0 68.359375-.257813 76.453125-1.492188 103.449219zm0 0"/>
+                                    <path fill="url(#c2)" d="m255.996094 124.539062c-72.601563 0-131.457032 58.859376-131.457032 131.460938s58.855469 131.457031 131.457032 131.457031c72.605468 0 131.460937-58.855469 131.460937-131.457031s-58.855469-131.460938-131.460937-131.460938zm0 216.792969c-47.125-.003906-85.332032-38.207031-85.328125-85.335937 0-47.125 38.203125-85.332032 85.332031-85.332032 47.128906.003907 85.332031 38.207032 85.332031 85.332032 0 47.128906-38.207031 85.335937-85.335937 85.335937zm0 0"/>
+                                    <path fill="url(#c3)" d="m423.371094 119.347656c0 16.964844-13.753906 30.71875-30.71875 30.71875-16.96875 0-30.722656-13.753906-30.722656-30.71875 0-16.96875 13.753906-30.722656 30.722656-30.722656 16.964844 0 30.71875 13.753906 30.71875 30.722656zm0 0"/>
+                                </svg>
+                            </a>
+                        </div>
+                        {# Information d'envoi et de paiement #}
+                        <div class="informations_ship">
+                            <div class="row">
+                                <div class="col-4">
+                                    {# Logo Paiement sécurisé #}
+                                    <p>
+                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="31.6" height="36">
+                                            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256" y1="514" x2="256" y2="2" gradientTransform="matrix(1 0 0 -1 0 514)">
+                                                <stop  offset="0" style="stop-color:#2AF598"/>
+                                                <stop  offset="1" style="stop-color:#009EFD"/>
+                                            </linearGradient>
+                                            <path style="fill:url(#SVGID_1_);" d="M400,188h-36.037v-82.23c0-58.322-48.449-105.77-108-105.77s-108,47.448-108,105.77V188H112
+                                                  c-33.084,0-60,26.916-60,60v204c0,33.084,26.916,60,60,60h288c33.084,0,60-26.916,60-60V248C460,214.916,433.084,188,400,188z
+                                                  M187.963,105.77c0-36.266,30.505-65.77,68-65.77s68,29.504,68,65.77V188h-136L187.963,105.77L187.963,105.77z M420,452
+                                                  c0,11.028-8.972,20-20,20H112c-11.028,0-20-8.972-20-20V248c0-11.028,8.972-20,20-20h288c11.028,0,20,8.972,20,20V452z M293,323
+                                                  L293,323c0,13.08-6.793,24.565-17.037,31.145V398c0,11.045-8.955,20-20,20c-11.046,0-20-8.955-20-20v-43.902
+                                                  C225.76,347.51,219,336.048,219,323l0,0c0-20.435,16.565-37,37-37l0,0C276.435,286,293,302.565,293,323z"/>
+                                            <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                        </svg>
+                                        Paiement sécurisé</p>
+                                </div>
+                                <div class="col-4">
+                                    {# Logo livraiosn #}
+                                    <p><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 485.878 485.878" style="enable-background:new 0 0 485.878 485.878;" xml:space="preserve" width="31.6" height="36">
+                                            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-3.6823" y1="590.0721" x2="-3.6823" y2="529.9721" gradientTransform="matrix(5.2245 0 0 -5.2245 262.177 3168.7686)">
+                                                <stop  offset="0" style="stop-color:#00EFD1"/>
+                                                <stop  offset="1" style="stop-color:#00ACEA"/>
+                                            </linearGradient>
+                                            <path style="fill:url(#SVGID_1_);" d="M470.204,216.033H458.71l-35.527-64.784c-2.612-5.224-7.837-8.359-13.584-8.359h-81.502
+                                                  v-41.273c0-8.882-6.792-15.673-15.673-15.673H15.673C6.792,85.943,0,92.735,0,101.616v241.371c0,8.882,6.792,15.673,15.673,15.673
+                                                  H49.11c6.269,23.51,28.212,41.273,53.812,41.273s47.543-17.763,53.812-41.273h182.335c6.269,23.51,28.212,41.273,53.812,41.273
+                                                  s47.543-17.763,53.812-41.273h23.51c8.882,0,15.673-6.792,15.673-15.673V231.706C485.878,222.825,479.086,216.033,470.204,216.033z
+                                                  M399.673,174.237l22.988,41.796h-94.563v-41.796H399.673z M31.347,117.29h265.404v210.024H156.212
+                                                  c-7.314-22.465-28.212-39.184-53.29-39.184s-45.976,16.718-53.29,39.184H31.347V117.29z M102.922,368.065
+                                                  c-13.584,0-24.555-10.971-24.555-24.555c0-13.584,10.971-24.555,24.555-24.555s24.555,10.971,24.555,24.555
+                                                  C127.478,357.094,116.506,368.065,102.922,368.065z M392.882,368.065c-13.584,0-24.555-10.971-24.555-24.555
+                                                  c0-13.584,10.971-24.555,24.555-24.555c13.584,0,24.555,10.971,24.555,24.555C417.437,357.094,406.465,368.065,392.882,368.065z
+                                                  M454.531,327.314h-8.359c-7.314-22.465-28.212-39.184-53.29-39.184c-25.078,0-45.976,16.718-53.29,39.184h-11.494V247.38h126.433
+                                                  L454.531,327.314L454.531,327.314z"/>
+                                            <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                        </svg>
+                                        Livraison gratuite à partir de 120€ d'achat</p>
+                                </div>
+                                <div class="col-4">
+                                    {# Logo médaille /s 24h #}
+                                    <p><svg id="Capa_1" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31.6" height="36">
+                                            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" x2="512" y1="256" y2="256">
+                                                <stop offset="0" stop-color="#80d8ff"/>
+                                                <stop offset="1" stop-color="#ea80fc"/>
+                                            </linearGradient><g>
+                                                <path d="m512 256c0 9.692-.548 19.458-1.63 29.027-1.879 16.63-22.199 23.712-34.016 11.896l-55.064-55.065c-7.812-7.811-7.812-20.474 0-28.284 7.809-7.811 20.474-7.811 28.284 0l21.425 21.425c-10.3-107.469-100.848-194.999-214.999-194.999-120.056 0-216 97.41-216 216 0 119.393 96.623 216 216 216 79.15 0 151.875-43.22 189.796-112.794 5.285-9.699 17.432-13.275 27.132-7.99 9.698 5.286 13.275 17.434 7.989 27.132-44.932 82.44-131.115 133.652-224.917 133.652-141.503 0-256-114.516-256-256 0-141.357 114.636-256 256-256 141.502 0 256 114.517 256 256zm-256-176c-11.046 0-20 8.954-20 20v156c0 5.304 2.107 10.392 5.858 14.142l82.731 82.731c7.81 7.81 20.474 7.811 28.285 0 7.81-7.811 7.81-20.474 0-28.284l-76.874-76.873v-147.716c0-11.046-8.954-20-20-20z" fill="url(#SVGID_1_)"/></g></svg>
+                                        Livraison sous 24h</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {# Information d'envoi et de paiement #}
-                    <div class="informations_ship">
-                        <div class="row">
-                            <div class="col-4">
-                                {# Logo Paiement sécurisé #}
-                                <p><svg xmlns="http://www.w3.org/2000/svg" width="31.5" height="36" viewBox="0 0 31.5 36">
-                                        <path id="Icon_awesome-lock" data-name="Icon awesome-lock" d="M28.125,15.75H26.438V10.688a10.688,10.688,0,0,0-21.375,0V15.75H3.375A3.376,3.376,0,0,0,0,19.125v13.5A3.376,3.376,0,0,0,3.375,36h24.75A3.376,3.376,0,0,0,31.5,32.625v-13.5A3.376,3.376,0,0,0,28.125,15.75Zm-7.312,0H10.688V10.688a5.063,5.063,0,0,1,10.125,0Z"/>
-                                    </svg>
-                                    Paiement sécurisé</p>
-                            </div>
-                            <div class="col-4">
-                                {# Logo livraiosn #}
-                                <p><svg xmlns="http://www.w3.org/2000/svg" width="31.6" height="36" viewBox="0 0 31.6 36">
-                                        <path id="Icon_material-local-shipping" data-name="Icon material-local-shipping" d="M28.791,15H24.482V6H4.373C2.793,6,1.5,8.025,1.5,10.5V35.25H4.373C4.373,38.985,6.3,42,8.682,42s4.309-3.015,4.309-6.75h8.618c0,3.735,1.925,6.75,4.309,6.75s4.309-3.015,4.309-6.75H33.1V24ZM8.682,38.625c-1.192,0-2.155-1.507-2.155-3.375s.962-3.375,2.155-3.375,2.155,1.507,2.155,3.375S9.874,38.625,8.682,38.625Zm19.391-20.25L30.888,24H24.482V18.375Zm-2.155,20.25c-1.192,0-2.155-1.507-2.155-3.375s.962-3.375,2.155-3.375,2.155,1.507,2.155,3.375S27.11,38.625,25.918,38.625Z" transform="translate(-1.5 -6)"/>
-                                    </svg>
-                                    Livraison gratuite à partir de 120€ d'achat</p>
-                            </div>
-                            <div class="col-4">
-                                {# Logo médaille /s 24h #}
-                                <p><svg xmlns="http://www.w3.org/2000/svg" width="31.6" height="36" viewBox="0 0 31.6 36">
-                                        <path id="Icon_awesome-medal" data-name="Icon awesome-medal" d="M13.81,9.193l-4.267-8.1A1.939,1.939,0,0,0,7.849,0H.989A1.14,1.14,0,0,0,.18,1.77L7.048,12.947A12.232,12.232,0,0,1,13.81,9.193ZM30.611,0h-6.86a1.939,1.939,0,0,0-1.694,1.093l-4.267,8.1a12.235,12.235,0,0,1,6.762,3.753L31.42,1.77A1.14,1.14,0,0,0,30.611,0ZM15.8,11.25c-6,0-10.863,5.541-10.863,12.375S9.8,36,15.8,36s10.863-5.541,10.863-12.375S21.8,11.25,15.8,11.25Zm5.71,11.057-2.341,2.6.554,3.672c.1.658-.51,1.161-1.028.85l-2.9-1.733-2.895,1.733c-.518.313-1.126-.193-1.028-.85l.554-3.672-2.341-2.6a.841.841,0,0,1,.392-1.377l3.236-.537,1.446-3.341a.675.675,0,0,1,1.272,0l1.446,3.341,3.236.537a.841.841,0,0,1,.392,1.377Z" transform="translate(0)"/>
-                                    </svg>
-                                    Livraison sous 24h</p>
-                            </div>
-                        </div>
-                    </div>
-                    {# Réseaux sociaux #}
-                    <div class="share">
-                        <p> Partager ce produit</p>
-                        {# Facebook #}
-                        <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
-                                <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M34.316,19.688l1.815-6.334H24.783V9.243c0-1.733,1.585-3.422,6.668-3.422h5.159V.428S31.928,0,27.452,0C18.106,0,12,3.034,12,8.526v4.828H1.609v6.334H12V35H24.783V19.688Z" transform="translate(-1.609)"/>
-                            </svg>
-                        </a>
-                        {# Twitter #}
-                        <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
-                                <path id="Icon_awesome-twitter" data-name="Icon awesome-twitter" d="M31.4,12.1c.022.383.022.766.022,1.148,0,11.676-7.218,25.129-20.409,25.129A17.625,17.625,0,0,1,0,34.416a12.082,12.082,0,0,0,1.732.109,12.766,12.766,0,0,0,8.905-3.773c-3.154-.082-5.8-2.625-6.707-6.125a7.39,7.39,0,0,0,1.355.137,6.253,6.253,0,0,0,1.888-.3c-3.287-.82-5.752-4.375-5.752-8.668v-.109a6.239,6.239,0,0,0,3.242,1.121,9.5,9.5,0,0,1-3.2-7.355,10.358,10.358,0,0,1,.977-4.457c3.531,5.359,8.839,8.859,14.791,9.242a12.193,12.193,0,0,1-.178-2.023c0-4.867,3.2-8.832,7.173-8.832A6.615,6.615,0,0,1,29.47,6.17a12.643,12.643,0,0,0,4.553-2.133A8.719,8.719,0,0,1,30.869,8.9,12.323,12.323,0,0,0,35,7.537,17.824,17.824,0,0,1,31.4,12.1Z" transform="translate(0 -3.381)"/>
-                            </svg>
-                        </a>
-                        {# Instagram #}
-                        <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35">
-                                <path id="Icon_awesome-instagram" data-name="Icon awesome-instagram" d="M17.5,10.764a8.974,8.974,0,1,0,8.972,8.974A8.958,8.958,0,0,0,17.5,10.764Zm0,14.808a5.834,5.834,0,1,1,5.833-5.834A5.844,5.844,0,0,1,17.5,25.572ZM28.93,10.4A2.093,2.093,0,1,1,26.837,8.3,2.088,2.088,0,0,1,28.93,10.4Zm5.942,2.124c-.133-2.8-.773-5.287-2.827-7.333S27.516,2.5,24.713,2.361c-2.889-.164-11.548-.164-14.437,0C7.481,2.493,5,3.134,2.944,5.18S.258,9.71.118,12.514c-.164,2.89-.164,11.551,0,14.44.133,2.8.773,5.287,2.827,7.333s4.529,2.687,7.332,2.827c2.889.164,11.548.164,14.437,0,2.8-.133,5.286-.773,7.332-2.827s2.686-4.53,2.827-7.333c.164-2.89.164-11.543,0-14.433ZM31.139,30.055a5.906,5.906,0,0,1-3.326,3.327c-2.3.914-7.769.7-10.315.7s-8.019.2-10.315-.7a5.906,5.906,0,0,1-3.326-3.327c-.914-2.3-.7-7.771-.7-10.317s-.2-8.021.7-10.317A5.906,5.906,0,0,1,7.184,6.094c2.3-.914,7.769-.7,10.315-.7s8.019-.2,10.315.7a5.906,5.906,0,0,1,3.326,3.327c.914,2.3.7,7.771.7,10.317S32.053,27.758,31.139,30.055Z" transform="translate(0.005 -2.238)"/>
-                            </svg>
-                        </a>
-                    </div>
                 </div>
+
             </div>
-
         </div>
-        </div>
-
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     {% if chart != null %}
                     <script type="text/javascript">
                         {{ gc_draw(chart, 'div_chart') }}

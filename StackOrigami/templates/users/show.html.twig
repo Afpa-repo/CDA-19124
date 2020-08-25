@@ -46,11 +46,11 @@
             {% endif %}
             <tr>
                 <th>Rôle</th>
-                <td>{% if user.role == 1 %}
+                <td>{% if user.role == 'admin' %}
                 Administrateur
-                {% elseif user.role == 2 %}
+                {% elseif user.role == 'parcom' %}
                 Commercial particulier
-                {% elseif user.role == 2 %}
+                {% elseif user.role == 'procom' %}
                 Commercial entreprise
                 {% else %}
                 Client

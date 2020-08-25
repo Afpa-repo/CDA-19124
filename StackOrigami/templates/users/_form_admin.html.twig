@@ -15,7 +15,7 @@
     {{ form_widget(form.address_fact, {'attr': {'placeholder' : "Adresse postale", 'class' : "form-control"}}) }}
 
     {{ form_label(form.role, 'Rôle') }}
-    {{ form_widget(form.role, {'attr': {'placeholder' : "role (1 administrateur, 2 commercial particulier, 3 commercial entreprise)", 'class' : "form-control"}}) }}
+    {{ form_widget(form.role, {'attr': {'placeholder' : "role ('admin' administrateur, 'parcom' commercial particulier, 'procom' commercial entreprise)", 'class' : "form-control"}}) }}
     
     {{ form_label(form.type, {'attr': {'class' : "form-check-label"}}) }}
     {{ form_widget(form.type, {'attr': {'class' : "form-check-input"}}) }}

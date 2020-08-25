@@ -30,6 +30,9 @@ class BoutiqueController extends AbstractController {
     /* Fonction qui appelle dans la page home tous les produits, tous les catégories et tous les partenaires de la BDD */
     public function home(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository, PartnerRepository $partnerRepository, OrderDetailsRepository $orderdetails): Response {
         
+        // dd($orderdetails->findBestSales());
+
+
         return $this->render('boutique/home.html.twig', [
                     /* Retrouve toutes les valeurs dans l'entité products */
                     'products' => $productRepository->findAll(),

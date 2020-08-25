@@ -38,9 +38,9 @@
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.phoneNumber }}</td>
                         <td>{% if user.type %} Particulier {% else %} Professionnel {% endif %}</td>
-                        <td>{% if user.role == 1 %} Administrateur
-                        {% elseif user.role == 2 %} Commercial Particulier
-                        {% elseif user.role == 3 %} Commercial Entreprise
+                        <td>{% if user.role == 'admin' %} Administrateur
+                        {% elseif user.role == 'parcom' %} Commercial Particulier
+                        {% elseif user.role == 'procom' %} Commercial Entreprise
                         {% else %} Client
                         {% endif %}</td>
                         <td>

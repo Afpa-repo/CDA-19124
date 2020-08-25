@@ -26,7 +26,7 @@ class OrderDetailsRepository extends ServiceEntityRepository
     public function findSoldStat(): QueryBuilder
     {
         return $query = $this->createQueryBuilder('s')
-            ->select('SUM(s.Quantity) as Total, p.id as ID, p.libelle as ProductName')
+            ->select('SUM(s.Quantity) as Total, p.id as ID, p.libelle as ProductName, p.picture as picture, p.price as price')
             ->join('s.Product','p')
             ->groupBy('p.id')
             ->orderBy('Total', 'DESC');

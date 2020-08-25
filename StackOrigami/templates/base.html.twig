@@ -52,7 +52,7 @@
                         <!-- Logo profil -->
                         <a href="{{ path('profil') }}" class="mr-1">
                             <div class="row">
-                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px width="36" height="31.5"
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="36" height="31.5"
                                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256" y1="514" x2="256" y2="2" gradientTransform="matrix(1 0 0 -1 0 514)">
                                 <stop  offset="0" style="stop-color:#2AF598"/>
@@ -114,7 +114,8 @@
 
                     <!-- Logo panier -->
                     <a href="{{ path('cart_index') }}" class="mr-1 ml-3">
-                        <span class="basket" id="basket">{{ app.session.get('Fcount') }}</span>
+                        <span class="basket" id="basket">
+                        {% if app.session.get('Fcount')%}{{ app.session.get('Fcount') }}{% else %}0{% endif %}</span>
 
                         <svg viewBox="-1 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="31.5">
                         <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="255.118" x2="255.118" y1="0" y2="512">

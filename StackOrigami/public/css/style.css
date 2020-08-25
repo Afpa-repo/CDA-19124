@@ -1,6 +1,4 @@
-/*
-Start header
-*/
+/* Start header */
 
 * {
     font-family: Arial;
@@ -15,14 +13,13 @@ Start header
     margin-bottom:10px;
 }
 
-
 #nav {
     background-color : #ffe294 !important;
     height: auto;
-    padding-bottom : 13px;
+    padding-bottom: 13px ;
 }
 
-/* start welcome user */
+/* welcome user */
 #hello_user{
     margin-right: 50px;
     margin-top: 15px;
@@ -79,7 +76,19 @@ body {
     width: 30vw;
 }
 
-/* start FOOTER */
+.basket{
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #ffe294;
+    background: linear-gradient(#2AF598, #009EFD);
+    border-radius: 100%;
+}
+.basket:hover{
+    color: transparent;
+}
+
+/* end header */
+/* start footer */
 
 footer  p {
     color : #6B6B5B !important;
@@ -145,16 +154,12 @@ a:hover {
 
 }
 
-.paiement_methods{
-
+.stack{
+    margin-top: 20px;
+    line-height: 3px;
+    padding-bottom: 5px
 }
 /* end FOOTER */
-
-
-#stack {
-    color : white !important;
-    font-size: 1.2em;
-}
 
 ul {
     list-style:none;
@@ -249,10 +254,15 @@ ul {
     color : #D3BE00;
 }
 
+.img_caroussel{
+    width : 41%;
+}
+
 /* end slider */
 
 .btn-profil {
     background-color:#6B6B5B ;
+    margin-bottom: 10px;
     padding: 15px;
     color : white;
     border-radius : 5px;
@@ -356,6 +366,18 @@ ul {
     border: 1px solid rgba(0,0,0,.125);
 }
 
+.img_product{
+    width: 100%;
+}
+
+#arrow_up{
+    display: none;
+}
+
+#arrow_down{
+    display: "inline";
+}
+
 
 /* page show product */
 
@@ -368,8 +390,12 @@ ul {
     font-size: 2em;
 }
 
+.share{
+    margin-bottom: 10px;
+}
+
 .informations_ship {
-    background-color: #6B6B5B;
+    background-color: #ffe294;
     padding-top : 25px;
     padding-bottom : 25px;
 }
@@ -399,9 +425,6 @@ ul {
 .jumbotron {
     background-color: transparent !important;
 }
-
-
-
 
 
 .css-typing p {

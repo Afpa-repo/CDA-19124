@@ -33,18 +33,18 @@ class SecurityController extends AbstractController {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             /* Cryptage du mot de passe que l'utilisateur aura entré */
             $user->setPassword($hash);
-            $user->setRole(0);  //l'utilisateur est un client
+            $user->setRole('client');  //l'utilisateur est un client
             /* Associe l'utilisateur à un commercial */
             if($user->getType()){   //si le client est un particulier
                 $user->setCoefficient(1);   //met le coefficient initial
-                if($usersRepository->findByRole(2) != []){
-                    $commercial = $usersRepository->findByRole(2)[0];   //récupèle le premier commercial 
+                if($usersRepository->findByRole('parcom') != []){
+                    $commercial = $usersRepository->findByRole('parcom')[0];   //récupèle le premier commercial 
                     $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
                 }
             }else{  //si c'est une entreprise
                 $user->setCoefficient(2);
-                if($usersRepository->findByRole(3) != []){
-                    $commercial = $usersRepository->findByRole(3)[0];   //récupèle le premier commercial 
+                if($usersRepository->findByRole('procom') != []){
+                    $commercial = $usersRepository->findByRole('procom')[0];   //récupèle le premier commercial 
                     $user->setCommercial($commercial);  //ajoute le commercial à l'utilisateur
                 }
             }

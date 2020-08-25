@@ -22,7 +22,7 @@
 
                             {% for product in products|slice(0, 3) %}
                                 <div class="swiper-slide" data-swiper-autoplay="2000">
-                                    <img src="{{ product.picture }}">
+                                    <img class="img_caroussel" src="{{ product.picture }}">
                                     <div class="col-sm-12 col-lg-5 contain_white pb-2">
 
                                         <div class="title" data-swiper-parallax="-300">
@@ -32,7 +32,7 @@
                                             <p>
                                                 {{ product.description }}
                                             </p>
-                                            <p class="font-weight-bold">25€</p>
+                                            <p class="font-weight-bold">{{ product.price }}€</p>
                                             <a href="{{ path('cart_add',{'id':product.id}) }}" class="myButton">Ajouter au panier</a>
                                         </div>
                                     </div>
@@ -73,10 +73,22 @@
                      
                             
                         <div class="row"> 
-                            <div class="col-sm-12 col-lg-3">
-                            <div id="div_chart" class="most_sale col-4 mt-5"></div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div id="div_chart" class="most_sale col-4 mt-5">
+                                <div class="d-flex">
+                                    {% for sale in bestsales %}
+                                        <div class = "col">
+                                            <a href="{{ path('product_show',{'id':sale.ID}) }}">
+                                                <img class="saler lien_card"  width="200" src="{{ sale.picture }}">
+                                            </a>
+                                            <p>{{ sale.ProductName }}</p>
+                                            <p class="font-weight-bold">{{ sale.price }} €</p>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-lg-3">
+                            {# <div class="col-sm-12 col-lg-3">
                                 <a href="">
                                     <img class="saler lien_card" src="{{ asset ('images/51IE-V8GE4L-removebg-preview.svg') }}">
                                 </a>
@@ -89,17 +101,19 @@
                                 </a>
                                 <p>OiseauStock</p>
                                 <p class="font-weight-bold">25€</p>
-                            </div>
+                            </div> #}
+                            <div class="col-12 col-lg-6">
                             {% for partner in partners %}
-                                <div class="col-sm-12 col-lg-2">
-                                    <a href="">
+                                <div class="col-sm-12 ">
+                                    <a href="www.afpa.fr">
                                         <img class="saler lien_card" height="200" width="200" src="{{ partner.picture }}">
-                                    <p class="font-weight-bold">Fnac</p>   </a>
+                                    <p class="font-weight-bold">{{ partner.name }}</p>   </a>
                                 </div>
                             {% endfor %}
+                            </div>
                         </div>
                     </div>
-    </div>
+                </div>
 
                     
                     
