@@ -1,4 +1,3 @@
-
 TRUNCATE `contact`;
 INSERT INTO `contact` (`mail`, `subject`, `message`, `date_send`) VALUES
 	('jean@hotmail.fr', 'objet', 'contenu du message', '2020-02-11 15:05:32'),
